@@ -1,0 +1,20 @@
+{
+  "title": "ጋለሪ",
+  "subtitle": "የእኛ ስራ",
+  "description": "በተጠናቀቁ ፕሮጀክቶቻችን ውስጥ ይሂዱ እና የስራችንን ጥራት ይመልከቱ።",
+  "images": [
+    {
+      "id": 1,
+      "title": "ፕሮጀክት 1",
+      "image": "/images/gallery1.jpg",
+      "category": "መጫን"
+    },
+    {
+      "id": 2,
+      "title": "ፕሮጀክት 2",
+      "image": "/images/gallery2.jpg",
+      "category": "ጠገና"
+    }
+  ]
+}
+

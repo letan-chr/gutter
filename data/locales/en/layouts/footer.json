@@ -1,0 +1,55 @@
+{
+  "company": {
+    "title": "Gutter Share Company",
+    "description": "Your trusted partner for quality gutter solutions.",
+    "logo": "Gutter Share"
+  },
+  "links": {
+    "quickLinks": {
+      "title": "Quick Links",
+      "items": [
+        { "label": "Home", "url": "/" },
+        { "label": "About Us", "url": "/company/about" },
+        { "label": "Services", "url": "/service" },
+        { "label": "Products", "url": "/products" },
+        { "label": "Blog", "url": "/blogs" },
+        { "label": "Contact", "url": "/contacts" }
+      ]
+    },
+    "services": {
+      "title": "Services",
+      "items": [
+        { "label": "Gutter Installation", "url": "/service/gutter-installation" },
+        { "label": "Gutter Repair", "url": "/service/gutter-repair" },
+        { "label": "Gutter Cleaning", "url": "/service/gutter-cleaning" },
+        { "label": "Gutter Replacement", "url": "/service/gutter-replacement" }
+      ]
+    },
+    "company": {
+      "title": "Company",
+      "items": [
+        { "label": "About Us", "url": "/company/about" },
+        { "label": "Our Team", "url": "/company/team" },
+        { "label": "Gallery", "url": "/company/gallery" },
+        { "label": "Testimonials", "url": "/company/testimonials" }
+      ]
+    }
+  },
+  "contact": {
+    "title": "Contact Info",
+    "address": "123 Main Street, City, Country",
+    "phone": "+1 234 567 8900",
+    "email": "info@guttershare.com"
+  },
+  "social": {
+    "title": "Follow Us",
+    "links": [
+      { "name": "Facebook", "url": "#" },
+      { "name": "Twitter", "url": "#" },
+      { "name": "Instagram", "url": "#" },
+      { "name": "LinkedIn", "url": "#" }
+    ]
+  },
+  "copyright": "© 2024 Gutter Share Company. All rights reserved."
+}
+

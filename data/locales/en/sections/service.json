@@ -1,0 +1,32 @@
+{
+  "title": "Our Services",
+  "subtitle": "Comprehensive Gutter Solutions",
+  "description": "We provide a wide range of gutter services to meet all your needs.",
+  "services": [
+    {
+      "id": 1,
+      "title": "Gutter Installation",
+      "description": "Professional installation of new gutter systems",
+      "image": "/images/service1.jpg"
+    },
+    {
+      "id": 2,
+      "title": "Gutter Repair",
+      "description": "Expert repair services for damaged gutters",
+      "image": "/images/service2.jpg"
+    },
+    {
+      "id": 3,
+      "title": "Gutter Cleaning",
+      "description": "Regular maintenance and cleaning services",
+      "image": "/images/service3.jpg"
+    },
+    {
+      "id": 4,
+      "title": "Gutter Replacement",
+      "description": "Complete replacement of old gutter systems",
+      "image": "/images/service4.jpg"
+    }
+  ]
+}
+

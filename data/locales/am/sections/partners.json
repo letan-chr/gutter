@@ -1,0 +1,28 @@
+{
+  "title": "የእኛ አጋሮች",
+  "subtitle": "በኢንዱስትሪ መሪዎች የታመነ",
+  "description": "በኢንዱስትሪው ውስጥ ከመሪ ኩባንያዎች ጋር እንሰራለን።",
+  "partners": [
+    {
+      "id": 1,
+      "name": "አጋር 1",
+      "logo": "/images/partner1.png"
+    },
+    {
+      "id": 2,
+      "name": "አጋር 2",
+      "logo": "/images/partner2.png"
+    },
+    {
+      "id": 3,
+      "name": "አጋር 3",
+      "logo": "/images/partner3.png"
+    },
+    {
+      "id": 4,
+      "name": "አጋር 4",
+      "logo": "/images/partner4.png"
+    }
+  ]
+}
+

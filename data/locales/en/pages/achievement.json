@@ -1,0 +1,26 @@
+{
+  "title": "Our Achievements",
+  "subtitle": "Milestones & Success",
+  "description": "Celebrating our journey and accomplishments.",
+  "achievements": [
+    {
+      "id": 1,
+      "title": "1000+ Projects",
+      "description": "Successfully completed projects",
+      "icon": "🏆"
+    },
+    {
+      "id": 2,
+      "title": "500+ Happy Customers",
+      "description": "Satisfied customers",
+      "icon": "😊"
+    },
+    {
+      "id": 3,
+      "title": "10+ Years Experience",
+      "description": "Years in the industry",
+      "icon": "⭐"
+    }
+  ]
+}
+

@@ -1,0 +1,36 @@
+{
+  "title": "Our Products",
+  "subtitle": "Quality Gutter Products",
+  "description": "Browse our wide selection of premium gutter products.",
+  "products": [
+    {
+      "id": 1,
+      "title": "Aluminum Gutters",
+      "description": "Durable and lightweight aluminum gutter systems",
+      "price": "From $500",
+      "image": "/images/product1.jpg"
+    },
+    {
+      "id": 2,
+      "title": "Vinyl Gutters",
+      "description": "Affordable and easy to maintain vinyl gutters",
+      "price": "From $300",
+      "image": "/images/product2.jpg"
+    },
+    {
+      "id": 3,
+      "title": "Steel Gutters",
+      "description": "Strong and long-lasting steel gutter systems",
+      "price": "From $600",
+      "image": "/images/product3.jpg"
+    },
+    {
+      "id": 4,
+      "title": "Copper Gutters",
+      "description": "Premium copper gutters with elegant appearance",
+      "price": "From $1000",
+      "image": "/images/product4.jpg"
+    }
+  ]
+}
+

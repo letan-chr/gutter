@@ -1,0 +1,24 @@
+{
+  "title": "Our Services",
+  "subtitle": "Professional Gutter Services",
+  "description": "We offer comprehensive gutter services to protect and maintain your property.",
+  "services": [
+    {
+      "id": 1,
+      "slug": "gutter-installation",
+      "title": "Gutter Installation",
+      "description": "Professional installation of new gutter systems by certified technicians.",
+      "features": ["Expert installation", "Quality materials", "Warranty included", "Free consultation"],
+      "image": "/images/service1.jpg"
+    },
+    {
+      "id": 2,
+      "slug": "gutter-repair",
+      "title": "Gutter Repair",
+      "description": "Fast and reliable repair services for damaged or leaking gutters.",
+      "features": ["Quick response", "Expert repair", "Quality workmanship", "Affordable prices"],
+      "image": "/images/service2.jpg"
+    }
+  ]
+}
+

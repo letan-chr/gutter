@@ -1,0 +1,24 @@
+{
+  "title": "Testimonials",
+  "subtitle": "What Our Customers Say",
+  "description": "Read what our satisfied customers have to say about our services.",
+  "testimonials": [
+    {
+      "id": 1,
+      "name": "Michael Johnson",
+      "position": "Homeowner",
+      "content": "Excellent service! The team was professional and completed the work on time.",
+      "rating": 5,
+      "image": "/images/testimonial1.jpg"
+    },
+    {
+      "id": 2,
+      "name": "Sarah Williams",
+      "position": "Property Manager",
+      "content": "Great quality work and excellent customer service. Highly recommended!",
+      "rating": 5,
+      "image": "/images/testimonial2.jpg"
+    }
+  ]
+}
+

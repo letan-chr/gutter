@@ -1,0 +1,29 @@
+{
+  "title": "About Us",
+  "subtitle": "Your Trusted Gutter Experts",
+  "description": "Learn more about our company, mission, and values.",
+  "content": {
+    "mission": {
+      "title": "Our Mission",
+      "description": "To provide exceptional gutter solutions and services that protect properties and exceed customer expectations."
+    },
+    "vision": {
+      "title": "Our Vision",
+      "description": "To be the leading gutter service provider known for quality, reliability, and customer satisfaction."
+    },
+    "values": {
+      "title": "Our Values",
+      "items": [
+        "Quality First",
+        "Customer Satisfaction",
+        "Integrity",
+        "Innovation"
+      ]
+    },
+    "history": {
+      "title": "Our History",
+      "description": "Founded with a commitment to excellence, we have been serving customers for over 10 years with dedication and expertise."
+    }
+  }
+}
+

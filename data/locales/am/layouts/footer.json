@@ -1,0 +1,55 @@
+{
+  "company": {
+    "title": "ጋተር ሼር ኩባንያ",
+    "description": "ለጥራት የጋተር መፍትሄዎች የታመነ አጋርዎ።",
+    "logo": "ጋተር ሼር"
+  },
+  "links": {
+    "quickLinks": {
+      "title": "ፈጣን አገናኞች",
+      "items": [
+        { "label": "መነሻ", "url": "/" },
+        { "label": "ስለእኛ", "url": "/company/about" },
+        { "label": "አገልግሎቶች", "url": "/service" },
+        { "label": "ምርቶች", "url": "/products" },
+        { "label": "ብሎግ", "url": "/blogs" },
+        { "label": "ያግኙን", "url": "/contacts" }
+      ]
+    },
+    "services": {
+      "title": "አገልግሎቶች",
+      "items": [
+        { "label": "የጋተር መጫን", "url": "/service/gutter-installation" },
+        { "label": "የጋተር ጠገና", "url": "/service/gutter-repair" },
+        { "label": "የጋተር ማጽዳት", "url": "/service/gutter-cleaning" },
+        { "label": "የጋተር መተካት", "url": "/service/gutter-replacement" }
+      ]
+    },
+    "company": {
+      "title": "ኩባንያ",
+      "items": [
+        { "label": "ስለእኛ", "url": "/company/about" },
+        { "label": "የእኛ ቡድን", "url": "/company/team" },
+        { "label": "ጋለሪ", "url": "/company/gallery" },
+        { "label": "ምስክርነቶች", "url": "/company/testimonials" }
+      ]
+    }
+  },
+  "contact": {
+    "title": "የግንኙነት መረጃ",
+    "address": "123 ዋና መንገድ፣ ከተማ፣ ሀገር",
+    "phone": "+251 911 234 567",
+    "email": "info@guttershare.com"
+  },
+  "social": {
+    "title": "ይከተሉን",
+    "links": [
+      { "name": "ፌስቡክ", "url": "#" },
+      { "name": "ትዊተር", "url": "#" },
+      { "name": "ኢንስታግራም", "url": "#" },
+      { "name": "ሊንክድኢን", "url": "#" }
+    ]
+  },
+  "copyright": "© 2024 ጋተር ሼር ኩባንያ። ሁሉም መብቶች የተጠበቁ ናቸው።"
+}
+

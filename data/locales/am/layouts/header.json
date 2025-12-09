@@ -1,0 +1,24 @@
+{
+  "logo": "ጋተር ሼር",
+  "nav": {
+    "home": "መነሻ",
+    "company": {
+      "label": "ኩባንያ",
+      "items": [
+        { "label": "ስለእኛ", "href": "/company/about" },
+        { "label": "የእኛ ቡድን", "href": "/company/team" },
+        { "label": "ጋለሪ", "href": "/company/gallery" },
+        { "label": "ምስክርነቶች", "href": "/company/testimonials" },
+        { "label": "ውጤቶች", "href": "/company/achievement" },
+        { "label": "ስትራቴጂ", "href": "/company/strategy" }
+      ]
+    },
+    "services": "አገልግሎቶች",
+    "products": "ምርቶች",
+    "blog": "ብሎግ",
+    "vacancy": "የሙያ እድሎች",
+    "contact": "ያግኙን"
+  },
+  "cta": "ዋጋ ያግኙ"
+}
+

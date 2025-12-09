@@ -1,0 +1,31 @@
+{
+  "title": "Contact Us",
+  "subtitle": "Get in Touch",
+  "description": "We'd love to hear from you. Reach out to us for any inquiries.",
+  "form": {
+    "name": "Name",
+    "email": "Email",
+    "phone": "Phone",
+    "message": "Message",
+    "submit": "Send Message"
+  },
+  "info": {
+    "address": {
+      "title": "Address",
+      "value": "123 Main Street, City, Country"
+    },
+    "phone": {
+      "title": "Phone",
+      "value": "+1 234 567 8900"
+    },
+    "email": {
+      "title": "Email",
+      "value": "info@guttershare.com"
+    },
+    "hours": {
+      "title": "Working Hours",
+      "value": "Mon - Fri: 9:00 AM - 6:00 PM"
+    }
+  }
+}
+

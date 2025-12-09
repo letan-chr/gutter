@@ -1,0 +1,22 @@
+{
+  "title": "የእኛ ቡድን",
+  "subtitle": "ባለሙያዎቹን ይቀድሙ",
+  "description": "የተገለጸ የሙያዊያን ቡድናችን እዚህ አገልግሎት ለመስጠት ነው።",
+  "members": [
+    {
+      "id": 1,
+      "name": "ጆን ዶ",
+      "position": "ሪፐብሊክ እና መስራች",
+      "description": "በኢንዱስትሪው ውስጥ ከ15 ዓመታት በላይ ልምድ።",
+      "image": "/images/team1.jpg"
+    },
+    {
+      "id": 2,
+      "name": "ጄን ስሚዝ",
+      "position": "ዋና ቴክኒሻን",
+      "description": "በጋተር ስርዓቶች ልምድ ያለው ተመስክሮ የተመዘገበ ሙያዊ።",
+      "image": "/images/team2.jpg"
+    }
+  ]
+}
+

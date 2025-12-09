@@ -1,0 +1,24 @@
+{
+  "title": "የእኛ አገልግሎቶች",
+  "subtitle": "ሙያዊ የጋተር አገልግሎቶች",
+  "description": "ንብረትዎን ለመጠብቅ እና ለመጠበቅ የተሟላ የጋተር አገልግሎቶችን እናቀርባለን።",
+  "services": [
+    {
+      "id": 1,
+      "slug": "gutter-installation",
+      "title": "የጋተር መጫን",
+      "description": "በተመስክረው ቴክኒሻኖች የአዲስ የጋተር ስርዓቶች ሙያዊ መጫን።",
+      "features": ["የባለሙያ መጫን", "የጥራት ቁሳቁሶች", "ዋስትና ተካትቷል", "ነጻ ምክክር"],
+      "image": "/images/service1.jpg"
+    },
+    {
+      "id": 2,
+      "slug": "gutter-repair",
+      "title": "የጋተር ጠገና",
+      "description": "ለተበላሹ ወይም ለሚፈሱ ጋተሮች ፈጣን እና አስተማማኝ የጠገና አገልግሎቶች።",
+      "features": ["ፈጣን ምላሽ", "የባለሙያ ጠገና", "የጥራት ስራ", "ተወዳዳሪ ዋጋዎች"],
+      "image": "/images/service2.jpg"
+    }
+  ]
+}
+

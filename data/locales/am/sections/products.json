@@ -1,0 +1,36 @@
+{
+  "title": "የእኛ ምርቶች",
+  "subtitle": "የጥራት የጋተር ምርቶች",
+  "description": "የእኛን ሰፊ የከፍተኛ የጋተር ምርቶች ምርጫ ይመልከቱ።",
+  "products": [
+    {
+      "id": 1,
+      "title": "የአሉሚኒየም ጋተሮች",
+      "description": "ዘላቂ እና ቀላል የአሉሚኒየም የጋተር ስርዓቶች",
+      "price": "ከ500 ዶላር ጀምሮ",
+      "image": "/images/product1.jpg"
+    },
+    {
+      "id": 2,
+      "title": "የቫይንል ጋተሮች",
+      "description": "ተወዳዳሪ እና ለመጠበቅ ቀላል የቫይንል ጋተሮች",
+      "price": "ከ300 ዶላር ጀምሮ",
+      "image": "/images/product2.jpg"
+    },
+    {
+      "id": 3,
+      "title": "የብረት ጋተሮች",
+      "description": "ጠንካራ እና ረጅም ዘላቂነት ያላቸው የብረት የጋተር ስርዓቶች",
+      "price": "ከ600 ዶላር ጀምሮ",
+      "image": "/images/product3.jpg"
+    },
+    {
+      "id": 4,
+      "title": "የነሐስ ጋተሮች",
+      "description": "ከጥሩ መልክ ጋር የከፍተኛ የነሐስ ጋተሮች",
+      "price": "ከ1000 ዶላር ጀምሮ",
+      "image": "/images/product4.jpg"
+    }
+  ]
+}
+

@@ -1,0 +1,20 @@
+{
+  "title": "Gallery",
+  "subtitle": "Our Work",
+  "description": "Browse through our completed projects and see the quality of our work.",
+  "images": [
+    {
+      "id": 1,
+      "title": "Project 1",
+      "image": "/images/gallery1.jpg",
+      "category": "Installation"
+    },
+    {
+      "id": 2,
+      "title": "Project 2",
+      "image": "/images/gallery2.jpg",
+      "category": "Repair"
+    }
+  ]
+}
+

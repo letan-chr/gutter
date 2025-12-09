@@ -1,0 +1,30 @@
+{
+  "title": "Our Blog",
+  "subtitle": "Latest News and Updates",
+  "description": "Stay informed with our latest articles, tips, and industry insights.",
+  "posts": [
+    {
+      "id": 1,
+      "slug": "gutter-maintenance-tips",
+      "title": "Essential Gutter Maintenance Tips",
+      "excerpt": "Learn how to keep your gutters in perfect condition year-round.",
+      "content": "Regular gutter maintenance is crucial for protecting your home from water damage...",
+      "author": "John Doe",
+      "date": "2024-01-15",
+      "image": "/images/blog1.jpg",
+      "category": "Maintenance"
+    },
+    {
+      "id": 2,
+      "slug": "choosing-right-gutter",
+      "title": "Choosing the Right Gutter System",
+      "excerpt": "A comprehensive guide to selecting the perfect gutter system for your home.",
+      "content": "Selecting the right gutter system is an important decision...",
+      "author": "Jane Smith",
+      "date": "2024-01-10",
+      "image": "/images/blog2.jpg",
+      "category": "Installation"
+    }
+  ]
+}
+

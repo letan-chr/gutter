@@ -1,0 +1,28 @@
+{
+  "title": "Why Choose Us",
+  "subtitle": "Your Trusted Partner",
+  "description": "We have been serving customers with excellence for years.",
+  "reasons": [
+    {
+      "id": 1,
+      "title": "Years of Experience",
+      "description": "Over 10 years of industry experience"
+    },
+    {
+      "id": 2,
+      "title": "Certified Professionals",
+      "description": "All our technicians are certified and trained"
+    },
+    {
+      "id": 3,
+      "title": "Quality Guarantee",
+      "description": "100% satisfaction guarantee on all our work"
+    },
+    {
+      "id": 4,
+      "title": "Customer First",
+      "description": "Your satisfaction is our top priority"
+    }
+  ]
+}
+

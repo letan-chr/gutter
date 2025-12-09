@@ -1,0 +1,32 @@
+{
+  "title": "የእኛ አገልግሎቶች",
+  "subtitle": "የተሟላ የጋተር መፍትሄዎች",
+  "description": "ሁሉንም ፍላጎቶችዎን ለመሟላት ሰፊ የጋተር አገልግሎቶችን እናቀርባለን።",
+  "services": [
+    {
+      "id": 1,
+      "title": "የጋተር መጫን",
+      "description": "የአዲስ የጋተር ስርዓቶች ሙያዊ መጫን",
+      "image": "/images/service1.jpg"
+    },
+    {
+      "id": 2,
+      "title": "የጋተር ጠገና",
+      "description": "ለተበላሹ ጋተሮች የባለሙያ የጠገና አገልግሎቶች",
+      "image": "/images/service2.jpg"
+    },
+    {
+      "id": 3,
+      "title": "የጋተር ማጽዳት",
+      "description": "የመደበኛ ጥገና እና የማጽዳት አገልግሎቶች",
+      "image": "/images/service3.jpg"
+    },
+    {
+      "id": 4,
+      "title": "የጋተር መተካት",
+      "description": "የአሮጌ የጋተር ስርዓቶች ሙሉ መተካት",
+      "image": "/images/service4.jpg"
+    }
+  ]
+}
+

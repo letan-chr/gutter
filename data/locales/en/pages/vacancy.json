@@ -1,0 +1,125 @@
+{
+  "title": "Career Opportunities",
+  "subtitle": "Join Our Team",
+  "description": "We are always looking for talented individuals to join our growing team.",
+  "noVacancies": "No open positions at the moment. Check back later!",
+  "viewDetails": "View Details",
+  "backToVacancies": "Back to Vacancies",
+  "applyNow": "Apply Now",
+  "jobDescription": "Job Description",
+  "requirements": "Requirements",
+  "benefits": "Benefits",
+  "vacancies": [
+    {
+      "id": 1,
+      "slug": "senior-gutter-installation-specialist",
+      "title": "Senior Gutter Installation Specialist",
+      "department": "Installation",
+      "location": "Addis Ababa",
+      "type": "Full-time",
+      "description": "We are looking for an experienced gutter installation specialist to join our team. The ideal candidate will have extensive experience in residential and commercial gutter installation. You will be responsible for leading installation projects, training junior technicians, and ensuring the highest quality standards are met.",
+      "requirements": [
+        "5+ years of experience in gutter installation",
+        "Strong knowledge of different gutter systems and materials",
+        "Ability to work at heights safely",
+        "Valid driver's license",
+        "Excellent communication and leadership skills",
+        "Ability to read blueprints and technical drawings",
+        "Physical fitness and ability to lift heavy materials"
+      ],
+      "benefits": [
+        "Competitive salary package",
+        "Comprehensive health insurance",
+        "Paid time off and holidays",
+        "Professional development opportunities",
+        "Company vehicle provided",
+        "Tool and equipment allowance",
+        "Performance bonuses"
+      ],
+      "postedDate": "2024-01-15",
+      "deadline": "2024-02-15"
+    },
+    {
+      "id": 2,
+      "slug": "gutter-repair-technician",
+      "title": "Gutter Repair Technician",
+      "department": "Maintenance",
+      "location": "Addis Ababa",
+      "type": "Full-time",
+      "description": "Join our maintenance team as a gutter repair technician. You will be responsible for diagnosing and repairing various gutter issues for our clients. This role requires excellent problem-solving skills and a customer-focused approach.",
+      "requirements": [
+        "3+ years of experience in gutter repair",
+        "Knowledge of various repair techniques and materials",
+        "Strong problem-solving skills",
+        "Customer service experience",
+        "Ability to work independently",
+        "Attention to detail"
+      ],
+      "benefits": [
+        "Competitive salary",
+        "Health insurance",
+        "Overtime pay",
+        "Tool allowance",
+        "Flexible work schedule",
+        "Career advancement opportunities"
+      ],
+      "postedDate": "2024-01-20",
+      "deadline": "2024-02-20"
+    },
+    {
+      "id": 3,
+      "slug": "sales-representative",
+      "title": "Sales Representative",
+      "department": "Sales",
+      "location": "Addis Ababa",
+      "type": "Full-time",
+      "description": "We are seeking a motivated sales representative to help grow our business. You will be responsible for building relationships with clients, presenting our products and services, and closing sales deals.",
+      "requirements": [
+        "2+ years of sales experience",
+        "Excellent communication and negotiation skills",
+        "Ability to build and maintain client relationships",
+        "Self-motivated and goal-oriented",
+        "Proficiency in English and Amharic",
+        "Valid driver's license"
+      ],
+      "benefits": [
+        "Base salary plus commission",
+        "Health insurance",
+        "Company vehicle or transportation allowance",
+        "Sales performance bonuses",
+        "Professional development training",
+        "Flexible work environment"
+      ],
+      "postedDate": "2024-01-25",
+      "deadline": "2024-02-25"
+    },
+    {
+      "id": 4,
+      "slug": "customer-service-specialist",
+      "title": "Customer Service Specialist",
+      "department": "Customer Service",
+      "location": "Addis Ababa",
+      "type": "Full-time",
+      "description": "Join our customer service team and help ensure our clients receive exceptional service. You will handle inquiries, schedule appointments, and resolve customer issues with professionalism and care.",
+      "requirements": [
+        "1+ years of customer service experience",
+        "Excellent verbal and written communication skills",
+        "Proficiency in English and Amharic",
+        "Computer literacy and familiarity with CRM systems",
+        "Patience and empathy",
+        "Ability to multitask and work under pressure"
+      ],
+      "benefits": [
+        "Competitive salary",
+        "Health insurance",
+        "Paid training",
+        "Career growth opportunities",
+        "Positive work environment",
+        "Regular performance reviews"
+      ],
+      "postedDate": "2024-01-28",
+      "deadline": "2024-02-28"
+    }
+  ]
+}
+

@@ -1,0 +1,24 @@
+{
+  "logo": "Gutter Share",
+  "nav": {
+    "home": "Home",
+    "company": {
+      "label": "Company",
+      "items": [
+        { "label": "About Us", "href": "/company/about" },
+        { "label": "Our Team", "href": "/company/team" },
+        { "label": "Gallery", "href": "/company/gallery" },
+        { "label": "Testimonials", "href": "/company/testimonials" },
+        { "label": "Achievements", "href": "/company/achievement" },
+        { "label": "Strategy", "href": "/company/strategy" }
+      ]
+    },
+    "services": "Services",
+    "products": "Products",
+    "blog": "Blog",
+    "vacancy": "Vacancies",
+    "contact": "Contact"
+  },
+  "cta": "Get Quote"
+}
+

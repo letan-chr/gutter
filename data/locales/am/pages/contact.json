@@ -1,0 +1,31 @@
+{
+  "title": "ያግኙን",
+  "subtitle": "ያግኙን",
+  "description": "ከእርስዎ መስማት እንወዳለን። ለማንኛውም ጥያቄ ያግኙን።",
+  "form": {
+    "name": "ስም",
+    "email": "ኢሜይል",
+    "phone": "ስልክ",
+    "message": "መልእክት",
+    "submit": "መልእክት ላክ"
+  },
+  "info": {
+    "address": {
+      "title": "አድራሻ",
+      "value": "123 ዋና መንገድ፣ ከተማ፣ ሀገር"
+    },
+    "phone": {
+      "title": "ስልክ",
+      "value": "+251 911 234 567"
+    },
+    "email": {
+      "title": "ኢሜይል",
+      "value": "info@guttershare.com"
+    },
+    "hours": {
+      "title": "የስራ ሰዓቶች",
+      "value": "ሰኞ - ዓርብ: 9:00 ጥዋት - 6:00 ማታ"
+    }
+  }
+}
+

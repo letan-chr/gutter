@@ -1,0 +1,26 @@
+{
+  "title": "Our Products",
+  "subtitle": "Quality Gutter Solutions",
+  "description": "Explore our comprehensive range of gutter products designed for durability and performance.",
+  "products": [
+    {
+      "id": 1,
+      "slug": "aluminum-gutters",
+      "title": "Aluminum Gutters",
+      "description": "Lightweight, durable, and rust-resistant aluminum gutter systems perfect for any home.",
+      "features": ["Rust-resistant", "Lightweight", "Easy installation", "Long-lasting"],
+      "price": "From $500",
+      "image": "/images/product1.jpg"
+    },
+    {
+      "id": 2,
+      "slug": "vinyl-gutters",
+      "title": "Vinyl Gutters",
+      "description": "Affordable and low-maintenance vinyl gutters ideal for budget-conscious homeowners.",
+      "features": ["Affordable", "Low maintenance", "Weather resistant", "Easy to clean"],
+      "price": "From $300",
+      "image": "/images/product2.jpg"
+    }
+  ]
+}
+

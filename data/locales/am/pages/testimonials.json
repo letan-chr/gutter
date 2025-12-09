@@ -1,0 +1,24 @@
+{
+  "title": "ምስክርነቶች",
+  "subtitle": "ደንበኞቻችን ምን ይላሉ",
+  "description": "ስለ አገልግሎቶቻችን የተደሰቱ ደንበኞቻችን ምን እንደሚሉ ያንብቡ።",
+  "testimonials": [
+    {
+      "id": 1,
+      "name": "ማይክል ጆንሰን",
+      "position": "የቤት ባለቤት",
+      "content": "እጅግ የላቀ አገልግሎት! ቡድኑ ሙያዊ ነበር እና ስራውን በጊዜ አጠናቋል።",
+      "rating": 5,
+      "image": "/images/testimonial1.jpg"
+    },
+    {
+      "id": 2,
+      "name": "ሳራ ዊሊያምስ",
+      "position": "የንብረት አስተዳዳሪ",
+      "content": "ታላቅ የጥራት ስራ እና እጅግ የላቀ የደንበኛ አገልግሎት። በጣም ይመከራል!",
+      "rating": 5,
+      "image": "/images/testimonial2.jpg"
+    }
+  ]
+}
+

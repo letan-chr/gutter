@@ -1,0 +1,22 @@
+{
+  "title": "Our Team",
+  "subtitle": "Meet the Experts",
+  "description": "Our dedicated team of professionals is here to serve you.",
+  "members": [
+    {
+      "id": 1,
+      "name": "John Doe",
+      "position": "CEO & Founder",
+      "description": "With over 15 years of experience in the industry.",
+      "image": "/images/team1.jpg"
+    },
+    {
+      "id": 2,
+      "name": "Jane Smith",
+      "position": "Lead Technician",
+      "description": "Certified professional with expertise in gutter systems.",
+      "image": "/images/team2.jpg"
+    }
+  ]
+}
+

@@ -1,0 +1,32 @@
+{
+  "title": "Our Features",
+  "subtitle": "Why Choose Us",
+  "description": "We offer comprehensive gutter solutions with exceptional service quality.",
+  "features": [
+    {
+      "id": 1,
+      "title": "Expert Installation",
+      "description": "Professional installation by certified technicians",
+      "icon": "🔧"
+    },
+    {
+      "id": 2,
+      "title": "Quality Materials",
+      "description": "Premium materials that last for years",
+      "icon": "⭐"
+    },
+    {
+      "id": 3,
+      "title": "24/7 Support",
+      "description": "Round-the-clock customer support",
+      "icon": "📞"
+    },
+    {
+      "id": 4,
+      "title": "Affordable Prices",
+      "description": "Competitive pricing for all services",
+      "icon": "💰"
+    }
+  ]
+}
+
