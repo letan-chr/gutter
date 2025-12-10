@@ -1,6 +1,7 @@
 'use client';
 
 import React, { useState } from 'react';
+import Image from 'next/image';
 import { getSectionData } from '@/data/utils';
 import { useLanguage } from '@/components/providers/LanguageProvider';
 
@@ -92,23 +93,13 @@ const Products = () => {
                   >
                     {/* Product Image */}
                     <div className="relative h-52 overflow-hidden flex-shrink-0">
-                      <div className="absolute inset-0 bg-gradient-to-br from-primary/20 to-secondary/20 dark:from-primary/30 dark:to-secondary/30 flex items-center justify-center">
-                        <div className="w-32 h-32 bg-white dark:bg-gray-800 rounded-full flex items-center justify-center shadow-lg">
-                          <svg className="w-16 h-16 text-primary dark:text-primary-light" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4" />
-                          </svg>
-                        </div>
-                      </div>
-                      {/* Category Badge */}
-                      {product.category && (
-                        <div className="absolute top-4 left-4 bg-primary text-white px-4 py-2 rounded-full text-sm font-semibold">
-                          {product.category}
-                        </div>
-                      )}
-                      {/* Product Label */}
-                      <div className="absolute bottom-4 right-4 bg-white/90 dark:bg-gray-900/90 text-gray-900 dark:text-white px-3 py-1.5 rounded-full text-xs font-semibold">
-                        {lang === 'en' ? 'Product' : 'ምርት'}
-                      </div>
+                      <Image
+                        src={product.image || 'https://images.unsplash.com/photo-1563453392212-326f5e854473?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80'}
+                        alt={product.title}
+                        fill
+                        className="object-cover group-hover:scale-105 transition-transform duration-300"
+                        sizes="(max-width: 1024px) 100vw, 50vw"
+                      />
                     </div>
 
                     {/* Product Content */}
@@ -151,19 +142,13 @@ const Products = () => {
                     >
                       {/* Product Image */}
                       <div className="relative h-24 overflow-hidden flex-shrink-0">
-                        <div className="absolute inset-0 bg-gradient-to-br from-primary/20 to-secondary/20 dark:from-primary/30 dark:to-secondary/30 flex items-center justify-center">
-                          <div className="w-12 h-12 bg-white dark:bg-gray-800 rounded-full flex items-center justify-center shadow-lg">
-                            <svg className="w-6 h-6 text-primary dark:text-primary-light" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4" />
-                            </svg>
-                          </div>
-                        </div>
-                        {/* Category Badge */}
-                        {product.category && (
-                          <div className="absolute top-2 left-2 bg-primary text-white px-2 py-1 rounded-full text-xs font-semibold">
-                            {product.category}
-                          </div>
-                        )}
+                        <Image
+                          src={product.image || 'https://images.unsplash.com/photo-1563453392212-326f5e854473?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80'}
+                          alt={product.title}
+                          fill
+                          className="object-cover group-hover:scale-105 transition-transform duration-300"
+                          sizes="(max-width: 1024px) 100vw, 25vw"
+                        />
                       </div>
 
                       {/* Product Content */}
@@ -197,19 +182,13 @@ const Products = () => {
                     >
                       {/* Product Image */}
                       <div className="relative h-24 overflow-hidden flex-shrink-0">
-                        <div className="absolute inset-0 bg-gradient-to-br from-primary/20 to-secondary/20 dark:from-primary/30 dark:to-secondary/30 flex items-center justify-center">
-                          <div className="w-12 h-12 bg-white dark:bg-gray-800 rounded-full flex items-center justify-center shadow-lg">
-                            <svg className="w-6 h-6 text-primary dark:text-primary-light" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4" />
-                            </svg>
-                          </div>
-                        </div>
-                        {/* Category Badge */}
-                        {product.category && (
-                          <div className="absolute top-2 left-2 bg-primary text-white px-2 py-1 rounded-full text-xs font-semibold">
-                            {product.category}
-                          </div>
-                        )}
+                        <Image
+                          src={product.image || 'https://images.unsplash.com/photo-1563453392212-326f5e854473?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80'}
+                          alt={product.title}
+                          fill
+                          className="object-cover group-hover:scale-105 transition-transform duration-300"
+                          sizes="(max-width: 1024px) 100vw, 25vw"
+                        />
                       </div>
 
                       {/* Product Content */}
