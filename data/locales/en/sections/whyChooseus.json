@@ -5,23 +5,33 @@
   "reasons": [
     {
       "id": 1,
-      "title": "Years of Experience",
-      "description": "Over 10 years of industry experience"
+      "title": "Economic",
+      "description": "Cost-effective solutions that maximize your value and minimize expenses"
     },
     {
       "id": 2,
-      "title": "Certified Professionals",
-      "description": "All our technicians are certified and trained"
+      "title": "Time",
+      "description": "Efficient service delivery that respects your schedule and deadlines"
     },
     {
       "id": 3,
-      "title": "Quality Guarantee",
-      "description": "100% satisfaction guarantee on all our work"
+      "title": "24*7",
+      "description": "Round-the-clock availability to serve you whenever you need us"
     },
     {
       "id": 4,
-      "title": "Customer First",
-      "description": "Your satisfaction is our top priority"
+      "title": "User Satisfaction",
+      "description": "Committed to exceeding expectations and ensuring your complete satisfaction"
+    },
+    {
+      "id": 5,
+      "title": "Security",
+      "description": "Robust security measures to protect your interests and data"
+    },
+    {
+      "id": 6,
+      "title": "Professional",
+      "description": "Expert team with years of experience and professional excellence"
     }
   ]
 }
