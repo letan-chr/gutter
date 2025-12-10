@@ -15,6 +15,7 @@ interface BreadcrumpProps {
 const Breadcrump = ({ 
   backgroundImage, 
   title, 
+  
   subtitle 
 }: BreadcrumpProps = {}) => {
   const pathname = usePathname();
@@ -51,7 +52,7 @@ const Breadcrump = ({
         <div 
           className="absolute inset-0 bg-cover bg-center bg-no-repeat"
           style={{
-            backgroundImage: `url('${backgroundImage}')`,
+            backgroundImage: `url(${backgroundImage})`,
           }}
         >
           {/* Gradient Overlay */}

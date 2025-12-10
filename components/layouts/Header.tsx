@@ -142,13 +142,13 @@ const Header = () => {
                       <div className="absolute top-full left-0 mt-2 w-56 bg-white/95 dark:bg-gray-800/95 backdrop-blur-xl rounded-xl shadow-2xl border border-gray-200/50 dark:border-gray-700/50 py-2 animate-in fade-in slide-in-from-top-2 duration-300 overflow-hidden">
                         <div className="absolute inset-0 bg-gradient-to-br from-primary/5 via-transparent to-secondary/5 pointer-events-none"></div>
                         {item.items.map((subItem, subIndex) => (
-                          <a
-                            key={subIndex}
-                            href={subItem.href}
-                            className="relative px-4 py-2.5 text-sm text-gray-700 dark:text-gray-300 hover:bg-gradient-to-r hover:from-primary/10 hover:to-secondary/10 dark:hover:from-primary/20 dark:hover:to-secondary/20 hover:text-primary dark:hover:text-primary-light transition-all duration-200 flex items-center gap-3 group/item"
-                          >
-                            <span className="w-1.5 h-1.5 rounded-full bg-gradient-to-r from-primary to-secondary opacity-0 group-hover/item:opacity-100 transition-opacity duration-200"></span>
-                            <span className="flex-1">{subItem.label}</span>
+                            <a
+                              key={subIndex}
+                              href={subItem.href}
+                              className="relative px-4 py-2.5 text-sm text-gray-700 dark:text-gray-300 hover:bg-gradient-to-r hover:from-primary/10 hover:to-secondary/10 dark:hover:from-primary/20 dark:hover:to-secondary/20 hover:text-primary dark:hover:text-primary-light transition-all duration-200 flex items-center gap-3 group/item"
+                            >
+                              <span className="w-1.5 h-1.5 rounded-full bg-gradient-to-r from-primary to-secondary opacity-0 group-hover/item:opacity-100 transition-opacity duration-200"></span>
+                              <span className="flex-1">{subItem.label}</span>
                             <svg className="w-4 h-4 opacity-0 group-hover/item:opacity-100 translate-x-[-4px] group-hover/item:translate-x-0 transition-all duration-200" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
                             </svg>
@@ -190,7 +190,7 @@ const Header = () => {
             
             {/* CTA Button */}
             <button className="hidden sm:block px-4 lg:px-6 py-2 bg-gradient-to-r from-primary via-primary-dark to-primary text-white rounded-lg font-semibold transition-all duration-300 hover:shadow-xl hover:shadow-primary/30 hover:scale-105 active:scale-95 relative overflow-hidden group">
-              <span className="relative z-10">{data.cta}</span>
+                  <span className="relative z-10">{data.cta}</span>
               <div className="absolute inset-0 bg-gradient-to-r from-primary-dark via-primary to-primary-dark opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
             </button>
 

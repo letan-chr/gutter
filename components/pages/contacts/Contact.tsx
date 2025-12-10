@@ -1,8 +1,9 @@
 'use client';
 
-import React, { useState } from 'react';
-import { getPageData } from '@/data/utils';
+import React, { useState, useId } from 'react';
+import { getPageData, getLayoutData } from '@/data/utils';
 import { useLanguage } from '@/components/providers/LanguageProvider';
+import { MapPin, Phone, Mail, Clock, Send, CheckCircle, MessageSquare } from 'lucide-react';
 
 const Contact = () => {
   const { language: lang } = useLanguage();
@@ -13,17 +14,32 @@ const Contact = () => {
     message: '',
   });
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const [isSubmitted, setIsSubmitted] = useState(false);
   const data = getPageData('contact', lang);
-
+  const layoutData = getLayoutData('footer', lang);
+  
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    setIsSubmitting(true);
-    // Simulate form submission
-    setTimeout(() => {
+    e.stopPropagation();
+    
+    try {
+      setIsSubmitting(true);
+      await new Promise<void>((resolve) => {
+        setTimeout(() => {
+          setIsSubmitting(false);
+          setIsSubmitted(true);
+          setTimeout(() => {
+            setIsSubmitted(false);
+            setFormData({ name: '', email: '', phone: '', message: '' });
+          }, 3000);
+          resolve();
+        }, 1500);
+      });
+    } catch (error) {
+      console.error('Form submission error:', error);
       setIsSubmitting(false);
-      alert(lang === 'en' ? 'Thank you for your message! We will get back to you soon.' : 'ስለ መልእክትዎ እናመሰግናለን! በቅርቡ እንመለስልዎታለን።');
-      setFormData({ name: '', email: '', phone: '', message: '' });
-    }, 1000);
+      setIsSubmitted(false);
+    }
   };
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
@@ -34,181 +50,233 @@ const Contact = () => {
   };
 
   return (
-    <section className="py-12 lg:py-20 bg-white dark:bg-gray-900 min-h-screen">
-      <div className="mx-auto px-4 sm:px-6 lg:px-8">
-        {/* Page Header */}
-        <div className="text-center max-w-3xl mx-auto mb-16">
-          <h1 className="text-4xl sm:text-5xl lg:text-6xl font-display font-bold text-gray-900 dark:text-white mb-4">
-            {data.title}
-          </h1>
-          <p className="text-xl text-gray-600 dark:text-gray-300 mb-2">
-            {data.subtitle}
-          </p>
-          <p className="text-lg text-gray-500 dark:text-gray-400">
-            {data.description}
-          </p>
+    <section className="py-8 bg-gray-50 dark:bg-gray-900">
+      <div className="mx-auto px-4">
+
+        {/* Contact Cards Grid */}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-12">
+          {[
+            {
+              icon: Phone,
+              title: data.info.phone.title,
+              value: data.info.phone.value,
+              link: `tel:${data.info.phone.value}`,
+              color: 'bg-blue-50 dark:bg-blue-900/20',
+              iconColor: 'text-blue-600'
+            },
+            {
+              icon: Mail,
+              title: data.info.email.title,
+              value: data.info.email.value,
+              link: `mailto:${data.info.email.value}`,
+              color: 'bg-green-50 dark:bg-green-900/20',
+              iconColor: 'text-green-600'
+            },
+            {
+              icon: MapPin,
+              title: data.info.address.title,
+              value: data.info.address.value,
+              color: 'bg-orange-50 dark:bg-orange-900/20',
+              iconColor: 'text-orange-600'
+            },
+            {
+              icon: Clock,
+              title: data.info.hours.title,
+              value: data.info.hours.value,
+              color: 'bg-purple-50 dark:bg-purple-900/20',
+              iconColor: 'text-purple-600'
+            }
+          ].map((item, index) => (
+            <div
+              key={index}
+              className={`${item.color} rounded-xl p-6 border border-gray-200 dark:border-gray-700 hover:shadow-lg transition-shadow`}
+            >
+              <div className="flex items-start gap-4">
+                <div className={`p-3 rounded-lg ${item.iconColor.replace('text-', 'bg-').replace('600', '100')} dark:bg-opacity-20`}>
+                  <item.icon className="w-6 h-6" />
+                </div>
+                <div>
+                  <h3 className="font-semibold text-gray-900 dark:text-white mb-1">
+                    {item.title}
+                  </h3>
+                  {item.link ? (
+                    <a
+                      href={item.link}
+                      className="text-gray-700 dark:text-gray-300 hover:text-primary dark:hover:text-primary-light transition-colors"
+                    >
+                      {item.value}
+                    </a>
+                  ) : (
+                    <p className="text-gray-700 dark:text-gray-300">
+                      {item.value}
+                    </p>
+                  )}
+                </div>
+              </div>
+            </div>
+          ))}
         </div>
 
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
+        {/* Main Content */}
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
           {/* Contact Form */}
-          <div>
-            <h2 className="text-2xl font-display font-semibold text-gray-900 dark:text-white mb-6">
-              {lang === 'en' ? 'Send us a Message' : 'መልእክት ይላኩልን'}
+          <div className="bg-white dark:bg-gray-800 rounded-2xl p-8 shadow-lg">
+            <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-6 flex items-center gap-3">
+              <MessageSquare className="w-6 h-6 text-primary" />
+              {lang === 'en' ? 'Send Message' : 'መልእክት ይላኩ'}
             </h2>
-            <form onSubmit={handleSubmit} className="space-y-6">
-              <div>
-                <label htmlFor="name" className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
-                  {data.form.name}
-                </label>
-                <input
-                  type="text"
-                  id="name"
-                  name="name"
-                  value={formData.name}
-                  onChange={handleChange}
-                  required
-                  className="w-full px-4 py-3 bg-gray-50 dark:bg-gray-800 border border-gray-300 dark:border-gray-700 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent text-gray-900 dark:text-white"
-                />
-              </div>
 
-              <div>
-                <label htmlFor="email" className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
-                  {data.form.email}
-                </label>
-                <input
-                  type="email"
-                  id="email"
-                  name="email"
-                  value={formData.email}
-                  onChange={handleChange}
-                  required
-                  className="w-full px-4 py-3 bg-gray-50 dark:bg-gray-800 border border-gray-300 dark:border-gray-700 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent text-gray-900 dark:text-white"
-                />
+            {isSubmitted ? (
+              <div className="text-center py-12">
+                <CheckCircle className="w-16 h-16 text-green-500 mx-auto mb-4" />
+                <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-2">
+                  {lang === 'en' ? 'Message Sent!' : 'መልእክት ተልኳል!'}
+                </h3>
+                <p className="text-gray-600 dark:text-gray-400">
+                  {lang === 'en' ? 'We\'ll get back to you soon.' : 'በቅርብ ጊዜ እንመለስልዎታለን።'}
+                </p>
               </div>
+            ) : (
+              <form onSubmit={handleSubmit} className="space-y-6">
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                  <div>
+                    <label htmlFor="name" className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
+                      {data.form.name}
+                    </label>
+                    <input
+                      type="text"
+                      id="name"
+                      name="name"
+                      value={formData.name}
+                      onChange={handleChange}
+                      required
+                      className="w-full px-4 py-3 bg-gray-50 dark:bg-gray-900 border border-gray-300 dark:border-gray-700 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent transition-all"
+                      placeholder={lang === 'en' ? 'Your name' : 'ስምዎ'}
+                    />
+                  </div>
 
-              <div>
-                <label htmlFor="phone" className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
-                  {data.form.phone}
-                </label>
-                <input
-                  type="tel"
-                  id="phone"
-                  name="phone"
-                  value={formData.phone}
-                  onChange={handleChange}
-                  className="w-full px-4 py-3 bg-gray-50 dark:bg-gray-800 border border-gray-300 dark:border-gray-700 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent text-gray-900 dark:text-white"
-                />
-              </div>
+                  <div>
+                    <label htmlFor="email" className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
+                      {data.form.email}
+                    </label>
+                    <input
+                      type="email"
+                      id="email"
+                      name="email"
+                      value={formData.email}
+                      onChange={handleChange}
+                      required
+                      className="w-full px-4 py-3 bg-gray-50 dark:bg-gray-900 border border-gray-300 dark:border-gray-700 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent transition-all"
+                      placeholder="you@example.com"
+                    />
+                  </div>
+                </div>
 
-              <div>
-                <label htmlFor="message" className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
-                  {data.form.message}
-                </label>
-                <textarea
-                  id="message"
-                  name="message"
-                  value={formData.message}
-                  onChange={handleChange}
-                  required
-                  rows={6}
-                  className="w-full px-4 py-3 bg-gray-50 dark:bg-gray-800 border border-gray-300 dark:border-gray-700 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent text-gray-900 dark:text-white resize-none"
-                ></textarea>
-              </div>
+                <div>
+                  <label htmlFor="phone" className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
+                    {data.form.phone}
+                  </label>
+                  <input
+                    type="tel"
+                    id="phone"
+                    name="phone"
+                    value={formData.phone}
+                    onChange={handleChange}
+                    className="w-full px-4 py-3 bg-gray-50 dark:bg-gray-900 border border-gray-300 dark:border-gray-700 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent transition-all"
+                    placeholder={lang === 'en' ? 'Phone (optional)' : 'ስልክ (አማራጭ)'}
+                  />
+                </div>
 
-              <button
-                type="submit"
-                disabled={isSubmitting}
-                className="w-full px-8 py-4 bg-primary hover:bg-primary-dark text-white rounded-lg font-semibold text-lg transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
-              >
-                {isSubmitting 
-                  ? (lang === 'en' ? 'Sending...' : 'በመላክ ላይ...')
-                  : data.form.submit
-                }
-              </button>
-            </form>
+                <div>
+                  <label htmlFor="message" className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
+                    {data.form.message}
+                  </label>
+                  <textarea
+                    id="message"
+                    name="message"
+                    value={formData.message}
+                    onChange={handleChange}
+                    required
+                    rows={4}
+                    className="w-full px-4 py-3 bg-gray-50 dark:bg-gray-900 border border-gray-300 dark:border-gray-700 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent transition-all resize-none"
+                    placeholder={lang === 'en' ? 'Your message...' : 'መልእክትዎ...'}
+                  ></textarea>
+                </div>
+
+                <button
+                  type="submit"
+                  disabled={isSubmitting}
+                  className="w-full px-6 py-3 bg-primary hover:bg-primary-dark text-white font-medium rounded-lg transition-colors disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2"
+                >
+                  {isSubmitting ? (
+                    <>
+                      <div className="w-4 h-4 border-2 border-white border-t-transparent rounded-full animate-spin" />
+                      {lang === 'en' ? 'Sending...' : 'በመላክ ላይ...'}
+                    </>
+                  ) : (
+                    <>
+                      <Send className="w-4 h-4" />
+                      {data.form.submit}
+                    </>
+                  )}
+                </button>
+              </form>
+            )}
           </div>
 
-          {/* Contact Info */}
-          <div>
-            <h2 className="text-2xl font-display font-semibold text-gray-900 dark:text-white mb-6">
-              {lang === 'en' ? 'Get in Touch' : 'ያግኙን'}
-            </h2>
-            <div className="space-y-6">
-              {/* Address */}
-              <div className="flex gap-4">
-                <div className="w-12 h-12 bg-primary/10 dark:bg-primary/20 rounded-lg flex items-center justify-center flex-shrink-0">
-                  <svg className="w-6 h-6 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
-                  </svg>
-                </div>
-                <div>
-                  <h3 className="font-semibold text-gray-900 dark:text-white mb-1">
-                    {data.info.address.title}
-                  </h3>
-                  <p className="text-gray-600 dark:text-gray-400">
-                    {data.info.address.value}
-                  </p>
-                </div>
+          {/* Map & Additional Info */}
+          <div className="space-y-8">
+            {/* Map */}
+            <div className="bg-white dark:bg-gray-800 rounded-2xl overflow-hidden shadow-lg">
+              <div className="p-6 border-b border-gray-200 dark:border-gray-700">
+                <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-2">
+                  {lang === 'en' ? 'Our Location' : 'አካባቢን'}
+                </h3>
+                <p className="text-gray-600 dark:text-gray-400 text-sm">
+                  {data.info.address.value}
+                </p>
               </div>
-
-              {/* Phone */}
-              <div className="flex gap-4">
-                <div className="w-12 h-12 bg-secondary/10 dark:bg-secondary/20 rounded-lg flex items-center justify-center flex-shrink-0">
-                  <svg className="w-6 h-6 text-secondary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
-                  </svg>
-                </div>
-                <div>
-                  <h3 className="font-semibold text-gray-900 dark:text-white mb-1">
-                    {data.info.phone.title}
-                  </h3>
-                  <a href={`tel:${data.info.phone.value}`} className="text-primary dark:text-primary-light hover:underline">
-                    {data.info.phone.value}
-                  </a>
-                </div>
-              </div>
-
-              {/* Email */}
-              <div className="flex gap-4">
-                <div className="w-12 h-12 bg-tertiary/10 dark:bg-tertiary/20 rounded-lg flex items-center justify-center flex-shrink-0">
-                  <svg className="w-6 h-6 text-tertiary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
-                  </svg>
-                </div>
-                <div>
-                  <h3 className="font-semibold text-gray-900 dark:text-white mb-1">
-                    {data.info.email.title}
-                  </h3>
-                  <a href={`mailto:${data.info.email.value}`} className="text-primary dark:text-primary-light hover:underline">
-                    {data.info.email.value}
-                  </a>
-                </div>
-              </div>
-
-              {/* Working Hours */}
-              <div className="flex gap-4">
-                <div className="w-12 h-12 bg-primary/10 dark:bg-primary/20 rounded-lg flex items-center justify-center flex-shrink-0">
-                  <svg className="w-6 h-6 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
-                  </svg>
-                </div>
-                <div>
-                  <h3 className="font-semibold text-gray-900 dark:text-white mb-1">
-                    {data.info.hours.title}
-                  </h3>
-                  <p className="text-gray-600 dark:text-gray-400">
-                    {data.info.hours.value}
-                  </p>
+              <div className="h-64 bg-gradient-to-br from-blue-100 to-blue-50 dark:from-blue-900/20 dark:to-blue-800/20 relative flex items-center justify-center">
+                <MapPin className="w-12 h-12 text-primary" />
+                <div className="absolute inset-0 flex items-center justify-center">
+                  <div className="w-16 h-16 bg-primary/10 rounded-full animate-ping" />
                 </div>
               </div>
             </div>
 
-            {/* Map Placeholder */}
-            <div className="mt-8 h-64 bg-gray-200 dark:bg-gray-800 rounded-xl flex items-center justify-center">
-              <p className="text-gray-500 dark:text-gray-400">
-                {lang === 'en' ? 'Map Location' : 'የካርታ አካባቢ'}
-              </p>
+            {/* Quick Info */}
+            <div className="bg-gradient-to-br from-gray-50 to-white dark:from-gray-800 dark:to-gray-900 rounded-2xl p-6 shadow-lg">
+              <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-4">
+                {lang === 'en' ? 'Quick Contact' : 'ፈጣን እውቂያ'}
+              </h3>
+              <div className="space-y-4">
+                <div className="flex items-center gap-4">
+                  <div className="w-10 h-10 bg-blue-100 dark:bg-blue-900/30 rounded-lg flex items-center justify-center">
+                    <Phone className="w-5 h-5 text-blue-600" />
+                  </div>
+                  <div>
+                    <p className="text-sm text-gray-600 dark:text-gray-400">
+                      {lang === 'en' ? 'Call us directly' : 'በቀጥታ ይደውሉ'}
+                    </p>
+                    <a href={`tel:${data.info.phone.value}`} className="font-medium text-gray-900 dark:text-white hover:text-primary transition-colors">
+                      {data.info.phone.value}
+                    </a>
+                  </div>
+                </div>
+                <div className="flex items-center gap-4">
+                  <div className="w-10 h-10 bg-green-100 dark:bg-green-900/30 rounded-lg flex items-center justify-center">
+                    <Mail className="w-5 h-5 text-green-600" />
+                  </div>
+                  <div>
+                    <p className="text-sm text-gray-600 dark:text-gray-400">
+                      {lang === 'en' ? 'Email us' : 'ኢሜይል ይላኩ'}
+                    </p>
+                    <a href={`mailto:${data.info.email.value}`} className="font-medium text-gray-900 dark:text-white hover:text-primary transition-colors">
+                      {data.info.email.value}
+                    </a>
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
         </div>
