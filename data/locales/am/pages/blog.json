@@ -11,7 +11,7 @@
       "content": "የመደበኛ የጋተር ጥገና ቤትዎን ከውሃ ጉዳት ለመጠብቅ አስፈላጊ ነው...",
       "author": "ጆን ዶ",
       "date": "2024-01-15",
-      "image": "/images/blog1.jpg",
+      "image": "https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?w=800&h=400&fit=crop",
       "category": "ጥገና"
     },
     {
@@ -22,7 +22,7 @@
       "content": "ትክክለኛውን የጋተር ስርዓት መምረጥ አስፈላጊ ውሳኔ ነው...",
       "author": "ጄን ስሚዝ",
       "date": "2024-01-10",
-      "image": "/images/blog2.jpg",
+      "image": "https://images.unsplash.com/photo-1581578731548-c64695cc6952?w=800&h=400&fit=crop",
       "category": "መጫን"
     },
     {
@@ -33,7 +33,7 @@
       "content": "የጋተር ጥገና ሲመጣ ጊዜ ሁሉም ነገር ነው...",
       "author": "ማይክ ጆንሰን",
       "date": "2024-01-05",
-      "image": "/images/blog3.jpg",
+      "image": "https://images.unsplash.com/photo-1504307651254-35680f356dfd?w=800&h=400&fit=crop",
       "category": "ጥገና"
     },
     {
@@ -44,7 +44,7 @@
       "content": "ጋተር ጠባቂዎች በበርካታ መንገዶች የሚመለሱ ኢንቨስትመንት ናቸው...",
       "author": "ሳራ ዊሊያምስ",
       "date": "2024-01-01",
-      "image": "/images/blog4.jpg",
+      "image": "https://images.unsplash.com/photo-1503387762-592deb58ef4e?w=800&h=400&fit=crop",
       "category": "መጫን"
     },
     {
@@ -55,7 +55,7 @@
       "content": "የውሃ ጉዳት ከጠንካራ የቤት ጥገናዎች አንዱ ሊሆን ይችላል...",
       "author": "ዴቪድ ብራውን",
       "date": "2023-12-28",
-      "image": "/images/blog5.jpg",
+      "image": "https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=800&h=400&fit=crop",
       "category": "ምክሮች"
     },
     {
@@ -66,7 +66,7 @@
       "content": "ለጋተሮችዎ ትክክለኛውን ቁሳቁስ መምረጥ ብርታት እና ወጪን ይጎዳል...",
       "author": "ኢሚሊ ዴቪስ",
       "date": "2023-12-25",
-      "image": "/images/blog6.jpg",
+      "image": "https://images.unsplash.com/photo-1504309092620-4d0ec726efa4?w=800&h=400&fit=crop",
       "category": "መጫን"
     }
   ]

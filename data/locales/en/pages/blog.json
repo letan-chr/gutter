@@ -11,7 +11,7 @@
       "content": "Regular gutter maintenance is crucial for protecting your home from water damage...",
       "author": "John Doe",
       "date": "2024-01-15",
-      "image": "/images/blog1.jpg",
+      "image": "https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?w=800&h=400&fit=crop",
       "category": "Maintenance"
     },
     {
@@ -22,7 +22,7 @@
       "content": "Selecting the right gutter system is an important decision...",
       "author": "Jane Smith",
       "date": "2024-01-10",
-      "image": "/images/blog2.jpg",
+      "image": "https://images.unsplash.com/photo-1581578731548-c64695cc6952?w=800&h=400&fit=crop",
       "category": "Installation"
     },
     {
@@ -33,7 +33,7 @@
       "content": "Timing is everything when it comes to gutter maintenance...",
       "author": "Mike Johnson",
       "date": "2024-01-05",
-      "image": "/images/blog3.jpg",
+      "image": "https://images.unsplash.com/photo-1504307651254-35680f356dfd?w=800&h=400&fit=crop",
       "category": "Maintenance"
     },
     {
@@ -44,7 +44,7 @@
       "content": "Gutter guards are an investment that pays off in multiple ways...",
       "author": "Sarah Williams",
       "date": "2024-01-01",
-      "image": "/images/blog4.jpg",
+      "image": "https://images.unsplash.com/photo-1503387762-592deb58ef4e?w=800&h=400&fit=crop",
       "category": "Installation"
     },
     {
@@ -55,7 +55,7 @@
       "content": "Water damage can be one of the most expensive home repairs...",
       "author": "David Brown",
       "date": "2023-12-28",
-      "image": "/images/blog5.jpg",
+      "image": "https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=800&h=400&fit=crop",
       "category": "Tips"
     },
     {
@@ -66,7 +66,7 @@
       "content": "Choosing the right material for your gutters affects durability and cost...",
       "author": "Emily Davis",
       "date": "2023-12-25",
-      "image": "/images/blog6.jpg",
+      "image": "https://images.unsplash.com/photo-1504309092620-4d0ec726efa4?w=800&h=400&fit=crop",
       "category": "Installation"
     }
   ]
