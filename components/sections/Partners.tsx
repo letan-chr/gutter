@@ -20,21 +20,13 @@ const Partners = () => {
   const duplicatedPartners = [...data.partners, ...data.partners, ...data.partners];
 
   return (
-    <section className="py-12 lg:py-16 bg-gradient-to-b from-white to-gray-50 dark:from-gray-900 dark:to-gray-800 relative overflow-hidden">
+    <section className="py-12 lg:py-12 bg-gradient-to-b from-white to-gray-50 dark:from-gray-900 dark:to-gray-800 relative overflow-hidden">
       {/* Decorative Background Elements */}
       <div className="absolute top-0 left-0 w-96 h-96 bg-primary/5 dark:bg-primary/10 rounded-full blur-3xl -translate-x-1/2 -translate-y-1/2"></div>
       <div className="absolute bottom-0 right-0 w-96 h-96 bg-secondary/5 dark:bg-secondary/10 rounded-full blur-3xl translate-x-1/2 translate-y-1/2"></div>
       
       <div className="mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-        {/* Section Header */}
-        <div className="text-center max-w-2xl mx-auto mb-12">
-          <h2 className="relative inline-block text-2xl sm:text-3xl lg:text-4xl font-display font-bold text-gray-900 dark:text-white mb-6">
-            {data.title}
-            {/* Decorative Underline */}
-            <span className="absolute bottom-0 left-0 right-0 h-1 bg-gradient-to-r from-transparent via-primary to-transparent opacity-60"></span>
-            <span className="absolute -bottom-1 left-1/2 transform -translate-x-1/2 w-16 h-0.5 bg-primary dark:bg-primary-light"></span>
-          </h2>
-        </div>
+
 
         {/* Partners Swiper */}
         <div className="relative">

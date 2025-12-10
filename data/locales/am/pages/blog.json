@@ -24,6 +24,50 @@
       "date": "2024-01-10",
       "image": "/images/blog2.jpg",
       "category": "መጫን"
+    },
+    {
+      "id": 3,
+      "slug": "gutter-cleaning-season",
+      "title": "ጋተሮችዎን ለመጠራጠር ምርጥ ጊዜ",
+      "excerpt": "ውድ ጉዳትን ለመከላከል የጋተር ማጽዳት ምርጥ ወቅቶችን ይፈልጉ።",
+      "content": "የጋተር ጥገና ሲመጣ ጊዜ ሁሉም ነገር ነው...",
+      "author": "ማይክ ጆንሰን",
+      "date": "2024-01-05",
+      "image": "/images/blog3.jpg",
+      "category": "ጥገና"
+    },
+    {
+      "id": 4,
+      "slug": "gutter-guards-benefits",
+      "title": "የጋተር ጠባቂዎችን የመጫን ጥቅሞች",
+      "excerpt": "ጋተር ጠባቂዎች ቤትዎን በመጠብቅ ጊዜ እና ገንዘብ እንዴት እንደሚቆጥቡ ይማሩ።",
+      "content": "ጋተር ጠባቂዎች በበርካታ መንገዶች የሚመለሱ ኢንቨስትመንት ናቸው...",
+      "author": "ሳራ ዊሊያምስ",
+      "date": "2024-01-01",
+      "image": "/images/blog4.jpg",
+      "category": "መጫን"
+    },
+    {
+      "id": 5,
+      "slug": "prevent-water-damage",
+      "title": "ጋተሮች የውሃ ጉዳትን እንዴት ይከላከላሉ",
+      "excerpt": "ጋተሮች የቤትዎን መሠረት በመጠብቅ የሚጫወቱትን ወሳኝ ሚና መረዳት።",
+      "content": "የውሃ ጉዳት ከጠንካራ የቤት ጥገናዎች አንዱ ሊሆን ይችላል...",
+      "author": "ዴቪድ ብራውን",
+      "date": "2023-12-28",
+      "image": "/images/blog5.jpg",
+      "category": "ምክሮች"
+    },
+    {
+      "id": 6,
+      "slug": "gutter-materials-comparison",
+      "title": "የጋተር ቁሳቁሶችን ማወዳደር: የትኛው ምርጥ ነው?",
+      "excerpt": "የአሉሚኒየም፣ ቫይንል፣ ብረት እና የመዳብ ጋተሮች ዝርዝር ማወዳደር።",
+      "content": "ለጋተሮችዎ ትክክለኛውን ቁሳቁስ መምረጥ ብርታት እና ወጪን ይጎዳል...",
+      "author": "ኢሚሊ ዴቪስ",
+      "date": "2023-12-25",
+      "image": "/images/blog6.jpg",
+      "category": "መጫን"
     }
   ]
 }

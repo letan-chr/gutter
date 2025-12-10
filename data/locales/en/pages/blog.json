@@ -24,6 +24,50 @@
       "date": "2024-01-10",
       "image": "/images/blog2.jpg",
       "category": "Installation"
+    },
+    {
+      "id": 3,
+      "slug": "gutter-cleaning-season",
+      "title": "Best Time to Clean Your Gutters",
+      "excerpt": "Discover the optimal seasons for gutter cleaning to prevent costly damage.",
+      "content": "Timing is everything when it comes to gutter maintenance...",
+      "author": "Mike Johnson",
+      "date": "2024-01-05",
+      "image": "/images/blog3.jpg",
+      "category": "Maintenance"
+    },
+    {
+      "id": 4,
+      "slug": "gutter-guards-benefits",
+      "title": "Benefits of Installing Gutter Guards",
+      "excerpt": "Learn how gutter guards can save you time and money while protecting your home.",
+      "content": "Gutter guards are an investment that pays off in multiple ways...",
+      "author": "Sarah Williams",
+      "date": "2024-01-01",
+      "image": "/images/blog4.jpg",
+      "category": "Installation"
+    },
+    {
+      "id": 5,
+      "slug": "prevent-water-damage",
+      "title": "How Gutters Prevent Water Damage",
+      "excerpt": "Understanding the critical role gutters play in protecting your home's foundation.",
+      "content": "Water damage can be one of the most expensive home repairs...",
+      "author": "David Brown",
+      "date": "2023-12-28",
+      "image": "/images/blog5.jpg",
+      "category": "Tips"
+    },
+    {
+      "id": 6,
+      "slug": "gutter-materials-comparison",
+      "title": "Comparing Gutter Materials: Which is Best?",
+      "excerpt": "A detailed comparison of aluminum, vinyl, steel, and copper gutters.",
+      "content": "Choosing the right material for your gutters affects durability and cost...",
+      "author": "Emily Davis",
+      "date": "2023-12-25",
+      "image": "/images/blog6.jpg",
+      "category": "Installation"
     }
   ]
 }
