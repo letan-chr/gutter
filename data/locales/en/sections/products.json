@@ -2,34 +2,71 @@
   "title": "Our Products",
   "subtitle": "Quality Gutter Products",
   "description": "Browse our wide selection of premium gutter products.",
+  "viewAll": "View All Products",
   "products": [
     {
       "id": 1,
       "title": "Aluminum Gutters",
       "description": "Durable and lightweight aluminum gutter systems",
       "price": "From $500",
-      "image": "/images/product1.jpg"
+      "image": "/images/product1.jpg",
+      "category": "Gutters"
     },
     {
       "id": 2,
       "title": "Vinyl Gutters",
       "description": "Affordable and easy to maintain vinyl gutters",
       "price": "From $300",
-      "image": "/images/product2.jpg"
+      "image": "/images/product2.jpg",
+      "category": "Gutters"
     },
     {
       "id": 3,
       "title": "Steel Gutters",
       "description": "Strong and long-lasting steel gutter systems",
       "price": "From $600",
-      "image": "/images/product3.jpg"
+      "image": "/images/product3.jpg",
+      "category": "Gutters"
     },
     {
       "id": 4,
       "title": "Copper Gutters",
       "description": "Premium copper gutters with elegant appearance",
       "price": "From $1000",
-      "image": "/images/product4.jpg"
+      "image": "/images/product4.jpg",
+      "category": "Premium"
+    },
+    {
+      "id": 5,
+      "title": "Gutter Guards",
+      "description": "Protect your gutters from debris and leaves",
+      "price": "From $200",
+      "image": "/images/product5.jpg",
+      "category": "Accessories"
+    },
+    {
+      "id": 6,
+      "title": "Downspouts",
+      "description": "Efficient water drainage systems",
+      "price": "From $150",
+      "image": "/images/product6.jpg",
+      "category": "Accessories"
+    },
+    {
+      "id": 7,
+      "title": "Gutter Brackets",
+      "description": "Heavy-duty mounting brackets for secure gutter installation",
+      "price": "From $50",
+      "image": "/images/product7.jpg",
+      "category": "Accessories"
+    },
+    {
+      "id": 8,
+      "title": "Gutter Sealant",
+      "description": "Professional-grade sealant for leak-proof gutter connections",
+      "price": "From $25",
+      "image": "/images/product8.jpg",
+      "category": "Accessories"
     }
   ]
 }

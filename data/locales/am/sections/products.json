@@ -2,34 +2,71 @@
   "title": "የእኛ ምርቶች",
   "subtitle": "የጥራት የጋተር ምርቶች",
   "description": "የእኛን ሰፊ የከፍተኛ የጋተር ምርቶች ምርጫ ይመልከቱ።",
+  "viewAll": "ሁሉንም ምርቶች ይመልከቱ",
   "products": [
     {
       "id": 1,
       "title": "የአሉሚኒየም ጋተሮች",
       "description": "ዘላቂ እና ቀላል የአሉሚኒየም የጋተር ስርዓቶች",
       "price": "ከ500 ዶላር ጀምሮ",
-      "image": "/images/product1.jpg"
+      "image": "/images/product1.jpg",
+      "category": "ጋተሮች"
     },
     {
       "id": 2,
       "title": "የቫይንል ጋተሮች",
       "description": "ተወዳዳሪ እና ለመጠበቅ ቀላል የቫይንል ጋተሮች",
       "price": "ከ300 ዶላር ጀምሮ",
-      "image": "/images/product2.jpg"
+      "image": "/images/product2.jpg",
+      "category": "ጋተሮች"
     },
     {
       "id": 3,
       "title": "የብረት ጋተሮች",
       "description": "ጠንካራ እና ረጅም ዘላቂነት ያላቸው የብረት የጋተር ስርዓቶች",
       "price": "ከ600 ዶላር ጀምሮ",
-      "image": "/images/product3.jpg"
+      "image": "/images/product3.jpg",
+      "category": "ጋተሮች"
     },
     {
       "id": 4,
       "title": "የነሐስ ጋተሮች",
       "description": "ከጥሩ መልክ ጋር የከፍተኛ የነሐስ ጋተሮች",
       "price": "ከ1000 ዶላር ጀምሮ",
-      "image": "/images/product4.jpg"
+      "image": "/images/product4.jpg",
+      "category": "ፕሪሚየም"
+    },
+    {
+      "id": 5,
+      "title": "የጋተር ጠባቂዎች",
+      "description": "ጋተሮችዎን ከአድናቂዎች እና ከቅጠሎች ይጠብቁ",
+      "price": "ከ200 ዶላር ጀምሮ",
+      "image": "/images/product5.jpg",
+      "category": "መዳረሻዎች"
+    },
+    {
+      "id": 6,
+      "title": "የውሃ መፍሰሻዎች",
+      "description": "ውጤታማ የውሃ መፍሰሻ ስርዓቶች",
+      "price": "ከ150 ዶላር ጀምሮ",
+      "image": "/images/product6.jpg",
+      "category": "መዳረሻዎች"
+    },
+    {
+      "id": 7,
+      "title": "የጋተር ቅንጣቢዎች",
+      "description": "አስተማማኝ የጋተር መጫን ለማስተካከል ከፍተኛ ጥንካሬ ያላቸው ቅንጣቢዎች",
+      "price": "ከ50 ዶላር ጀምሮ",
+      "image": "/images/product7.jpg",
+      "category": "መዳረሻዎች"
+    },
+    {
+      "id": 8,
+      "title": "የጋተር ሲላንት",
+      "description": "ለሚፈሰሱ የጋተር ግንኙነቶች ሙያዊ ደረጃ ሲላንት",
+      "price": "ከ25 ዶላር ጀምሮ",
+      "image": "/images/product8.jpg",
+      "category": "መዳረሻዎች"
     }
   ]
 }
