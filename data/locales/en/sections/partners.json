@@ -5,23 +5,103 @@
   "partners": [
     {
       "id": 1,
-      "name": "Partner 1",
-      "logo": "/images/partner1.png"
+      "name": "Microsoft",
+      "logo": "https://cdn.simpleicons.org/microsoft/0078D4"
     },
     {
       "id": 2,
-      "name": "Partner 2",
-      "logo": "/images/partner2.png"
+      "name": "Google",
+      "logo": "https://cdn.simpleicons.org/google/4285F4"
     },
     {
       "id": 3,
-      "name": "Partner 3",
-      "logo": "/images/partner3.png"
+      "name": "Apple",
+      "logo": "https://cdn.simpleicons.org/apple/000000"
     },
     {
       "id": 4,
-      "name": "Partner 4",
-      "logo": "/images/partner4.png"
+      "name": "Amazon",
+      "logo": "https://cdn.simpleicons.org/amazon/FF9900"
+    },
+    {
+      "id": 5,
+      "name": "Meta",
+      "logo": "https://cdn.simpleicons.org/meta/0081FB"
+    },
+    {
+      "id": 6,
+      "name": "Tesla",
+      "logo": "https://cdn.simpleicons.org/tesla/CC0000"
+    },
+    {
+      "id": 7,
+      "name": "Netflix",
+      "logo": "https://cdn.simpleicons.org/netflix/E50914"
+    },
+    {
+      "id": 8,
+      "name": "Adobe",
+      "logo": "https://cdn.simpleicons.org/adobe/FF0000"
+    },
+    {
+      "id": 9,
+      "name": "IBM",
+      "logo": "https://cdn.simpleicons.org/ibm/006699"
+    },
+    {
+      "id": 10,
+      "name": "Oracle",
+      "logo": "https://cdn.simpleicons.org/oracle/F80000"
+    },
+    {
+      "id": 11,
+      "name": "Samsung",
+      "logo": "https://cdn.simpleicons.org/samsung/1428A0"
+    },
+    {
+      "id": 12,
+      "name": "Intel",
+      "logo": "https://cdn.simpleicons.org/intel/0071C5"
+    },
+    {
+      "id": 13,
+      "name": "Cisco",
+      "logo": "https://cdn.simpleicons.org/cisco/1BA0D7"
+    },
+    {
+      "id": 14,
+      "name": "HP",
+      "logo": "https://cdn.simpleicons.org/hp/0096D6"
+    },
+    {
+      "id": 15,
+      "name": "Dell",
+      "logo": "https://cdn.simpleicons.org/dell/007DB8"
+    },
+    {
+      "id": 16,
+      "name": "Sony",
+      "logo": "https://cdn.simpleicons.org/sony/000000"
+    },
+    {
+      "id": 17,
+      "name": "NVIDIA",
+      "logo": "https://cdn.simpleicons.org/nvidia/76B900"
+    },
+    {
+      "id": 18,
+      "name": "Spotify",
+      "logo": "https://cdn.simpleicons.org/spotify/1DB954"
+    },
+    {
+      "id": 19,
+      "name": "Uber",
+      "logo": "https://cdn.simpleicons.org/uber/000000"
+    },
+    {
+      "id": 20,
+      "name": "Airbnb",
+      "logo": "https://cdn.simpleicons.org/airbnb/FF5A5F"
     }
   ]
 }

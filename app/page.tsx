@@ -16,10 +16,10 @@ export default function Home() {
   <Service />
   <WhyChooseus />
   <Products />
-  <Partners />
+  
   <Cta />
   <Blog />
-  <Contact />
+  <Partners />
   </>
   );
 }

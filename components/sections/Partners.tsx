@@ -1,49 +1,107 @@
 'use client';
 
-import React from 'react';
+import React, { useState } from 'react';
+import { Swiper, SwiperSlide } from 'swiper/react';
+import { Autoplay, FreeMode } from 'swiper/modules';
 import { getSectionData } from '@/data/utils';
 import { useLanguage } from '@/components/providers/LanguageProvider';
+
+// Import Swiper styles
+import 'swiper/css';
+import 'swiper/css/autoplay';
+import 'swiper/css/free-mode';
 
 const Partners = () => {
   const { language: lang } = useLanguage();
   const data = getSectionData('partners', lang);
+  const [imageErrors, setImageErrors] = useState<Record<number, boolean>>({});
+  
+  // Duplicate partners for seamless infinite loop
+  const duplicatedPartners = [...data.partners, ...data.partners, ...data.partners];
 
   return (
-    <section className="py-20 lg:py-28 bg-white dark:bg-gray-900">
-      <div className="mx-auto px-4 sm:px-6 lg:px-8">
+    <section className="py-12 lg:py-16 bg-gradient-to-b from-white to-gray-50 dark:from-gray-900 dark:to-gray-800 relative overflow-hidden">
+      {/* Decorative Background Elements */}
+      <div className="absolute top-0 left-0 w-96 h-96 bg-primary/5 dark:bg-primary/10 rounded-full blur-3xl -translate-x-1/2 -translate-y-1/2"></div>
+      <div className="absolute bottom-0 right-0 w-96 h-96 bg-secondary/5 dark:bg-secondary/10 rounded-full blur-3xl translate-x-1/2 translate-y-1/2"></div>
+      
+      <div className="mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         {/* Section Header */}
-        <div className="text-center max-w-3xl mx-auto mb-16">
-          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-display font-bold text-gray-900 dark:text-white mb-4">
+        <div className="text-center max-w-2xl mx-auto mb-12">
+          <h2 className="relative inline-block text-2xl sm:text-3xl lg:text-4xl font-display font-bold text-gray-900 dark:text-white mb-6">
             {data.title}
+            {/* Decorative Underline */}
+            <span className="absolute bottom-0 left-0 right-0 h-1 bg-gradient-to-r from-transparent via-primary to-transparent opacity-60"></span>
+            <span className="absolute -bottom-1 left-1/2 transform -translate-x-1/2 w-16 h-0.5 bg-primary dark:bg-primary-light"></span>
           </h2>
-          <p className="text-xl text-gray-600 dark:text-gray-300 mb-2">
-            {data.subtitle}
-          </p>
-          <p className="text-lg text-gray-500 dark:text-gray-400">
-            {data.description}
-          </p>
         </div>
 
-        {/* Partners Grid */}
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-8 lg:gap-12">
-          {data.partners.map((partner: any) => (
-            <div
-              key={partner.id}
-              className="group flex items-center justify-center p-6 bg-gray-50 dark:bg-gray-800 rounded-xl border-2 border-gray-200 dark:border-gray-700 hover:border-primary dark:hover:border-primary-light transition-all duration-300 hover:shadow-lg hover:-translate-y-1"
-            >
-              {/* Placeholder for partner logo */}
-              <div className="text-center">
-                <div className="w-20 h-20 bg-gradient-to-br from-primary/20 to-secondary/20 dark:from-primary/30 dark:to-secondary/30 rounded-full flex items-center justify-center mx-auto mb-3 group-hover:scale-110 transition-transform duration-300">
-                  <span className="text-2xl font-bold text-primary dark:text-primary-light">
-                    {partner.name.charAt(0)}
-                  </span>
+        {/* Partners Swiper */}
+        <div className="relative">
+          <Swiper
+            modules={[Autoplay, FreeMode]}
+            spaceBetween={24}
+            slidesPerView={2}
+            breakpoints={{
+              640: {
+                slidesPerView: 2,
+                spaceBetween: 24,
+              },
+              768: {
+                slidesPerView: 4,
+                spaceBetween: 32,
+              },
+              1024: {
+                slidesPerView: 7,
+                spaceBetween: 32,
+              },
+            }}
+            autoplay={{
+              delay: 1,
+              disableOnInteraction: false,
+              pauseOnMouseEnter: false,
+              stopOnLastSlide: false,
+            }}
+            loop={true}
+            loopAdditionalSlides={data.partners.length}
+            speed={10000}
+            freeMode={false}
+            allowTouchMove={false}
+            className="partners-swiper"
+          >
+            {duplicatedPartners.map((partner: any, index: number) => (
+              <SwiperSlide key={`${partner.id}-${index}`}>
+                <div className="group relative flex items-center justify-center h-24 md:h-28 lg:h-32 bg-white dark:bg-gray-800 rounded-xl border-2 border-gray-200/60 dark:border-gray-700/60 shadow-md hover:shadow-2xl hover:border-primary/40 dark:hover:border-primary-light/40 transition-all duration-500 hover:-translate-y-1 overflow-hidden backdrop-blur-sm">
+                  {/* Gradient Overlay on Hover */}
+                  <div className="absolute inset-0 bg-gradient-to-br from-primary/5 via-transparent to-secondary/5 dark:from-primary/10 dark:to-secondary/10 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+                  
+                  {/* Logo Image */}
+                  <div className="relative z-10 w-full h-full flex items-center justify-center p-4">
+                    {imageErrors[partner.id] ? (
+                      <div className="w-full h-full flex items-center justify-center bg-gray-100 dark:bg-gray-700 rounded-lg">
+                        <span className="text-xs font-medium text-gray-500 dark:text-gray-400">
+                          {partner.name}
+                        </span>
+                      </div>
+                    ) : (
+                      <img
+                        src={partner.logo}
+                        alt={partner.name}
+                        className="w-full h-full object-contain transition-all duration-500 group-hover:scale-110"
+                        loading="lazy"
+                        onError={() => {
+                          setImageErrors((prev) => ({ ...prev, [partner.id]: true }));
+                        }}
+                      />
+                    )}
+                  </div>
+                  
+                  {/* Shine Effect */}
+                  <div className="absolute inset-0 -translate-x-full group-hover:translate-x-full transition-transform duration-1000 bg-gradient-to-r from-transparent via-white/20 to-transparent"></div>
                 </div>
-                <p className="text-sm font-medium text-gray-700 dark:text-gray-300 group-hover:text-primary dark:group-hover:text-primary-light transition-colors">
-                  {partner.name}
-                </p>
-              </div>
-            </div>
-          ))}
+              </SwiperSlide>
+            ))}
+          </Swiper>
         </div>
       </div>
     </section>

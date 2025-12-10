@@ -130,3 +130,12 @@
     animation-delay: 1500ms;
   }
 }
+
+/* Smooth Continuous Sliding for Partners Swiper */
+.partners-swiper .swiper-wrapper {
+  transition-timing-function: linear !important;
+}
+
+.partners-swiper .swiper-slide {
+  transition: none !important;
+}
