@@ -115,6 +115,8 @@ module.exports = {
         'fade-in': 'fadeIn 0.2s ease-in-out',
         'slide-in': 'slideIn 0.3s ease-out',
         'slide-up': 'slideUp 0.5s ease-out',
+        'spin-slow': 'spin 20s linear infinite',
+        'gradient-x': 'gradient-x 3s ease infinite',
       },
       keyframes: {
         fadeIn: {
@@ -128,6 +130,16 @@ module.exports = {
         slideUp: {
           '0%': { transform: 'translateY(30px)', opacity: '0' },
           '100%': { transform: 'translateY(0)', opacity: '1' },
+        },
+        'gradient-x': {
+          '0%, 100%': {
+            'background-size': '200% 200%',
+            'background-position': 'left center'
+          },
+          '50%': {
+            'background-size': '200% 200%',
+            'background-position': 'right center'
+          },
         },
       },
     },
