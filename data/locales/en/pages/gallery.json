@@ -5,15 +5,57 @@
   "images": [
     {
       "id": 1,
-      "title": "Project 1",
-      "image": "/images/gallery1.jpg",
+      "title": "Modern Gutter Installation",
+      "image": "https://images.unsplash.com/photo-1581578731548-c64695cc6952?w=1200&h=800&fit=crop",
       "category": "Installation"
     },
     {
       "id": 2,
-      "title": "Project 2",
-      "image": "/images/gallery2.jpg",
+      "title": "Residential Gutter System",
+      "image": "https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?w=1200&h=800&fit=crop",
+      "category": "Installation"
+    },
+    {
+      "id": 3,
+      "title": "Gutter Repair Service",
+      "image": "https://images.unsplash.com/photo-1504307651254-35680f356dfd?w=1200&h=800&fit=crop",
       "category": "Repair"
+    },
+    {
+      "id": 4,
+      "title": "Commercial Gutter Project",
+      "image": "https://images.unsplash.com/photo-1503387762-592deb58ef4e?w=1200&h=800&fit=crop",
+      "category": "Commercial"
+    },
+    {
+      "id": 5,
+      "title": "Gutter Cleaning Service",
+      "image": "https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=1200&h=800&fit=crop",
+      "category": "Maintenance"
+    },
+    {
+      "id": 6,
+      "title": "Premium Gutter Installation",
+      "image": "https://images.unsplash.com/photo-1563453392212-326f5e854473?w=1200&h=800&fit=crop",
+      "category": "Installation"
+    },
+    {
+      "id": 7,
+      "title": "Gutter Replacement",
+      "image": "https://images.unsplash.com/photo-1558618047-3c8c76ca7d13?w=1200&h=800&fit=crop",
+      "category": "Repair"
+    },
+    {
+      "id": 8,
+      "title": "Professional Gutter Work",
+      "image": "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=1200&h=800&fit=crop",
+      "category": "Installation"
+    },
+    {
+      "id": 9,
+      "title": "Gutter Maintenance",
+      "image": "https://images.unsplash.com/photo-1558036117-15d82a90b9b1?w=1200&h=800&fit=crop",
+      "category": "Maintenance"
     }
   ]
 }
