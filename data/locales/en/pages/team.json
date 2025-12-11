@@ -7,15 +7,52 @@
       "id": 1,
       "name": "John Doe",
       "position": "CEO & Founder",
-      "description": "With over 15 years of experience in the industry.",
-      "image": "/images/team1.jpg"
+      "theme": "Leadership & Innovation",
+      "description": "With over 15 years of experience in the industry, John leads our team with vision and dedication.",
+      "details": "John has been instrumental in building our company from the ground up. His expertise in business strategy and commitment to excellence drives our success. He holds an MBA from Harvard Business School and has been recognized as a leader in the construction industry.",
+      "image": "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80",
+      "email": "john.doe@company.com",
+      "phone": "+1 (555) 123-4567",
+      "address": "123 Business Street, Suite 100, New York, NY 10001",
+      "social": {
+        "facebook": "https://facebook.com/johndoe",
+        "linkedin": "https://linkedin.com/in/johndoe",
+        "twitter": "https://twitter.com/johndoe"
+      }
     },
     {
       "id": 2,
       "name": "Jane Smith",
       "position": "Lead Technician",
-      "description": "Certified professional with expertise in gutter systems.",
-      "image": "/images/team2.jpg"
+      "theme": "Technical Excellence",
+      "description": "Certified professional with expertise in gutter systems and installation techniques.",
+      "details": "Jane brings over 12 years of hands-on experience in gutter installation and maintenance. She is certified in multiple technical programs and has trained numerous technicians. Her attention to detail and problem-solving skills ensure every project meets the highest standards.",
+      "image": "https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80",
+      "email": "jane.smith@company.com",
+      "phone": "+1 (555) 234-5678",
+      "address": "123 Business Street, Suite 200, New York, NY 10001",
+      "social": {
+        "facebook": "https://facebook.com/janesmith",
+        "linkedin": "https://linkedin.com/in/janesmith",
+        "twitter": "https://twitter.com/janesmith"
+      }
+    },
+    {
+      "id": 3,
+      "name": "Michael Johnson",
+      "position": "Project Manager",
+      "theme": "Project Management",
+      "description": "Expert in coordinating complex projects and ensuring timely delivery.",
+      "details": "Michael has successfully managed over 200 projects in his career. His strong organizational skills and ability to coordinate teams make him an invaluable asset. He holds a PMP certification and specializes in residential and commercial projects.",
+      "image": "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80",
+      "email": "michael.johnson@company.com",
+      "phone": "+1 (555) 345-6789",
+      "address": "123 Business Street, Suite 300, New York, NY 10001",
+      "social": {
+        "facebook": "https://facebook.com/michaeljohnson",
+        "linkedin": "https://linkedin.com/in/michaeljohnson",
+        "twitter": "https://twitter.com/michaeljohnson"
+      }
     }
   ]
 }
