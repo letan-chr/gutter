@@ -12,7 +12,7 @@ const Service = () => {
     <section className="py-12 lg:py-12 bg-gray-50 dark:bg-gray-900 relative ">
       <div className="mx-auto px-6">
         {/* Header */}
-        <div className="text-center max-w-3xl mx-auto mb-20">
+        <div className="text-center max-w-3xl mx-auto mb-8">
           <h2 className="text-4xl font-bold text-gray-900 dark:text-white">
             {data.title}
           </h2>
@@ -106,18 +106,22 @@ const Service = () => {
                 <div className="col-span-12 md:col-span-5 flex justify-center md:justify-end relative z-20">
                   {/* Diagonal shape for image section - complementary to content section */}
                   <div 
-                    className="hidden md:block absolute left-0 top-0 bottom-0 w-full z-10"
+                    className="hidden md:block absolute left-0 top-0 bottom-0 w-full z-10 shadow-2xl"
                     style={{
-                      clipPath: 'polygon(15% 0, 100% 0, 100% 100%, 0 100%)'
+                      clipPath: 'polygon(15% 0, 100% 0, 100% 100%, 0 100%)',
+                      boxShadow: '0 25px 50px -12px rgba(0, 0, 0, 0.25)'
                     }}
                   ></div>
                   
                   <div
                     className="relative z-20
-                    w-64 h-64 rounded-full overflow-hidden shadow-xl
+                    w-64 h-64 rounded-full overflow-hidden shadow-2xl
                     border-[5px] border-white dark:border-gray-900
                     right-[-40px]   /* pushes image into curve */
                   "
+                    style={{
+                      boxShadow: '0 25px 50px -12px rgba(0, 0, 0, 0.5), 0 0 0 1px rgba(0, 0, 0, 0.1)'
+                    }}
                   >
                     <img
                       src={service.image}
