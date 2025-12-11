@@ -1,6 +1,7 @@
 'use client';
 
 import React from 'react';
+import Image from 'next/image';
 import { getPageData } from '@/data/utils';
 import { useLanguage } from '@/components/providers/LanguageProvider';
 
@@ -10,22 +11,9 @@ const Testimonial = () => {
 
   return (
     <section className="py-12 lg:py-20 bg-white dark:bg-gray-900 min-h-screen">
-      <div className="mx-auto px-4 sm:px-6 lg:px-8">
-        {/* Page Header */}
-        <div className="text-center max-w-3xl mx-auto mb-16">
-          <h1 className="text-4xl sm:text-5xl lg:text-6xl font-display font-bold text-gray-900 dark:text-white mb-4">
-            {data.title}
-          </h1>
-          <p className="text-xl text-gray-600 dark:text-gray-300 mb-2">
-            {data.subtitle}
-          </p>
-          <p className="text-lg text-gray-500 dark:text-gray-400">
-            {data.description}
-          </p>
-        </div>
-
+      <div className="mx-auto px-4 sm:px-6 lg:px-8 max-w-7xl">
         {/* Testimonials Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-12">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-16">
           {data.testimonials.map((testimonial: any) => (
             <div
               key={testimonial.id}
@@ -70,22 +58,83 @@ const Testimonial = () => {
           ))}
         </div>
 
-        {/* CTA Section */}
-        <div className="bg-gradient-to-r from-primary to-secondary rounded-2xl p-8 lg:p-12 text-center text-white">
-          <h2 className="text-3xl font-display font-bold mb-4">
-            {lang === 'en' ? 'Join Our Happy Customers' : 'ደስ የሚሉ ደንበኞቻችንን ይቀላቀሉ'}
-          </h2>
-          <p className="text-white/90 mb-6 text-lg">
-            {lang === 'en' 
-              ? 'Experience the quality service that our customers love.' 
-              : 'ደንበኞቻችን የሚወዱትን የጥራት አገልግሎት ይሞክሩ።'}
-          </p>
-          <a
-            href="/contacts"
-            className="inline-block px-8 py-4 bg-white text-primary rounded-lg font-semibold text-lg hover:bg-gray-100 transition-colors"
-          >
-            {lang === 'en' ? 'Get Started Today' : 'ዛሬ ይጀምሩ'}
-          </a>
+        {/* CTA Section - Stats Style */}
+        <div className="relative rounded-2xl overflow-hidden shadow-2xl">
+          {/* Background Image */}
+          <div className="absolute inset-0">
+            <Image
+              src="https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80"
+              alt="Stats background"
+              fill
+              className="object-cover"
+              sizes="100vw"
+              priority
+            />
+            {/* Dark Overlay for better text readability */}
+            <div className="absolute inset-0 bg-black/70 dark:bg-black/80"></div>
+            {/* Subtle gradient overlay */}
+            <div className="absolute inset-0 bg-gradient-to-br from-primary/20 via-transparent to-secondary/20"></div>
+          </div>
+
+          {/* Content */}
+          <div className="relative p-8 lg:p-12 text-center text-white">
+            <h2 className="text-3xl lg:text-4xl font-display font-bold mb-10 lg:mb-12">
+              {lang === 'en' ? 'Join Our Happy Customers' : 'ደስ የሚሉ ደንበኞቻችንን ይቀላቀሉ'}
+            </h2>
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-6 lg:gap-8 mb-8">
+              <div className="group relative">
+                <div className="backdrop-blur-sm bg-white/10 dark:bg-white/5 rounded-xl p-6 lg:p-8 border border-white/20 hover:border-white/40 transition-all duration-300 hover:scale-105 hover:bg-white/15">
+                  <div className="text-4xl lg:text-5xl xl:text-6xl font-bold mb-2 text-white group-hover:text-primary transition-colors duration-300">
+                    {data.testimonials.length}+
+                  </div>
+                  <div className="text-white/90 text-sm lg:text-base font-medium">
+                    {lang === 'en' ? 'Happy Customers' : 'ደስ የሚሉ ደንበኞች'}
+                  </div>
+                </div>
+              </div>
+              <div className="group relative">
+                <div className="backdrop-blur-sm bg-white/10 dark:bg-white/5 rounded-xl p-6 lg:p-8 border border-white/20 hover:border-white/40 transition-all duration-300 hover:scale-105 hover:bg-white/15">
+                  <div className="text-4xl lg:text-5xl xl:text-6xl font-bold mb-2 text-white group-hover:text-primary transition-colors duration-300">
+                    5
+                  </div>
+                  <div className="text-white/90 text-sm lg:text-base font-medium">
+                    {lang === 'en' ? 'Star Rating' : 'የኮከብ ደረጃ'}
+                  </div>
+                </div>
+              </div>
+              <div className="group relative">
+                <div className="backdrop-blur-sm bg-white/10 dark:bg-white/5 rounded-xl p-6 lg:p-8 border border-white/20 hover:border-white/40 transition-all duration-300 hover:scale-105 hover:bg-white/15">
+                  <div className="text-4xl lg:text-5xl xl:text-6xl font-bold mb-2 text-white group-hover:text-primary transition-colors duration-300">
+                    100%
+                  </div>
+                  <div className="text-white/90 text-sm lg:text-base font-medium">
+                    {lang === 'en' ? 'Satisfaction' : 'የደስታ መጠን'}
+                  </div>
+                </div>
+              </div>
+              <div className="group relative">
+                <div className="backdrop-blur-sm bg-white/10 dark:bg-white/5 rounded-xl p-6 lg:p-8 border border-white/20 hover:border-white/40 transition-all duration-300 hover:scale-105 hover:bg-white/15">
+                  <div className="text-4xl lg:text-5xl xl:text-6xl font-bold mb-2 text-white group-hover:text-primary transition-colors duration-300">
+                    10+
+                  </div>
+                  <div className="text-white/90 text-sm lg:text-base font-medium">
+                    {lang === 'en' ? 'Years Experience' : 'የልምድ ዓመታት'}
+                  </div>
+                </div>
+              </div>
+            </div>
+            <p className="text-white/90 mb-8 text-lg">
+              {lang === 'en' 
+                ? 'Experience the quality service that our customers love.' 
+                : 'ደንበኞቻችን የሚወዱትን የጥራት አገልግሎት ይሞክሩ።'}
+            </p>
+            <a
+              href="/contacts"
+              className="inline-block px-8 py-4 bg-white text-primary rounded-lg font-semibold text-lg hover:bg-gray-100 transition-colors hover:scale-105 active:scale-95"
+            >
+              {lang === 'en' ? 'Get Started Today' : 'ዛሬ ይጀምሩ'}
+            </a>
+          </div>
         </div>
       </div>
     </section>
