@@ -109,33 +109,68 @@ const Achievement = () => {
         </div>
 
         {/* Stats Section */}
-        <div className="bg-gradient-to-r from-primary via-secondary to-tertiary rounded-2xl p-8 lg:p-12 text-center text-white">
-          <h2 className="text-3xl font-display font-bold mb-8">
-            {lang === 'en' ? 'Our Journey in Numbers' : 'በቁጥሮች ውስጥ ጉዞዎቻችን'}
-          </h2>
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
-            <div>
-              <div className="text-4xl lg:text-5xl font-bold mb-2">10+</div>
-              <div className="text-white/90">
-                {lang === 'en' ? 'Years' : 'ዓመታት'}
+        <div className="relative rounded-2xl overflow-hidden shadow-2xl">
+          {/* Background Image */}
+          <div className="absolute inset-0">
+            <Image
+              src="https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80"
+              alt="Stats background"
+              fill
+              className="object-cover"
+              sizes="100vw"
+              priority
+            />
+            {/* Dark Overlay for better text readability */}
+            <div className="absolute inset-0 bg-black/70 dark:bg-black/80"></div>
+            {/* Subtle gradient overlay */}
+            <div className="absolute inset-0 bg-gradient-to-br from-primary/20 via-transparent to-secondary/20"></div>
+          </div>
+
+          {/* Content */}
+          <div className="relative p-8 lg:p-12 text-center text-white">
+            <h2 className="text-3xl lg:text-4xl font-display font-bold mb-10 lg:mb-12">
+              {lang === 'en' ? 'Our Journey in Numbers' : 'በቁጥሮች ውስጥ ጉዞዎቻችን'}
+            </h2>
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-6 lg:gap-8">
+              <div className="group relative">
+                <div className="backdrop-blur-sm bg-white/10 dark:bg-white/5 rounded-xl p-6 lg:p-8 border border-white/20 hover:border-white/40 transition-all duration-300 hover:scale-105 hover:bg-white/15">
+                  <div className="text-4xl lg:text-5xl xl:text-6xl font-bold mb-2 text-white group-hover:text-primary transition-colors duration-300">
+                    10+
+                  </div>
+                  <div className="text-white/90 text-sm lg:text-base font-medium">
+                    {lang === 'en' ? 'Years' : 'ዓመታት'}
+                  </div>
+                </div>
               </div>
-            </div>
-            <div>
-              <div className="text-4xl lg:text-5xl font-bold mb-2">1000+</div>
-              <div className="text-white/90">
-                {lang === 'en' ? 'Projects' : 'ፕሮጀክቶች'}
+              <div className="group relative">
+                <div className="backdrop-blur-sm bg-white/10 dark:bg-white/5 rounded-xl p-6 lg:p-8 border border-white/20 hover:border-white/40 transition-all duration-300 hover:scale-105 hover:bg-white/15">
+                  <div className="text-4xl lg:text-5xl xl:text-6xl font-bold mb-2 text-white group-hover:text-primary transition-colors duration-300">
+                    1000+
+                  </div>
+                  <div className="text-white/90 text-sm lg:text-base font-medium">
+                    {lang === 'en' ? 'Projects' : 'ፕሮጀክቶች'}
+                  </div>
+                </div>
               </div>
-            </div>
-            <div>
-              <div className="text-4xl lg:text-5xl font-bold mb-2">500+</div>
-              <div className="text-white/90">
-                {lang === 'en' ? 'Clients' : 'ደንበኞች'}
+              <div className="group relative">
+                <div className="backdrop-blur-sm bg-white/10 dark:bg-white/5 rounded-xl p-6 lg:p-8 border border-white/20 hover:border-white/40 transition-all duration-300 hover:scale-105 hover:bg-white/15">
+                  <div className="text-4xl lg:text-5xl xl:text-6xl font-bold mb-2 text-white group-hover:text-primary transition-colors duration-300">
+                    500+
+                  </div>
+                  <div className="text-white/90 text-sm lg:text-base font-medium">
+                    {lang === 'en' ? 'Clients' : 'ደንበኞች'}
+                  </div>
+                </div>
               </div>
-            </div>
-            <div>
-              <div className="text-4xl lg:text-5xl font-bold mb-2">50+</div>
-              <div className="text-white/90">
-                {lang === 'en' ? 'Team Members' : 'የቡድን አባላት'}
+              <div className="group relative">
+                <div className="backdrop-blur-sm bg-white/10 dark:bg-white/5 rounded-xl p-6 lg:p-8 border border-white/20 hover:border-white/40 transition-all duration-300 hover:scale-105 hover:bg-white/15">
+                  <div className="text-4xl lg:text-5xl xl:text-6xl font-bold mb-2 text-white group-hover:text-primary transition-colors duration-300">
+                    50+
+                  </div>
+                  <div className="text-white/90 text-sm lg:text-base font-medium">
+                    {lang === 'en' ? 'Team Members' : 'የቡድን አባላት'}
+                  </div>
+                </div>
               </div>
             </div>
           </div>
@@ -158,27 +193,22 @@ const Achievement = () => {
             >
               {/* Header Section */}
               <div className="flex items-center justify-between px-6 py-4 border-b border-gray-700 dark:border-gray-600 bg-gray-800/50 dark:bg-gray-900/50">
-                {/* Achievement Name */}
-                <div className={`flex items-center gap-4 transition-opacity duration-300 ${
+                {/* Achievement Name and Description */}
+                <div className={`flex-1 transition-opacity duration-300 ${
                   isAnimating ? 'opacity-0' : 'opacity-100'
                 }`}>
-                  <div className="text-3xl lg:text-4xl">
-                    {data.achievements[selectedImageIndex].icon}
-                  </div>
-                  <div>
-                    <h2 className="text-xl lg:text-2xl font-display font-bold text-white">
-                      {data.achievements[selectedImageIndex].title}
-                    </h2>
-                    <p className="text-gray-400 text-sm lg:text-base">
-                      {data.achievements[selectedImageIndex].description}
-                    </p>
-                  </div>
+                  <h2 className="text-xl lg:text-2xl font-display font-bold text-white mb-1">
+                    {data.achievements[selectedImageIndex].title}
+                  </h2>
+                  <p className="text-gray-400 text-sm lg:text-base">
+                    {data.achievements[selectedImageIndex].description}
+                  </p>
                 </div>
 
                 {/* Close Button - Inside Modal */}
                 <button
                   onClick={() => setSelectedImageIndex(null)}
-                  className="text-gray-400 hover:text-white transition-colors bg-gray-800 hover:bg-gray-700 rounded-full p-2 hover:scale-110 active:scale-95"
+                  className="text-gray-400 hover:text-white transition-colors bg-gray-800 hover:bg-gray-700 rounded-full p-2 hover:scale-110 active:scale-95 ml-4"
                   aria-label="Close modal"
                 >
                   <svg className="w-5 h-5 md:w-6 md:h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
