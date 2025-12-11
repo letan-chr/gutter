@@ -28,6 +28,8 @@ import ctaEn from '@/data/locales/en/sections/cta.json';
 import ctaAm from '@/data/locales/am/sections/cta.json';
 import blogEn from '@/data/locales/en/sections/blog.json';
 import blogAm from '@/data/locales/am/sections/blog.json';
+import aboutSectionEn from '@/data/locales/en/sections/about.json';
+import aboutSectionAm from '@/data/locales/am/sections/about.json';
 
 import blogPageEn from '@/data/locales/en/pages/blog.json';
 import blogPageAm from '@/data/locales/am/pages/blog.json';
@@ -69,6 +71,7 @@ const dataMap: Record<string, Record<Language, any>> = {
   'sections/partners': { en: partnersEn, am: partnersAm },
   'sections/cta': { en: ctaEn, am: ctaAm },
   'sections/blog': { en: blogEn, am: blogAm },
+  'sections/about': { en: aboutSectionEn, am: aboutSectionAm },
   'pages/blog': { en: blogPageEn, am: blogPageAm },
   'pages/products': { en: productsPageEn, am: productsPageAm },
   'pages/services': { en: servicesPageEn, am: servicesPageAm },

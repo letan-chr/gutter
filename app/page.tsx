@@ -7,12 +7,14 @@ import Cta from "@/components/sections/Cta";
 import Blog from "@/components/sections/Blog";
 import Contact from "@/components/pages/contacts/Contact";
 import Service from "@/components/sections/Service";
+import About from "@/components/sections/About";
 
 export default function Home() {
   return (
     <>
   <Hero />
   <Feature />
+  <About />
   <Service />
   <WhyChooseus />
   <Products />
