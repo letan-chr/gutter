@@ -56,11 +56,19 @@ const Service = () => {
                         {service.title}
                       </h3>
 
-                      <p className={`text-lg leading-relaxed mb-8 ${
+                      <p className={`text-lg leading-relaxed mb-4 ${
                         isDarkCard ? 'text-gray-300' : 'text-gray-600'
                       }`}>
                         {service.description}
                       </p>
+
+                      {service.content && (
+                        <p className={`text-base leading-relaxed mb-8 ${
+                          isDarkCard ? 'text-gray-400' : 'text-gray-700'
+                        }`}>
+                          {service.content}
+                        </p>
+                      )}
 
                       <a
                         href={`/service/${service.title.toLowerCase().replace(/\s+/g, "-")}`}
