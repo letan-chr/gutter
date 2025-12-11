@@ -15,10 +15,8 @@ const Service = () => {
         {/* SERVICE CARDS - Full Width with Alternating Layout */}
         <div className="space-y-12">
           {data.services.map((service: any, i: number) => {
-            const isFirst = i === 0;
-            const isLast = i === data.services.length - 1;
-            // First card: content left, image right. Second card: image left, content right. Then alternate
-            const imageOnLeft = isFirst ? false : (isLast ? false : i % 2 === 1);
+            // Always alternate: even index = content left/image right, odd index = image left/content right
+            const imageOnLeft = i % 2 === 1;
             // Alternating theme: even index = light, odd index = dark
             const isDarkCard = i % 2 === 1;
             
@@ -30,11 +28,11 @@ const Service = () => {
                 }`}
               >
                 <div
-                  className={`grid grid-cols-1 lg:grid-cols-12 items-center relative`}
+                  className={`grid grid-cols-1 lg:grid-cols-12 items-stretch relative`}
                 >
                   {/* CONTENT */}
                   <div
-                    className={`relative p-10 lg:p-14 lg:col-span-6 
+                    className={`relative p-10 lg:p-14 lg:col-span-6 flex flex-col justify-center
                     ${imageOnLeft ? "lg:order-2" : "lg:order-1"}`}
                   >
                     {/* Soft Gradient Background */}
@@ -81,14 +79,14 @@ const Service = () => {
 
                   {/* IMAGE SIDE */}
                   <div
-                    className={`relative flex items-center ${imageOnLeft ? "justify-start" : "justify-end"} p-10 lg:p-14 lg:col-span-6 
+                    className={`relative flex items-center ${imageOnLeft ? "justify-start" : "justify-end"} p-10 lg:p-14 lg:col-span-6 h-full
                     ${imageOnLeft ? "lg:order-1" : "lg:order-2"}`}
                   >
                     {/* BACK ARC touching image */}
                     <div
                       className={`absolute top-1/2 -translate-y-1/2 
                       ${imageOnLeft ? "left-0 -translate-x-1/3" : "right-0 translate-x-1/3"} 
-                      w-[350px] h-[350px] border-[14px] border-primary/20 rounded-full`}
+                      w-[300px] h-[300px] md:w-[360px] md:h-[360px] lg:w-[400px] lg:h-[400px] xl:w-[440px] xl:h-[440px] 2xl:w-[480px] 2xl:h-[480px] border-[14px] border-primary/20 rounded-full`}
                     ></div>
 
                     {/* S SHAPE (curved separator) */}
@@ -99,8 +97,8 @@ const Service = () => {
                       [clip-path:polygon(0%_0%,100%_15%,100%_85%,0%_100%)]`}
                     ></div>
 
-                    {/* IMAGE */}
-                    <div className="relative w-[260px] h-[260px] md:w-[320px] md:h-[320px]">
+                    {/* IMAGE - Scales proportionally with card height */}
+                    <div className="relative w-[260px] h-[260px] md:w-[300px] md:h-[300px] lg:w-[340px] lg:h-[340px] lg:min-h-[340px] xl:w-[380px] xl:h-[380px] xl:min-h-[380px] 2xl:w-[420px] 2xl:h-[420px] 2xl:min-h-[420px] flex-shrink-0 my-auto">
                       {/* glowing ring */}
                       <div className="absolute inset-0 rounded-full border-4 border-primary/30 animate-spin-slow"></div>
 
