@@ -17,13 +17,17 @@ const Service = () => {
           {data.services.map((service: any, i: number) => {
             const isFirst = i === 0;
             const isLast = i === data.services.length - 1;
-            // First card: image left, Last card: image right, Others: alternate
-            const imageOnLeft = isFirst ? true : (isLast ? false : i % 2 === 1);
+            // First card: content left, image right. Second card: image left, content right. Then alternate
+            const imageOnLeft = isFirst ? false : (isLast ? false : i % 2 === 1);
+            // Alternating theme: even index = light, odd index = dark
+            const isDarkCard = i % 2 === 1;
             
             return (
               <div
                 key={service.id}
-                className="relative w-full bg-white dark:bg-gray-800 rounded-3xl overflow-hidden shadow-xl"
+                className={`relative w-full rounded-3xl overflow-hidden shadow-xl ${
+                  isDarkCard ? 'bg-gray-800' : 'bg-white'
+                }`}
               >
                 <div
                   className={`grid grid-cols-1 lg:grid-cols-12 items-center relative`}
@@ -34,7 +38,11 @@ const Service = () => {
                     ${imageOnLeft ? "lg:order-2" : "lg:order-1"}`}
                   >
                     {/* Soft Gradient Background */}
-                    <div className="absolute inset-0 bg-gradient-to-br from-gray-50 via-white to-gray-100 dark:from-gray-900 dark:to-gray-800 opacity-60"></div>
+                    <div className={`absolute inset-0 opacity-60 ${
+                      isDarkCard 
+                        ? 'bg-gradient-to-br from-gray-900 via-gray-800 to-gray-900' 
+                        : 'bg-gradient-to-br from-gray-50 via-white to-gray-100'
+                    }`}></div>
 
                     {/* ARC SHAPE touching the S-divider */}
                     <div
@@ -48,7 +56,9 @@ const Service = () => {
                         {service.title}
                       </h3>
 
-                      <p className="text-lg text-gray-600 dark:text-gray-300 leading-relaxed mb-8">
+                      <p className={`text-lg leading-relaxed mb-8 ${
+                        isDarkCard ? 'text-gray-300' : 'text-gray-600'
+                      }`}>
                         {service.description}
                       </p>
 
