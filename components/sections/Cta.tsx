@@ -19,7 +19,7 @@ const Cta: React.FC = () => {
   const data = getSectionData<CtaData>('cta', lang);
 
   return (
-    <section className="w-full py-12 lg:py-12 mx-auto rounded-md overflow-hidden text-white relative">
+    <section className="w-full py-6 sm:py-8 md:py-10 lg:py-12 mx-auto rounded-md overflow-hidden text-white relative">
       {/* Background Image for the card */}
       <div className="absolute inset-0 w-full h-full">
         <div className="relative w-full h-full">
@@ -44,8 +44,8 @@ const Cta: React.FC = () => {
       </div>
 
       {/* Content */}
-      <div className="px-14 py-24 relative z-10 max-w-[550px]">
-        <h1 className="text-5xl font-extrabold leading-tight text-white">{data.title}</h1>
+      <div className="px-8 py-10 relative z-10 max-w-[550px]">
+        <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-extrabold leading-tight text-white">{data.title}</h1>
         <p className="mt-3 text-base text-white">
           {data.description}
         </p>
