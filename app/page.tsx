@@ -7,11 +7,37 @@ import Cta from "@/components/sections/Cta";
 import Blog from "@/components/sections/Blog";
 import Contact from "@/components/pages/contacts/Contact";
 import Service from "@/components/sections/Service";
-
+import { getBatchData } from "@/api/Api";
+import { useEffect, useState } from "react";
 export default function Home() {
+  const features = [
+    "features",
+    "services",
+    "products",
+    "blogs",
+    "hero",
+    "why-choose-us",
+    "partners",
+    
+  ];
+  const [data, setData] = useState<any>(null);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try { 
+        const result = await getBatchData(features);
+        setData(result);
+      } catch (error) {
+        console.error("Error fetching batch data:", error);
+      }
+    };
+    fetchData();
+
+  }, []);
+
   return (
     <>
-  <Hero />
+      <Hero  />
   <Feature />
   <Service />
   <WhyChooseus />
