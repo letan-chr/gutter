@@ -54,7 +54,7 @@
     },
     "history": {
       "title": "Our History",
-      "description": "Gutter Share Company is a business organization established on April 11, 2005, in accordance with the Commercial Law of Ethiopia. The address of Gutter Share Company is in Arada Sub-City, Woreda 4, House Number Addis (Gutter Building), located in our city of Addis Ababa, on the road leading from Piassa towards Wingate, on the Northwest exit, about 300 meters from Ras Desta Hospital.",
+      "description": "Gutter Share Company is a business organization established on April 11, 2005, in accordance with the Commercial Law of Ethiopia. The address of Gutter Share Company is in Arada Sub-City, Woreda 4, House Number Addis (Gutter Building), located in our city of Addis Ababa.",
       "milestones": [
         {
           "year": "2005",
@@ -72,12 +72,12 @@
     },
     "address": {
       "title": "Address",
-      "description": "Arada Sub-City, Woreda 4, House Number Addis (Gutter Building), Addis Ababa, on the road leading from Piassa towards Wingate, on the Northwest exit, about 300 meters from Ras Desta Hospital.",
+      "description": "Arada Sub-City, Woreda 4, House Number Addis (Gutter Building), Addis Ababa.",
       "subCity": "Arada Sub-City",
       "woreda": "Woreda 4",
       "houseNumber": "House Number Addis (Gutter Building)",
-      "landmark": "About 300 meters from Ras Desta Hospital",
-      "direction": "On the road leading from Piassa towards Wingate, Northwest exit"
+      "landmark": "",
+      "direction": ""
     },
     "contact": {
       "title": "Contact Information",
@@ -85,7 +85,7 @@
         "251 966 215350",
         "251 966 215351",
         "251 966 215352",
-        "251 911 518301"
+        "251 911 518302"
       ],
       "email": "gutter2008@gmail.com"
     }
