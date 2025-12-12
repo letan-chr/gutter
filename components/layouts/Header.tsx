@@ -98,7 +98,7 @@ const Header = () => {
               className="text-2xl lg:text-3xl font-display font-bold text-primary dark:text-primary-light hover:text-primary-dark dark:hover:text-primary transition-all duration-300 group relative"
             >
               <div className="absolute inset-0 bg-gradient-to-r from-primary/20 to-secondary/20 rounded-lg blur-xl opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-              <Image src="/assets/images/logo/logo.png" alt="Logo" width={100} height={100} className="w-30 h-15 object-contain relative z-10 group-hover:scale-105 transition-transform duration-300" />
+              <Image src="/assets/images/logo/logo.jpg" alt="Logo" width={80} height={80} className="h-12 lg:h-14 w-auto object-contain relative z-10 group-hover:scale-105 transition-transform duration-300" />
             </a>
           </div>
           

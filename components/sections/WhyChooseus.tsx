@@ -1,6 +1,7 @@
 'use client';
 
 import React from 'react';
+import Image from 'next/image';
 import { getSectionData } from '@/data/utils';
 import { useLanguage } from '@/components/providers/LanguageProvider';
 import { TrendingUp, Clock, RefreshCw, Smile, Lock, Scale } from 'lucide-react';
@@ -30,46 +31,41 @@ const WhyChooseus = () => {
   };
 
   return (
-    <section className="py-12 bg-white dark:bg-gray-900 relative overflow-hidden">
-      {/* Background Image from Unsplash - Subtle */}
-      <div className="absolute inset-0 opacity-[0.12] dark:opacity-[0.15] pointer-events-none">
+    <section className="pt-2 pb-12 bg-white dark:bg-gray-900 relative overflow-hidden">
+      {/* Background Image from Local */}
+      <div className="absolute inset-0 pointer-events-none">
         <div 
           className="absolute inset-0 bg-cover bg-center bg-no-repeat"
           style={{
-            backgroundImage: `url("https://images.unsplash.com/photo-1589829545856-d10d557cf95f?q=80&w=2000&auto=format&fit=crop")`,
+            backgroundImage: `url("/assets/images/image1.jpg")`,
             transform: 'rotate(-25deg) scale(1.2)',
             transformOrigin: 'center',
           }}
         ></div>
+        {/* Black Backdrop Overlay */}
+        <div className="absolute inset-0 bg-black/90"></div>
       </div>
 
       <div className="mx-auto px-4 sm:px-6 lg:px-8 relative z-10 max-w-7xl">
         {/* Title Section */}
-        <div className="text-center mb-8">
-          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-display font-bold text-black dark:text-white mb-4">
+        <div className="text-center pt-2 mb-12">
+          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-display font-bold text-white">
             {data.title}
           </h2>
         </div>
 
         {/* Circular Layout Container */}
-        <div className="hidden lg:block relative w-full max-w-6xl mx-auto" style={{ minHeight: '700px', paddingTop: '100px', paddingBottom: '100px' }}>
-          {/* Central Figure Area */}
+        <div className="hidden lg:block relative w-full max-w-6xl mx-auto" style={{ minHeight: '700px', paddingBottom: '100px' }}>
+          {/* Central Logo */}
           <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 z-20">
-            <div className="relative">
-              {/* Circular Dark Blue Overlay */}
-              <div className="w-72 h-72 xl:w-80 xl:h-80 rounded-full bg-secondary dark:bg-secondary-dark flex items-center justify-center relative overflow-hidden shadow-2xl border-4 border-white dark:border-gray-800">
-                {/* Professional Figure Placeholder - You can replace this with an actual image */}
-                <div className="w-full h-full flex items-center justify-center bg-gradient-to-br from-secondary to-secondary-dark">
-                  <div className="text-white text-center p-8">
-                    <div className="w-40 h-40 xl:w-48 xl:h-48 mx-auto mb-4 rounded-full bg-white/10 flex items-center justify-center backdrop-blur-sm border-2 border-white/20">
-                      <Scale className="w-20 h-20 xl:w-24 xl:h-24 text-white" />
-                    </div>
-                    <p className="text-base xl:text-lg font-semibold opacity-95">
-                      {data.subtitle}
-                    </p>
-                  </div>
-                </div>
-              </div>
+            <div className="relative w-72 h-72 xl:w-80 xl:h-80 rounded-full overflow-hidden shadow-2xl">
+              <Image 
+                src="/assets/images/logo/logo.jpg" 
+                alt="Gutter Share Company Logo" 
+                width={320} 
+                height={320} 
+                className="w-full h-full object-cover rounded-full"
+              />
             </div>
           </div>
 

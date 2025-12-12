@@ -6,7 +6,7 @@ const page = () => {
   return (
     <>
       <Breadcrump 
-        backgroundImage="https://images.unsplash.com/photo-1563453392212-326f5e854473?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80"
+        backgroundImage="/assets/images/breadcrump.jpg"
         title="Our Products"
         subtitle="Discover our premium range of high-quality gutter solutions"
       />
