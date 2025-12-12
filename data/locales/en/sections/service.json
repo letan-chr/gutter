@@ -1,36 +1,49 @@
 {
   "title": "Our Services",
-  "subtitle": "Comprehensive Gutter Solutions",
-  "description": "We provide a wide range of gutter services to meet all your needs.",
+  "subtitle": "Comprehensive Business Solutions",
+  "description": "Gutter Share Company provides a wide range of business services to meet all your needs.",
   "services": [
     {
       "id": 1,
-      "title": "Gutter Installation",
-      "description": "Professional installation of new gutter systems",
-      "content": "Our expert team provides comprehensive gutter installation services tailored to your property's specific needs. We use only the highest quality materials and industry-standard techniques to ensure your new gutter system performs flawlessly for years to come. Our certified technicians will assess your roof structure, calculate proper water flow requirements, and install gutters with precision and care. We offer various materials including aluminum, vinyl, and steel to match your home's aesthetic and budget. Every installation comes with a comprehensive warranty and our commitment to customer satisfaction.",
-      "image": "https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?w=800&h=800&fit=crop"
+      "title": "Shop and Office Rental Services",
+      "description": "Premium commercial space rental in the heart of Addis Ababa",
+      "content": "Gutter Share Company offers prime commercial spaces for rent in our strategically located Gutter Building near Piassa, the heart of Addis Ababa. Our building provides convenient and reliable shop and office spaces perfect for businesses looking to establish a presence in one of the city's most vibrant commercial areas. Located just 300 meters from Ras Desta Hospital on the Northwest exit road from Piassa to Wingate, our facility offers excellent accessibility and visibility. We provide flexible rental terms and well-maintained spaces designed to meet various business needs. Whether you need a retail shop, professional office, or commercial workspace, we have the perfect space for your business.",
+      "image": "https://images.unsplash.com/photo-1497366216548-37526070297c?w=800&h=800&fit=crop"
     },
     {
       "id": 2,
-      "title": "Gutter Repair",
-      "description": "Expert repair services for damaged gutters",
-      "content": "When your gutters show signs of damage or wear, our skilled repair specialists are ready to restore them to optimal condition. We diagnose issues quickly and efficiently, addressing everything from minor leaks to significant structural damage. Our repair services include fixing sagging gutters, sealing leaks, replacing damaged sections, and reinforcing weak points. We use durable materials and proven techniques to ensure repairs last. With our fast response times and competitive pricing, we make gutter repair convenient and affordable. Trust us to get your gutter system working perfectly again.",
-      "image": "https://images.unsplash.com/photo-1504148455328-c376907d081c?w=800&h=800&fit=crop"
+      "title": "Hall and Décor Services",
+      "description": "Elegant multi-purpose hall with professional décor services",
+      "content": "Our multi-purpose hall is one of the premier event spaces in Addis Ababa, offering a convenient and reliable venue for various occasions. Located in our Gutter Building near Piassa, the hall provides an ideal setting for conferences, meetings, celebrations, exhibitions, and corporate events. We offer comprehensive décor services to transform the space according to your event's theme and requirements. Our professional team ensures every detail is perfect, from lighting and seating arrangements to floral decorations and stage setup. With modern amenities and excellent service, we make your event memorable and successful. Book our hall for your next special occasion and experience the difference of professional event management.",
+      "image": "https://images.unsplash.com/photo-1511578314322-379afb476865?w=800&h=800&fit=crop"
     },
     {
       "id": 3,
-      "title": "Gutter Cleaning",
-      "description": "Regular maintenance and cleaning services",
-      "content": "Regular gutter cleaning is essential for maintaining your home's protection against water damage and extending the life of your gutter system. Our professional cleaning service removes all debris, leaves, twigs, and sediment that can cause clogs and overflow. We thoroughly clean gutters and downspouts, ensuring water flows freely away from your foundation. Our team uses specialized equipment and safety protocols to clean even the highest gutters safely and efficiently. We recommend regular cleaning to prevent costly repairs and maintain your property's value. Schedule your maintenance today and keep your gutters functioning perfectly year-round.",
-      "image": "https://images.unsplash.com/photo-1621905251918-48416bd8575a?w=800&h=800&fit=crop"
+      "title": "Import and Export Trade",
+      "description": "Professional import and export trading services",
+      "content": "Gutter Share Company engages in international trade, facilitating import and export operations for various goods and commodities. Our experienced team handles all aspects of international trade, including documentation, customs clearance, logistics, and compliance with trade regulations. We work with reliable partners worldwide to ensure smooth and efficient trade operations. Whether you're looking to import products or export local goods, we provide comprehensive trade services tailored to your business needs. Our expertise in trade procedures and established networks help streamline your import-export activities and expand your business reach.",
+      "image": "https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?w=800&h=800&fit=crop"
     },
     {
       "id": 4,
-      "title": "Gutter Replacement",
-      "description": "Complete replacement of old gutter systems",
-      "content": "When your existing gutter system has reached the end of its lifespan or requires extensive repairs, our complete replacement service provides a fresh start. We remove old, damaged gutters completely and install a brand new system designed for modern performance and durability. Our replacement process includes careful removal, proper disposal of old materials, and installation of new gutters with improved water management capabilities. We offer upgraded options including seamless gutters, gutter guards, and enhanced downspout systems. Our team ensures minimal disruption to your daily routine while delivering superior results that protect your investment for decades.",
-      "image": "https://images.unsplash.com/photo-1581578731548-c64695cc6952?w=800&h=800&fit=crop"
+      "title": "Medical Supplies and Equipment",
+      "description": "Import and distribution of medication and medical supplies",
+      "content": "We specialize in importing and distributing high-quality medication and medical supplies essential for healthcare facilities across Ethiopia. Our commitment to quality ensures that all medical products meet international standards and regulatory requirements. We maintain a reliable supply chain to support hospitals, clinics, and healthcare providers with the medical equipment and supplies they need. Our inventory includes a wide range of pharmaceutical products, medical devices, diagnostic equipment, and healthcare consumables. Trust us to provide the medical supplies your healthcare facility needs to serve patients effectively.",
+      "image": "https://images.unsplash.com/photo-1559757148-5c350d0d3c56?w=800&h=800&fit=crop"
+    },
+    {
+      "id": 5,
+      "title": "Construction Materials",
+      "description": "Quality construction materials and building supplies",
+      "content": "Gutter Share Company imports and supplies a comprehensive range of construction materials and building supplies for the construction industry. We provide high-quality materials that meet industry standards and support various construction projects, from residential buildings to commercial developments. Our product range includes cement, steel, roofing materials, plumbing supplies, electrical components, and finishing materials. We work with reputable manufacturers and suppliers to ensure consistent quality and reliable delivery. Whether you're a contractor, builder, or developer, we have the construction materials you need to complete your projects successfully.",
+      "image": "https://images.unsplash.com/photo-1504307651254-35680f356dfd?w=800&h=800&fit=crop"
+    },
+    {
+      "id": 6,
+      "title": "Catering Service",
+      "description": "Professional catering for events and occasions",
+      "content": "Our catering service provides exceptional food and beverage solutions for your events, meetings, and special occasions. We offer a diverse menu featuring local and international cuisine, prepared by experienced chefs using fresh, quality ingredients. Whether you're hosting a corporate meeting, wedding celebration, conference, or private event, our catering team ensures delicious meals and professional service. We handle everything from menu planning and food preparation to setup, service, and cleanup. Our flexible catering packages can be customized to fit your budget and event requirements. Let us make your event memorable with our outstanding catering services.",
+      "image": "https://images.unsplash.com/photo-1556910103-1c02745aae4d?w=800&h=800&fit=crop"
     }
   ]
 }
-

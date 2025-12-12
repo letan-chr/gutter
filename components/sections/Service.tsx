@@ -47,7 +47,7 @@ const Service = () => {
               ></div>
 
               {/* INNER GRID */}
-              <div className="grid grid-cols-12 gap-0 p-10 items-center relative z-20 overflow-hidden">
+              <div className="grid grid-cols-12 gap-0  items-center relative z-20 overflow-hidden">
                 {/* LEFT TEXT (7/12 width) - Content Section with background image and diagonal transparent overlay */}
                 <div className="col-span-12 md:col-span-7 relative min-h-[400px]">
                   {/* Background Image */}
@@ -102,25 +102,14 @@ const Service = () => {
                   </div>
                 </div>
 
-                {/* RIGHT IMAGE CIRCLE (5/12 width) */}
-                <div className="col-span-12 md:col-span-5 flex justify-center md:justify-end relative z-20">
-                  {/* Diagonal shape for image section - complementary to content section */}
+                {/* RIGHT IMAGE SECTION (5/12 width) */}
+                <div className="col-span-12 md:col-span-5 relative z-20 min-h-[400px]">
+                  {/* Image container covering the curved section */}
                   <div 
-                    className="hidden md:block absolute left-0 top-0 bottom-0 w-full z-10 shadow-2xl"
+                    className="absolute inset-0 overflow-hidden shadow-2xl"
                     style={{
                       clipPath: 'polygon(15% 0, 100% 0, 100% 100%, 0 100%)',
                       boxShadow: '0 25px 50px -12px rgba(0, 0, 0, 0.25)'
-                    }}
-                  ></div>
-                  
-                  <div
-                    className="relative z-20
-                    w-64 h-64 rounded-full overflow-hidden shadow-2xl
-                    border-[5px] border-white dark:border-gray-900
-                    right-[-40px]   /* pushes image into curve */
-                  "
-                    style={{
-                      boxShadow: '0 25px 50px -12px rgba(0, 0, 0, 0.5), 0 0 0 1px rgba(0, 0, 0, 0.1)'
                     }}
                   >
                     <img
