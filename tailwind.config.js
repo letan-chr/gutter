@@ -11,14 +11,14 @@ module.exports = {
       colors: {
         // Brand Colors - Light Mode
         primary: {
-          DEFAULT: '#D04607',
-          dark: '#B03D06',
-          light: '#E85A1A',
+          DEFAULT: '#8B1538', // Logo background color (burgundy/maroon)
+          dark: '#6B0F2A',
+          light: '#A51A45',
         },
         secondary: {
-          DEFAULT: '#0E1C8C',
-          dark: '#0A1559',
-          light: '#1A2BB3',
+          DEFAULT: '#4A5568', // Light blue-black
+          dark: '#2D3748',
+          light: '#718096',
         },
         tertiary: {
           DEFAULT: '#2FE90A',
@@ -105,8 +105,8 @@ module.exports = {
       },
       boxShadow: {
         'soft': '0 2px 15px -3px rgba(0, 0, 0, 0.07), 0 10px 20px -2px rgba(0, 0, 0, 0.04)',
-        'primary': '0 10px 25px -5px rgba(208, 70, 7, 0.3)',
-        'primary-dark': '0 10px 25px -5px rgba(232, 90, 26, 0.3)',
+        'primary': '0 10px 25px -5px rgba(139, 21, 56, 0.3)',
+        'primary-dark': '0 10px 25px -5px rgba(165, 26, 69, 0.3)',
       },
       backdropBlur: {
         xs: '2px',

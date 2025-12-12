@@ -39,9 +39,6 @@ const About = () => {
                 alt={data.title}
                 className="w-full h-full object-cover"
                 loading="lazy"
-                onError={(e) => {
-                  e.currentTarget.src = `https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?w=800&h=800&fit=crop`;
-                }}
               />
               {/* Overlay gradient for better visual separation */}
               <div className="absolute inset-0 bg-gradient-to-r from-transparent via-transparent to-transparent"></div>
@@ -52,9 +49,54 @@ const About = () => {
               <h3 className="text-2xl lg:text-3xl font-bold text-white mb-6">
                 {data.rightContent.title}
               </h3>
-              <p className="text-gray-200 dark:text-gray-300 text-base lg:text-lg leading-relaxed">
-                {data.rightContent.description}
-              </p>
+              
+              {/* Intro paragraph */}
+              {data.rightContent.intro && (
+                <p className="text-gray-200 dark:text-gray-300 text-base lg:text-lg leading-relaxed mb-6">
+                  {data.rightContent.intro}
+                </p>
+              )}
+
+              {/* Services List */}
+              {data.rightContent.services && (
+                <div className="mb-6">
+                  <h4 className="text-lg font-semibold text-white mb-3">
+                    {data.rightContent.servicesTitle || "Our Services Include"}:
+                  </h4>
+                  <ul className="space-y-2">
+                    {data.rightContent.services.map((service: string, index: number) => (
+                      <li key={index} className="flex items-start text-gray-200 dark:text-gray-300">
+                        <span className="text-yellow-400 mr-3 mt-1">•</span>
+                        <span className="text-base lg:text-lg">{service}</span>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              )}
+
+              {/* Imported Items */}
+              {data.rightContent.importedItems && (
+                <div>
+                  <h4 className="text-lg font-semibold text-white mb-3">
+                    {data.rightContent.importedItemsTitle || "Currently Imported Trade Items"}:
+                  </h4>
+                  <ul className="space-y-2">
+                    {data.rightContent.importedItems.map((item: string, index: number) => (
+                      <li key={index} className="flex items-start text-gray-200 dark:text-gray-300">
+                        <span className="text-yellow-400 mr-3 mt-1">•</span>
+                        <span className="text-base lg:text-lg">{item}</span>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              )}
+
+              {/* Fallback for old structure */}
+              {data.rightContent.description && !data.rightContent.intro && (
+                <p className="text-gray-200 dark:text-gray-300 text-base lg:text-lg leading-relaxed">
+                  {data.rightContent.description}
+                </p>
+              )}
             </div>
           </div>
         </div>
