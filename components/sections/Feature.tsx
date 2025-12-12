@@ -9,17 +9,10 @@ const Feature = () => {
   const data = getSectionData("feature", lang);
 
   return (
-    <section className="py-20 lg:py-24 bg-gray-50 dark:bg-gray-900">
-      <div className="max-w-7xl mx-auto px-6">
+    <section className="py-10 lg:py-12 bg-gray-50 dark:bg-gray-900">
+      <div className="mx-auto px-6">
         {/* HEADER */}
-        <div className="text-center mb-16">
-          <h2 className="text-4xl font-bold text-gray-900 dark:text-white">
-            {data.title}
-          </h2>
-          <p className="text-gray-600 dark:text-gray-400 mt-2 text-lg">
-            {data.description}
-          </p>
-        </div>
+ 
 
         {/* ===== FULL WIDTH DIAGONAL FEATURE CARD ===== */}
         <div

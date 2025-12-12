@@ -18,6 +18,30 @@
       "content": "Great quality work and excellent customer service. Highly recommended!",
       "rating": 5,
       "image": "/images/testimonial2.jpg"
+    },
+    {
+      "id": 3,
+      "name": "David Chen",
+      "position": "Business Owner",
+      "content": "Outstanding craftsmanship and attention to detail. The team exceeded our expectations and delivered exceptional results.",
+      "rating": 5,
+      "image": "/images/testimonial3.jpg"
+    },
+    {
+      "id": 4,
+      "name": "Emily Rodriguez",
+      "position": "Architect",
+      "content": "Professional service from start to finish. They understood our vision and brought it to life perfectly.",
+      "rating": 5,
+      "image": "/images/testimonial4.jpg"
+    },
+    {
+      "id": 5,
+      "name": "James Thompson",
+      "position": "Real Estate Developer",
+      "content": "Reliable, efficient, and top-notch quality. We've worked with them on multiple projects and they never disappoint.",
+      "rating": 5,
+      "image": "/images/testimonial5.jpg"
     }
   ]
 }

@@ -1,28 +1,93 @@
 {
   "title": "About Us",
-  "subtitle": "Your Trusted Gutter Experts",
+  "subtitle": "Gutter Share Company",
   "description": "Learn more about our company, mission, and values.",
   "content": {
+    "overview": {
+      "title": "Company Overview",
+      "description": "Gutter Share Company is a business organization established on April 11, 2005, in accordance with the Commercial Law of Ethiopia. We are a trusted business organization serving Ethiopia since 2005, strategically located in the heart of Addis Ababa near Piassa.",
+      "legalStatus": "Established under Ethiopian Commercial Law",
+      "establishmentDate": "April 11, 2005",
+      "location": "Arada Sub-City, Woreda 4, House Number Addis (Gutter Building), Addis Ababa"
+    },
     "mission": {
-      "title": "Our Mission",
-      "description": "To provide exceptional gutter solutions and services that protect properties and exceed customer expectations."
+      "title": "Purpose of Establishment",
+      "description": "The main initial purpose for which the Share Company was established was to collectively build a workplace through the contributions of its shareholders, and concurrently, to engage in the business of constructing and renting out sections of the building for shops and offices. It has successfully constructed the planned Gutter Building and made it ready for service in 2014.",
+      "details": [
+        "Collective workplace development through shareholder contributions",
+        "Construction and rental of commercial spaces",
+        "Providing shops and office spaces for businesses",
+        "Completed Gutter Building construction in 2014"
+      ]
     },
     "vision": {
       "title": "Our Vision",
-      "description": "To be the leading gutter service provider known for quality, reliability, and customer satisfaction."
+      "description": "In addition to its original and aforementioned purpose, since the building is located near Piassa, the heart of Addis Ababa, it has established a convenient and reliable multi-purpose hall within the building, offering comprehensive services to its users.",
+      "details": [
+        "Strategic location advantage near Piassa commercial center",
+        "Multi-purpose hall facility for various events",
+        "Comprehensive service offerings to clients",
+        "Reliable and convenient business solutions"
+      ]
     },
     "values": {
       "title": "Our Values",
+      "description": "Our core values guide everything we do and shape our commitment to excellence.",
       "items": [
-        "Quality First",
-        "Customer Satisfaction",
-        "Integrity",
-        "Innovation"
+        {
+          "title": "Quality First",
+          "description": "We prioritize quality in all our services and operations"
+        },
+        {
+          "title": "Customer Satisfaction",
+          "description": "Our clients' success is our primary goal"
+        },
+        {
+          "title": "Integrity",
+          "description": "We conduct business with honesty and transparency"
+        },
+        {
+          "title": "Innovation",
+          "description": "We continuously improve and adapt to meet market needs"
+        }
       ]
     },
     "history": {
       "title": "Our History",
-      "description": "Founded with a commitment to excellence, we have been serving customers for over 10 years with dedication and expertise."
+      "description": "Gutter Share Company is a business organization established on April 11, 2005, in accordance with the Commercial Law of Ethiopia. The address of Gutter Share Company is in Arada Sub-City, Woreda 4, House Number Addis (Gutter Building), located in our city of Addis Ababa, on the road leading from Piassa towards Wingate, on the Northwest exit, about 300 meters from Ras Desta Hospital.",
+      "milestones": [
+        {
+          "year": "2005",
+          "event": "Company established under Ethiopian Commercial Law"
+        },
+        {
+          "year": "2014",
+          "event": "Gutter Building construction completed and ready for service"
+        },
+        {
+          "year": "Present",
+          "event": "Serving clients with comprehensive business solutions"
+        }
+      ]
+    },
+    "address": {
+      "title": "Address",
+      "description": "Arada Sub-City, Woreda 4, House Number Addis (Gutter Building), Addis Ababa, on the road leading from Piassa towards Wingate, on the Northwest exit, about 300 meters from Ras Desta Hospital.",
+      "subCity": "Arada Sub-City",
+      "woreda": "Woreda 4",
+      "houseNumber": "House Number Addis (Gutter Building)",
+      "landmark": "About 300 meters from Ras Desta Hospital",
+      "direction": "On the road leading from Piassa towards Wingate, Northwest exit"
+    },
+    "contact": {
+      "title": "Contact Information",
+      "phones": [
+        "251 966 215350",
+        "251 966 215351",
+        "251 966 215352",
+        "251 911 518301"
+      ],
+      "email": "gutter2008@gmail.com"
     }
   }
 }

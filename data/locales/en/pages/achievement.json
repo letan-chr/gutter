@@ -7,19 +7,22 @@
       "id": 1,
       "title": "1000+ Projects",
       "description": "Successfully completed projects",
-      "icon": "🏆"
+      "icon": "🏆",
+      "image": "https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80"
     },
     {
       "id": 2,
       "title": "500+ Happy Customers",
       "description": "Satisfied customers",
-      "icon": "😊"
+      "icon": "😊",
+      "image": "https://images.unsplash.com/photo-1522071820081-009f0129c71c?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80"
     },
     {
       "id": 3,
       "title": "10+ Years Experience",
       "description": "Years in the industry",
-      "icon": "⭐"
+      "icon": "⭐",
+      "image": "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80"
     }
   ]
 }

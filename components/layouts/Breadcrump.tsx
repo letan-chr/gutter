@@ -56,10 +56,10 @@ const Breadcrump = ({
           }}
         >
           {/* Gradient Overlay */}
-          <div className="absolute inset-0 bg-gradient-to-br from-gray-900/85 via-gray-800/80 to-gray-900/85 dark:from-gray-900/90 dark:via-gray-800/85 dark:to-gray-900/90"></div>
+          <div className="absolute inset-0 bg-gradient-to-br from-gray-900/60 via-gray-800/55 to-gray-900/60 dark:from-gray-900/65 dark:via-gray-800/60 dark:to-gray-900/65"></div>
           
           {/* Animated Gradient Overlay */}
-          <div className="absolute inset-0 bg-gradient-to-r from-primary/20 via-transparent to-secondary/20 opacity-50"></div>
+          <div className="absolute inset-0 bg-gradient-to-r from-primary/20 via-transparent to-secondary/20 opacity-30"></div>
         </div>
       )}
 

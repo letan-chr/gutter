@@ -1,0 +1,27 @@
+{
+  "title": "About GUTTER SHARE COMPANY",
+  "subtitle": "Established April 11, 2005",
+  "description": "A trusted business organization serving Ethiopia since 2005",
+  "leftContent": {
+    "title": "Who We Are",
+    "description": "Gutter Share Company is a business organization established on April 11, 2005, in accordance with the Commercial Law of Ethiopia. We are strategically located in the heart of Addis Ababa near Piassa, on the Northwest exit, about 300 meters from Ras Desta Hospital, on the road leading from Piassa towards Wingate."
+  },
+  "image": "/assets/images/about.jpg",
+  "rightContent": {
+    "title": "What We Do",
+    "intro": "We offer a wide range of services from our prime location in Addis Ababa:",
+    "servicesTitle": "Our Core Services",
+    "services": [
+      "Shop and office rental services",
+      "Hall and décor services",
+      "Import and export trade"
+    ],
+    "importedItemsTitle": "Currently Imported Trade Items",
+    "importedItems": [
+      "Medication and medical supplies",
+      "Construction materials",
+      "Catering service"
+    ]
+  }
+}
+

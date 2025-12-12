@@ -7,15 +7,52 @@
       "id": 1,
       "name": "ጆን ዶ",
       "position": "ሪፐብሊክ እና መስራች",
-      "description": "በኢንዱስትሪው ውስጥ ከ15 ዓመታት በላይ ልምድ።",
-      "image": "/images/team1.jpg"
+      "theme": "መሪነት እና ልምድ",
+      "description": "በኢንዱስትሪው ውስጥ ከ15 ዓመታት በላይ ልምድ ያለው፣ ጆን ቡድናችንን በራዕይ እና ቁርጠኝነት ይመራል።",
+      "details": "ጆን ኩባንያችንን ከመሠረቱ እስከ ላይ ለመገንባት ወሳኝ ሚና ተጫውቷል። የንግድ ስትራቴጂ ልምድ እና ለምርጥነት ቁርጠኝነቱ ስኬታችንን ይነዳል። ከሃርቫርድ ቢዝነስ ትምህርት ቤት MBA ያለው ሲሆን በግንባታ ኢንዱስትሪ ውስጥ እንደ መሪ ተገኝቷል።",
+      "image": "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80",
+      "email": "john.doe@company.com",
+      "phone": "+1 (555) 123-4567",
+      "address": "123 Business Street, Suite 100, New York, NY 10001",
+      "social": {
+        "facebook": "https://facebook.com/johndoe",
+        "linkedin": "https://linkedin.com/in/johndoe",
+        "twitter": "https://twitter.com/johndoe"
+      }
     },
     {
       "id": 2,
       "name": "ጄን ስሚዝ",
       "position": "ዋና ቴክኒሻን",
-      "description": "በጋተር ስርዓቶች ልምድ ያለው ተመስክሮ የተመዘገበ ሙያዊ።",
-      "image": "/images/team2.jpg"
+      "theme": "ቴክኒካል ምርጥነት",
+      "description": "በጋተር ስርዓቶች እና በመጫን ቴክኒኮች ልምድ ያለው ተመስክሮ የተመዘገበ ሙያዊ።",
+      "details": "ጄን ከ12 ዓመታት በላይ በጋተር መጫን እና ጥገና ላይ ተግባራዊ ልምድ ያመጣል። በበርካታ ቴክኒካል ፕሮግራሞች ውስጥ ተመስክሮ የተመዘገበ ሲሆን በርካታ ቴክኒሻኖችን ሰልጥኗል። ዝርዝር ትኩረት እና ችግር መፍታት ክህሎቶችዋ እያንዳንዱ ፕሮጀክት ከፍተኛውን ደረጃዎች እንዲያሟላ ያረጋግጣሉ።",
+      "image": "https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80",
+      "email": "jane.smith@company.com",
+      "phone": "+1 (555) 234-5678",
+      "address": "123 Business Street, Suite 200, New York, NY 10001",
+      "social": {
+        "facebook": "https://facebook.com/janesmith",
+        "linkedin": "https://linkedin.com/in/janesmith",
+        "twitter": "https://twitter.com/janesmith"
+      }
+    },
+    {
+      "id": 3,
+      "name": "ሚካኤል ጆንሰን",
+      "position": "የፕሮጀክት ማኔጅር",
+      "theme": "የፕሮጀክት አስተዳደር",
+      "description": "በተወሳሰቡ ፕሮጀክቶች ማስተባበር እና በጊዜ ማስረከብ ላይ ባለሙያ።",
+      "details": "ሚካኤል በሙያው ውስጥ ከ200 በላይ ፕሮጀክቶችን በተሳካ ሁኔታ አስተዳድሯል። ጠንካራ የአደራደር ክህሎቶቹ እና ቡድኖችን የመቆጣጠር ችሎታው እሱን ዋጋ ያለው ንብረት ያደርገዋል። PMP የምስክር ወረቀት ያለው ሲሆን በመኖሪያ እና ንግድ ፕሮጀክቶች ላይ ባለሙያ ነው።",
+      "image": "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80",
+      "email": "michael.johnson@company.com",
+      "phone": "+1 (555) 345-6789",
+      "address": "123 Business Street, Suite 300, New York, NY 10001",
+      "social": {
+        "facebook": "https://facebook.com/michaeljohnson",
+        "linkedin": "https://linkedin.com/in/michaeljohnson",
+        "twitter": "https://twitter.com/michaeljohnson"
+      }
     }
   ]
 }

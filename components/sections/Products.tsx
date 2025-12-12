@@ -174,7 +174,7 @@ const Products = () => {
                 </div>
 
                 {/* Right Column - col-3 */}
-                <div className="lg:col-span-1 flex flex-col gap-3 lg:gap-4">
+                <div className="lg:col-span-1 flex flex-col gap-3 lg:gap-4 ">
                   {rightColumnProducts.map((product: any) => (
                     <article
                       key={product.id}

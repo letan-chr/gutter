@@ -1,6 +1,7 @@
 'use client';
 
 import React from 'react';
+import Image from 'next/image';
 import { getSectionData } from '@/data/utils';
 import { useLanguage } from '@/components/providers/LanguageProvider';
 import { TrendingUp, Clock, RefreshCw, Smile, Lock, Scale } from 'lucide-react';
@@ -19,91 +20,103 @@ const WhyChooseus = () => {
     6: <Scale className="w-8 h-8" />,
   };
 
-  // Positions for circular arrangement (6 points around a circle)
-  // Using CSS transforms for better circular positioning
-  const positions = [
-    { top: '5%', left: '50%', transform: 'translateX(-50%)' }, // Top
-    { top: '20%', right: '8%', transform: 'translateX(0)' }, // Top-right
-    { bottom: '20%', right: '8%', transform: 'translateX(0)' }, // Bottom-right
-    { bottom: '5%', left: '50%', transform: 'translateX(-50%)' }, // Bottom
-    { bottom: '20%', left: '8%', transform: 'translateX(0)' }, // Bottom-left
-    { top: '20%', left: '8%', transform: 'translateX(0)' }, // Top-left
-  ];
+  // Calculate positions for 6 cards in a circle
+  // Each card is positioned at 60-degree intervals (360/6 = 60)
+  const radius = 320; // Distance from center
+  const getCardPosition = (index: number) => {
+    const angle = (index * 60 - 90) * (Math.PI / 180); // Start from top (-90 degrees)
+    const x = Math.cos(angle) * radius;
+    const y = Math.sin(angle) * radius;
+    return { x, y, angle: index * 60 };
+  };
 
   return (
-    <section className="bg-white dark:bg-gray-900 relative overflow-hidden">
-      {/* Background Image from Unsplash - Subtle */}
-      <div className="absolute inset-0 opacity-[0.12] dark:opacity-[0.15] pointer-events-none">
+    <section className="pt-2 pb-12 bg-white dark:bg-gray-900 relative overflow-hidden">
+      {/* Background Image from Local */}
+      <div className="absolute inset-0 pointer-events-none">
         <div 
           className="absolute inset-0 bg-cover bg-center bg-no-repeat"
           style={{
-            backgroundImage: `url("https://images.unsplash.com/photo-1589829545856-d10d557cf95f?q=80&w=2000&auto=format&fit=crop")`,
+            backgroundImage: `url("/assets/images/image1.jpg")`,
             transform: 'rotate(-25deg) scale(1.2)',
             transformOrigin: 'center',
           }}
         ></div>
+        {/* Black Backdrop Overlay */}
+        <div className="absolute inset-0 bg-black/90"></div>
       </div>
 
       <div className="mx-auto px-4 sm:px-6 lg:px-8 relative z-10 max-w-7xl">
         {/* Title Section */}
-        <div className="text-center mb-8">
-          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-display font-bold text-black dark:text-white mb-4">
+        <div className="text-center pt-2 mb-12">
+          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-display font-bold text-white">
             {data.title}
           </h2>
         </div>
 
         {/* Circular Layout Container */}
-        <div className="hidden lg:block relative w-full max-w-6xl mx-auto" style={{ minHeight: '700px', paddingTop: '100px', paddingBottom: '100px' }}>
-          {/* Central Figure Area */}
+        <div className="hidden lg:block relative w-full max-w-6xl mx-auto" style={{ minHeight: '700px', paddingBottom: '100px' }}>
+          {/* Central Logo */}
           <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 z-20">
-            <div className="relative">
-              {/* Circular Dark Blue Overlay */}
-              <div className="w-72 h-72 xl:w-80 xl:h-80 rounded-full bg-secondary dark:bg-secondary-dark flex items-center justify-center relative overflow-hidden shadow-2xl border-4 border-white dark:border-gray-800">
-                {/* Professional Figure Placeholder - You can replace this with an actual image */}
-                <div className="w-full h-full flex items-center justify-center bg-gradient-to-br from-secondary to-secondary-dark">
-                  <div className="text-white text-center p-8">
-                    <div className="w-40 h-40 xl:w-48 xl:h-48 mx-auto mb-4 rounded-full bg-white/10 flex items-center justify-center backdrop-blur-sm border-2 border-white/20">
-                      <Scale className="w-20 h-20 xl:w-24 xl:h-24 text-white" />
-                    </div>
-                    <p className="text-base xl:text-lg font-semibold opacity-95">
-                      {data.subtitle}
-                    </p>
-                  </div>
-                </div>
-              </div>
+            <div className="relative w-72 h-72 xl:w-80 xl:h-80 rounded-full overflow-hidden shadow-2xl">
+              <Image 
+                src="/assets/images/logo/logo.jpg" 
+                alt="Gutter Share Company Logo" 
+                width={320} 
+                height={320} 
+                className="w-full h-full object-cover rounded-full"
+              />
             </div>
           </div>
 
-          {/* Six Points Arranged in Circle */}
-          {data.reasons.map((reason: any, index: number) => {
-            const position = positions[index];
-            return (
-              <div
-                key={reason.id}
-                className="absolute z-10 group"
-                style={{
-                  ...position,
-                  width: '260px',
-                }}
-              >
-                <div className="bg-white dark:bg-gray-800 rounded-2xl p-5 shadow-xl hover:shadow-2xl transition-all duration-300 hover:scale-105 border border-gray-100 dark:border-gray-700">
-                  {/* Icon */}
-                  <div className="flex items-start gap-3 mb-3">
-                    <div className="text-secondary dark:text-secondary-light flex-shrink-0 mt-1">
-                      {iconMap[reason.id]}
+          {/* Rotating Container for Cards */}
+          <div 
+            className="absolute top-1/2 left-1/2"
+            style={{
+              width: '0',
+              height: '0',
+              animation: 'rotateCircle 30s linear infinite',
+              transform: 'translate(-50%, -50%)',
+            }}
+          >
+            
+            {/* Six Points Arranged in Circle */}
+            {data.reasons.map((reason: any, index: number) => {
+              const { x, y } = getCardPosition(index);
+              return (
+                <div
+                  key={reason.id}
+                  className="absolute z-10 group"
+                  style={{
+                    left: `${x}px`,
+                    top: `${y}px`,
+                    width: '260px',
+                    transform: 'translate(-50%, -50%)',
+                    transformOrigin: 'center',
+                    animation: 'counterRotate 30s linear infinite',
+                  }}
+                >
+                  <div 
+                    className="bg-white dark:bg-gray-800 rounded-2xl p-5 shadow-xl hover:shadow-2xl transition-all duration-300 hover:scale-105 border border-gray-100 dark:border-gray-700"
+                  >
+                    {/* Icon */}
+                    <div className="flex items-start gap-3 mb-3">
+                      <div className="text-secondary dark:text-secondary-light flex-shrink-0 mt-1">
+                        {iconMap[reason.id]}
+                      </div>
+                      <h3 className="text-lg font-display font-bold text-secondary dark:text-secondary-light group-hover:text-secondary-dark dark:group-hover:text-secondary transition-colors leading-tight">
+                        {reason.title}
+                      </h3>
                     </div>
-                    <h3 className="text-lg font-display font-bold text-secondary dark:text-secondary-light group-hover:text-secondary-dark dark:group-hover:text-secondary transition-colors leading-tight">
-                      {reason.title}
-                    </h3>
+                    {/* Description */}
+                    <p className="text-gray-600 dark:text-gray-400 text-sm leading-relaxed pl-11">
+                      {reason.description}
+                    </p>
                   </div>
-                  {/* Description */}
-                  <p className="text-gray-600 dark:text-gray-400 text-sm leading-relaxed pl-11">
-                    {reason.description}
-                  </p>
                 </div>
-              </div>
-            );
-          })}
+              );
+            })}
+          </div>
         </div>
 
         {/* Responsive Grid for Mobile/Tablet */}

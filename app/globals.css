@@ -139,3 +139,87 @@
 .partners-swiper .swiper-slide {
   transition: none !important;
 }
+
+/* Hero Swiper Styles */
+.hero-swiper {
+  width: 100%;
+  height: 100%;
+  position: relative;
+}
+
+.hero-swiper .swiper-wrapper {
+  position: relative;
+}
+
+.hero-swiper .swiper-slide {
+  width: 100%;
+  height: 100%;
+  position: relative;
+  overflow: hidden;
+}
+
+/* Enhanced fade effect with smoother transitions */
+.hero-swiper .swiper-slide {
+  opacity: 0;
+  transition: opacity 2s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  will-change: opacity;
+  transform: translateZ(0);
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+}
+
+.hero-swiper .swiper-slide-active {
+  opacity: 1 !important;
+  z-index: 2;
+}
+
+.hero-swiper .swiper-slide-prev,
+.hero-swiper .swiper-slide-next {
+  opacity: 0 !important;
+  z-index: 1;
+}
+
+/* Smooth video transitions */
+.hero-swiper video {
+  transition: opacity 2s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  will-change: opacity;
+}
+
+.hero-swiper .swiper-pagination {
+  bottom: 100px !important;
+  z-index: 30;
+}
+
+.hero-swiper .swiper-pagination-bullet {
+  background: rgba(255, 255, 255, 0.5) !important;
+  width: 12px !important;
+  height: 12px !important;
+  margin: 0 6px !important;
+  transition: all 0.3s ease !important;
+}
+
+.hero-swiper .swiper-pagination-bullet-active {
+  background: white !important;
+  width: 32px !important;
+  border-radius: 6px !important;
+}
+
+
+/* Circular Rotation Animation for WhyChooseus */
+@keyframes rotateCircle {
+  from {
+    transform: translate(-50%, -50%) rotate(0deg);
+  }
+  to {
+    transform: translate(-50%, -50%) rotate(360deg);
+  }
+}
+
+@keyframes counterRotate {
+  from {
+    transform: translate(-50%, -50%) rotate(0deg);
+  }
+  to {
+    transform: translate(-50%, -50%) rotate(-360deg);
+  }
+}

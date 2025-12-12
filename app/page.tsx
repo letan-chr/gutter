@@ -7,8 +7,12 @@ import Cta from "@/components/sections/Cta";
 import Blog from "@/components/sections/Blog";
 import Contact from "@/components/pages/contacts/Contact";
 import Service from "@/components/sections/Service";
+
 import { getBatchData } from "@/api/Api";
 import { useEffect, useState } from "react";
+import About from "@/components/sections/About";
+
+
 export default function Home() {
   const features = [
     "features",
@@ -37,12 +41,15 @@ export default function Home() {
 
   return (
     <>
-      <Hero  />
-  <Feature />
+
+
+  <Hero />
+  <About />
+
   <Service />
   <WhyChooseus />
   <Products />
-  
+
   <Cta />
   <Blog />
   <Partners />

@@ -2,21 +2,60 @@
   "title": "Our Strategy",
   "subtitle": "Our Approach",
   "description": "Learn about our strategic approach to delivering exceptional services.",
-  "strategies": [
+  "mission": {
+    "title": "Our Mission",
+    "description": "To deliver exceptional quality and innovative solutions that exceed our clients' expectations while building lasting relationships based on trust, integrity, and excellence."
+  },
+  "vision": {
+    "title": "Our Vision",
+    "description": "To be the leading provider of premium services in our industry, recognized for our commitment to excellence, innovation, and customer satisfaction."
+  },
+  "coreValues": [
     {
       "id": 1,
       "title": "Quality First",
-      "description": "We prioritize quality in every project we undertake."
+      "description": "We prioritize quality in every project we undertake, ensuring excellence in all our deliverables.",
+      "icon": "⭐"
     },
     {
       "id": 2,
       "title": "Customer Focus",
-      "description": "Our customers are at the heart of everything we do."
+      "description": "Our customers are at the heart of everything we do. We listen, understand, and deliver solutions that matter.",
+      "icon": "💼"
     },
     {
       "id": 3,
       "title": "Innovation",
-      "description": "We continuously innovate to improve our services."
+      "description": "We continuously innovate to improve our services and stay ahead of industry trends and technologies.",
+      "icon": "🚀"
+    },
+    {
+      "id": 4,
+      "title": "Integrity",
+      "description": "We conduct our business with the highest ethical standards, building trust through transparency and honesty.",
+      "icon": "🤝"
+    }
+  ],
+  "stats": [
+    {
+      "id": 1,
+      "value": "10+",
+      "label": "Years of Experience"
+    },
+    {
+      "id": 2,
+      "value": "1000+",
+      "label": "Projects Completed"
+    },
+    {
+      "id": 3,
+      "value": "500+",
+      "label": "Happy Clients"
+    },
+    {
+      "id": 4,
+      "value": "50+",
+      "label": "Team Members"
     }
   ]
 }

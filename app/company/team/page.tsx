@@ -5,7 +5,7 @@ const page = () => {
   return (
 <>
 <Breadcrump 
-  backgroundImage="https://images.unsplash.com/photo-1522071820081-009f0129c71c?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80"
+  backgroundImage="/assets/images/breadcrump.jpg"
   title="Our Team"
   subtitle="Meet the talented professionals who make excellence possible"
 />

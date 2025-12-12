@@ -18,6 +18,30 @@
       "content": "ታላቅ የጥራት ስራ እና እጅግ የላቀ የደንበኛ አገልግሎት። በጣም ይመከራል!",
       "rating": 5,
       "image": "/images/testimonial2.jpg"
+    },
+    {
+      "id": 3,
+      "name": "ዴቪድ ቼን",
+      "position": "የንግድ ባለቤት",
+      "content": "እጅግ የላቀ የእጅ ሙያ እና ለዝርዝሮች ትኩረት። ቡድኑ የምንጠብቀውን አላሳለፈም እና እጅግ የላቀ ውጤት አስገኝቷል።",
+      "rating": 5,
+      "image": "/images/testimonial3.jpg"
+    },
+    {
+      "id": 4,
+      "name": "ኢሚሊ ሮድሪገዝ",
+      "position": "አርክቴክት",
+      "content": "ከመጀመሪያ እስከ መጨረሻ ሙያዊ አገልግሎት። ራዕያችንን በትክክል ተረድተው በትክክል አሳይተዋል።",
+      "rating": 5,
+      "image": "/images/testimonial4.jpg"
+    },
+    {
+      "id": 5,
+      "name": "ጄምስ ቶምፕሰን",
+      "position": "የሪል እስቴት ማዳበሪያ",
+      "content": "አስተማማኝ፣ ውጤታማ እና ከፍተኛ ጥራት። በበርካታ ፕሮጀክቶች ላይ አብረን ስራ አስገብተናል እና አልደነገጡም።",
+      "rating": 5,
+      "image": "/images/testimonial5.jpg"
     }
   ]
 }

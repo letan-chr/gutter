@@ -1,32 +1,49 @@
 {
   "title": "Our Services",
-  "subtitle": "Comprehensive Gutter Solutions",
-  "description": "We provide a wide range of gutter services to meet all your needs.",
+  "subtitle": "Comprehensive Business Solutions",
+  "description": "Gutter Share Company provides a wide range of business services to meet all your needs.",
   "services": [
     {
       "id": 1,
-      "title": "Gutter Installation",
-      "description": "Professional installation of new gutter systems",
-      "image": "/images/service1.jpg"
+      "title": "Shop and Office Rental Services",
+      "description": "Premium commercial space rental in the heart of Addis Ababa",
+      "content": "Gutter Share Company offers prime commercial spaces for rent in our strategically located Gutter Building near Piassa, the heart of Addis Ababa. Our building provides convenient and reliable shop and office spaces perfect for businesses looking to establish a presence in one of the city's most vibrant commercial areas. Located just 300 meters from Ras Desta Hospital on the Northwest exit road from Piassa to Wingate, our facility offers excellent accessibility and visibility. We provide flexible rental terms and well-maintained spaces designed to meet various business needs. Whether you need a retail shop, professional office, or commercial workspace, we have the perfect space for your business.",
+      "image": "https://images.unsplash.com/photo-1497366216548-37526070297c?w=800&h=800&fit=crop"
     },
     {
       "id": 2,
-      "title": "Gutter Repair",
-      "description": "Expert repair services for damaged gutters",
-      "image": "/images/service2.jpg"
+      "title": "Hall and Décor Services",
+      "description": "Elegant multi-purpose hall with professional décor services",
+      "content": "Our multi-purpose hall is one of the premier event spaces in Addis Ababa, offering a convenient and reliable venue for various occasions. Located in our Gutter Building near Piassa, the hall provides an ideal setting for conferences, meetings, celebrations, exhibitions, and corporate events. We offer comprehensive décor services to transform the space according to your event's theme and requirements. Our professional team ensures every detail is perfect, from lighting and seating arrangements to floral decorations and stage setup. With modern amenities and excellent service, we make your event memorable and successful. Book our hall for your next special occasion and experience the difference of professional event management.",
+      "image": "https://images.unsplash.com/photo-1511578314322-379afb476865?w=800&h=800&fit=crop"
     },
     {
       "id": 3,
-      "title": "Gutter Cleaning",
-      "description": "Regular maintenance and cleaning services",
-      "image": "/images/service3.jpg"
+      "title": "Import and Export Trade",
+      "description": "Professional import and export trading services",
+      "content": "Gutter Share Company engages in international trade, facilitating import and export operations for various goods and commodities. Our experienced team handles all aspects of international trade, including documentation, customs clearance, logistics, and compliance with trade regulations. We work with reliable partners worldwide to ensure smooth and efficient trade operations. Whether you're looking to import products or export local goods, we provide comprehensive trade services tailored to your business needs. Our expertise in trade procedures and established networks help streamline your import-export activities and expand your business reach.",
+      "image": "https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?w=800&h=800&fit=crop"
     },
     {
       "id": 4,
-      "title": "Gutter Replacement",
-      "description": "Complete replacement of old gutter systems",
-      "image": "/images/service4.jpg"
+      "title": "Medical Supplies and Equipment",
+      "description": "Import and distribution of medication and medical supplies",
+      "content": "We specialize in importing and distributing high-quality medication and medical supplies essential for healthcare facilities across Ethiopia. Our commitment to quality ensures that all medical products meet international standards and regulatory requirements. We maintain a reliable supply chain to support hospitals, clinics, and healthcare providers with the medical equipment and supplies they need. Our inventory includes a wide range of pharmaceutical products, medical devices, diagnostic equipment, and healthcare consumables. Trust us to provide the medical supplies your healthcare facility needs to serve patients effectively.",
+      "image": "https://images.unsplash.com/photo-1559757148-5c350d0d3c56?w=800&h=800&fit=crop"
+    },
+    {
+      "id": 5,
+      "title": "Construction Materials",
+      "description": "Quality construction materials and building supplies",
+      "content": "Gutter Share Company imports and supplies a comprehensive range of construction materials and building supplies for the construction industry. We provide high-quality materials that meet industry standards and support various construction projects, from residential buildings to commercial developments. Our product range includes cement, steel, roofing materials, plumbing supplies, electrical components, and finishing materials. We work with reputable manufacturers and suppliers to ensure consistent quality and reliable delivery. Whether you're a contractor, builder, or developer, we have the construction materials you need to complete your projects successfully.",
+      "image": "https://images.unsplash.com/photo-1504307651254-35680f356dfd?w=800&h=800&fit=crop"
+    },
+    {
+      "id": 6,
+      "title": "Catering Service",
+      "description": "Professional catering for events and occasions",
+      "content": "Our catering service provides exceptional food and beverage solutions for your events, meetings, and special occasions. We offer a diverse menu featuring local and international cuisine, prepared by experienced chefs using fresh, quality ingredients. Whether you're hosting a corporate meeting, wedding celebration, conference, or private event, our catering team ensures delicious meals and professional service. We handle everything from menu planning and food preparation to setup, service, and cleanup. Our flexible catering packages can be customized to fit your budget and event requirements. Let us make your event memorable with our outstanding catering services.",
+      "image": "https://images.unsplash.com/photo-1556910103-1c02745aae4d?w=800&h=800&fit=crop"
     }
   ]
 }
-

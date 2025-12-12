@@ -12,7 +12,7 @@ const page = async ({ params }: { params: Promise<{ slug: string }> }) => {
   return (
     <>
       <Breadcrump 
-        backgroundImage="https://images.unsplash.com/photo-1504307651254-35680f356dfd?ixlib=rb-4.0.3&auto=format&fit=crop&w=2076&q=80"
+        backgroundImage="/assets/images/breadcrump-for-service.jpg"
         title={title}
         subtitle="Professional service tailored to your needs"
       />

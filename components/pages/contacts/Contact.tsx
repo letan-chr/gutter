@@ -224,7 +224,7 @@ const Contact = () => {
             )}
           </div>
 
-          {/* Map & Additional Info */}
+            {/* Map & Additional Info */}
           <div className="space-y-8">
             {/* Map */}
             <div className="bg-white dark:bg-gray-800 rounded-2xl overflow-hidden shadow-lg">
@@ -236,11 +236,17 @@ const Contact = () => {
                   {data.info.address.value}
                 </p>
               </div>
-              <div className="h-64 bg-gradient-to-br from-blue-100 to-blue-50 dark:from-blue-900/20 dark:to-blue-800/20 relative flex items-center justify-center">
-                <MapPin className="w-12 h-12 text-primary" />
-                <div className="absolute inset-0 flex items-center justify-center">
-                  <div className="w-16 h-16 bg-primary/10 rounded-full animate-ping" />
-                </div>
+              <div className="h-64 w-full relative">
+                <iframe
+                  src={`https://www.google.com/maps?q=${encodeURIComponent(data.info.address.value)}&output=embed`}
+                  width="100%"
+                  height="100%"
+                  style={{ border: 0 }}
+                  allowFullScreen
+                  loading="lazy"
+                  referrerPolicy="no-referrer-when-downgrade"
+                  className="w-full h-full"
+                />
               </div>
             </div>
 
