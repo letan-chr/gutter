@@ -10,7 +10,7 @@
         { "label": "ጋለሪ", "href": "/company/gallery" },
         { "label": "ምስክርነቶች", "href": "/company/testimonials" },
         { "label": "ውጤቶች", "href": "/company/achievement" },
-        { "label": "ስትራቴጂ", "href": "/company/strategy" }
+        { "label": "ሰነዶች", "href": "/company/strategy" }
       ]
     },
     "services": "አገልግሎቶች",

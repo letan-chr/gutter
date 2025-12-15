@@ -1,0 +1,89 @@
+{
+  "title": "ሰነዶች",
+  "subtitle": "የኩባንያ ሰነዶች",
+  "description": "የኩባንያችንን ሰነዶች፣ ሪፖርቶች እና ሀብቶችን ይመልከቱ እና ያውርዱ።",
+  "documents": [
+    {
+      "id": 1,
+      "title": "የኩባንያ ብሮሹር",
+      "description": "የኩባንያችንን አገልግሎቶች እና የምንሰጣቸውን ነገሮች ሙሉ አጠቃላይ እይታ",
+      "type": "pdf",
+      "fileUrl": "/documents/company-brochure.pdf",
+      "thumbnail": "https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?w=400&h=300&fit=crop",
+      "size": "2.5 MB",
+      "date": "2024-01-15"
+    },
+    {
+      "id": 2,
+      "title": "ዓመታዊ ሪፖርት 2023",
+      "description": "የ 2023 ዓመታዊ አፈጻጸም ሪፖርት እና የፋይናንስ ማጠቃለያ",
+      "type": "pdf",
+      "fileUrl": "/documents/annual-report-2023.pdf",
+      "thumbnail": "https://images.unsplash.com/photo-1450101499163-c8848c66ca85?w=400&h=300&fit=crop",
+      "size": "5.2 MB",
+      "date": "2024-02-01"
+    },
+    {
+      "id": 3,
+      "title": "የአገልግሎት ካታሎግ",
+      "description": "የሁሉም አገልግሎቶቻችን እና መፍትሄዎች ዝርዝር ካታሎግ",
+      "type": "pdf",
+      "fileUrl": "/documents/service-catalog.pdf",
+      "thumbnail": "https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=400&h=300&fit=crop",
+      "size": "3.8 MB",
+      "date": "2024-01-20"
+    },
+    {
+      "id": 4,
+      "title": "የኩባንያ አቀራረብ",
+      "description": "ስለ ኩባንያችን እና ራዕያችን የ PowerPoint አቀራረብ",
+      "type": "ppt",
+      "fileUrl": "/documents/company-presentation.pptx",
+      "thumbnail": "https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=400&h=300&fit=crop",
+      "size": "8.5 MB",
+      "date": "2024-01-10"
+    },
+    {
+      "id": 5,
+      "title": "የምርት ዝርዝሮች",
+      "description": "ስለ ምርቶቻችን ዝርዝር ዝርዝሮች እና ቴክኒካል መረጃ",
+      "type": "doc",
+      "fileUrl": "/documents/product-specifications.docx",
+      "thumbnail": "https://images.unsplash.com/photo-1586953208448-b95a79798f07?w=400&h=300&fit=crop",
+      "size": "1.9 MB",
+      "date": "2024-01-25"
+    },
+    {
+      "id": 6,
+      "title": "የኩባንያ ሎጎ ጥቅል",
+      "description": "በተለያዩ ቅርጸቶች ከፍተኛ ጥራት ያላቸው ሎጎ ፋይሎች",
+      "type": "image",
+      "fileUrl": "/documents/logo-package.zip",
+      "thumbnail": "https://images.unsplash.com/photo-1611224923853-80b023f02d71?w=400&h=300&fit=crop",
+      "size": "12.3 MB",
+      "date": "2024-01-05"
+    },
+    {
+      "id": 7,
+      "title": "የጥራት የምስክር ወረቀት",
+      "description": "የ ISO ጥራት አስተዳደር የምስክር ወረቀት",
+      "type": "pdf",
+      "fileUrl": "/documents/quality-certificate.pdf",
+      "thumbnail": "https://images.unsplash.com/photo-1450101499163-c8848c66ca85?w=400&h=300&fit=crop",
+      "size": "0.8 MB",
+      "date": "2023-12-15"
+    },
+    {
+      "id": 8,
+      "title": "የኩባንያ መገለጫ ምስል",
+      "description": "ከፍተኛ ጥራት ያለው የኩባንያ መገለጫ ምስል",
+      "type": "image",
+      "fileUrl": "/documents/company-profile.jpg",
+      "thumbnail": "https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?w=400&h=300&fit=crop",
+      "size": "4.2 MB",
+      "date": "2024-01-30"
+    }
+  ]
+}
+
+

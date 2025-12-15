@@ -47,8 +47,8 @@ import achievementEn from '@/data/locales/en/pages/achievement.json';
 import achievementAm from '@/data/locales/am/pages/achievement.json';
 import galleryEn from '@/data/locales/en/pages/gallery.json';
 import galleryAm from '@/data/locales/am/pages/gallery.json';
-import strategyEn from '@/data/locales/en/pages/strategy.json';
-import strategyAm from '@/data/locales/am/pages/strategy.json';
+import documentEn from '@/data/locales/en/pages/document.json';
+import documentAm from '@/data/locales/am/pages/document.json';
 import contactEn from '@/data/locales/en/pages/contact.json';
 import contactAm from '@/data/locales/am/pages/contact.json';
 import vacancyEn from '@/data/locales/en/pages/vacancy.json';
@@ -80,7 +80,7 @@ const dataMap: Record<string, Record<Language, any>> = {
   'pages/testimonials': { en: testimonialsEn, am: testimonialsAm },
   'pages/achievement': { en: achievementEn, am: achievementAm },
   'pages/gallery': { en: galleryEn, am: galleryAm },
-  'pages/strategy': { en: strategyEn, am: strategyAm },
+  'pages/document': { en: documentEn, am: documentAm },
   'pages/contact': { en: contactEn, am: contactAm },
   'pages/vacancy': { en: vacancyEn, am: vacancyAm },
   'layouts/header': { en: headerEn, am: headerAm },

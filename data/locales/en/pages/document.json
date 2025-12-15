@@ -1,0 +1,89 @@
+{
+  "title": "Documents",
+  "subtitle": "Company Documents",
+  "description": "Browse and download our company documents, reports, and resources.",
+  "documents": [
+    {
+      "id": 1,
+      "title": "Company Brochure",
+      "description": "Comprehensive overview of our company services and offerings",
+      "type": "pdf",
+      "fileUrl": "/documents/company-brochure.pdf",
+      "thumbnail": "https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?w=400&h=300&fit=crop",
+      "size": "2.5 MB",
+      "date": "2024-01-15"
+    },
+    {
+      "id": 2,
+      "title": "Annual Report 2023",
+      "description": "Our annual performance report and financial summary for 2023",
+      "type": "pdf",
+      "fileUrl": "/documents/annual-report-2023.pdf",
+      "thumbnail": "https://images.unsplash.com/photo-1450101499163-c8848c66ca85?w=400&h=300&fit=crop",
+      "size": "5.2 MB",
+      "date": "2024-02-01"
+    },
+    {
+      "id": 3,
+      "title": "Service Catalog",
+      "description": "Detailed catalog of all our services and solutions",
+      "type": "pdf",
+      "fileUrl": "/documents/service-catalog.pdf",
+      "thumbnail": "https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=400&h=300&fit=crop",
+      "size": "3.8 MB",
+      "date": "2024-01-20"
+    },
+    {
+      "id": 4,
+      "title": "Company Presentation",
+      "description": "PowerPoint presentation about our company and vision",
+      "type": "ppt",
+      "fileUrl": "/documents/company-presentation.pptx",
+      "thumbnail": "https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=400&h=300&fit=crop",
+      "size": "8.5 MB",
+      "date": "2024-01-10"
+    },
+    {
+      "id": 5,
+      "title": "Product Specifications",
+      "description": "Detailed specifications and technical information about our products",
+      "type": "doc",
+      "fileUrl": "/documents/product-specifications.docx",
+      "thumbnail": "https://images.unsplash.com/photo-1586953208448-b95a79798f07?w=400&h=300&fit=crop",
+      "size": "1.9 MB",
+      "date": "2024-01-25"
+    },
+    {
+      "id": 6,
+      "title": "Company Logo Package",
+      "description": "High-resolution logo files in various formats",
+      "type": "image",
+      "fileUrl": "/documents/logo-package.zip",
+      "thumbnail": "https://images.unsplash.com/photo-1611224923853-80b023f02d71?w=400&h=300&fit=crop",
+      "size": "12.3 MB",
+      "date": "2024-01-05"
+    },
+    {
+      "id": 7,
+      "title": "Quality Certificate",
+      "description": "ISO quality management certification document",
+      "type": "pdf",
+      "fileUrl": "/documents/quality-certificate.pdf",
+      "thumbnail": "https://images.unsplash.com/photo-1450101499163-c8848c66ca85?w=400&h=300&fit=crop",
+      "size": "0.8 MB",
+      "date": "2023-12-15"
+    },
+    {
+      "id": 8,
+      "title": "Company Profile Image",
+      "description": "High-resolution company profile image",
+      "type": "image",
+      "fileUrl": "/documents/company-profile.jpg",
+      "thumbnail": "https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?w=400&h=300&fit=crop",
+      "size": "4.2 MB",
+      "date": "2024-01-30"
+    }
+  ]
+}
+
+

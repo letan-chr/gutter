@@ -20,6 +20,7 @@ const Header = () => {
   const [offcanvasOpen, setOffcanvasOpen] = useState(false);
   const dropdownRef = useRef<HTMLDivElement>(null);
   const offcanvasRef = useRef<HTMLDivElement>(null);
+  const dropdownTimeoutRef = useRef<NodeJS.Timeout | null>(null);
   const data = getLayoutData('header', lang);
   const footerData = getLayoutData('footer', lang);
 
@@ -38,6 +39,11 @@ const Header = () => {
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
       if (dropdownRef.current && !dropdownRef.current.contains(event.target as Node)) {
+        // Clear any pending timeout
+        if (dropdownTimeoutRef.current) {
+          clearTimeout(dropdownTimeoutRef.current);
+          dropdownTimeoutRef.current = null;
+        }
         setCompanyDropdownOpen(false);
       }
     };
@@ -48,6 +54,10 @@ const Header = () => {
 
     return () => {
       document.removeEventListener('mousedown', handleClickOutside);
+      // Clean up timeout on unmount
+      if (dropdownTimeoutRef.current) {
+        clearTimeout(dropdownTimeoutRef.current);
+      }
     };
   }, [companyDropdownOpen]);
 
@@ -112,8 +122,21 @@ const Header = () => {
                     key={index}
                     ref={dropdownRef}
                     className="relative"
-                    onMouseEnter={() => setCompanyDropdownOpen(true)}
-                    onMouseLeave={() => setCompanyDropdownOpen(false)}
+                    onMouseEnter={() => {
+                      // Clear any pending timeout when mouse enters
+                      if (dropdownTimeoutRef.current) {
+                        clearTimeout(dropdownTimeoutRef.current);
+                        dropdownTimeoutRef.current = null;
+                      }
+                      setCompanyDropdownOpen(true);
+                    }}
+                    onMouseLeave={() => {
+                      // Set a delay before closing the dropdown
+                      dropdownTimeoutRef.current = setTimeout(() => {
+                        setCompanyDropdownOpen(false);
+                        dropdownTimeoutRef.current = null;
+                      }, 300); // 300ms delay
+                    }}
                   >
                     <button
                       className="text-gray-700 dark:text-gray-300 hover:text-primary dark:hover:text-primary-light font-semibold transition-all duration-300 relative group flex items-center gap-1.5 py-2 px-1 rounded-lg hover:bg-primary/5 dark:hover:bg-primary/10"

@@ -10,7 +10,7 @@
         { "label": "Gallery", "href": "/company/gallery" },
         { "label": "Testimonials", "href": "/company/testimonials" },
         { "label": "Achievements", "href": "/company/achievement" },
-        { "label": "Strategy", "href": "/company/strategy" }
+        { "label": "Documents", "href": "/company/strategy" }
       ]
     },
     "services": "Services",

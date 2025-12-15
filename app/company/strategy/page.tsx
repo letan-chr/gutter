@@ -1,15 +1,27 @@
 import React from 'react'
+import { cookies } from 'next/headers';
 import Breadcrump from '@/components/layouts/Breadcrump';
-import Strategy from '@/components/pages/company/strategy/Strategy';
-const page = () => {
+import Document from '@/components/pages/company/strategy/Document';
+import { getPageData } from '@/data/utils';
+import { Language } from '@/data/utils';
+
+const page = async () => {
+  const cookieStore = await cookies();
+  const languageCookie = cookieStore.get('language')?.value;
+  const lang: Language = (languageCookie === 'en' || languageCookie === 'am') 
+    ? languageCookie 
+    : 'en';
+  
+  const data = getPageData('document', lang);
+
   return (
 <>
 <Breadcrump 
   backgroundImage="/assets/images/breadcrump.jpg"
-  title="Our Strategy"
-  subtitle="Building the future with strategic vision and innovative solutions"
+  title={data.title}
+  subtitle={data.description}
 />
-<Strategy />
+<Document />
 </>
   )
 }
