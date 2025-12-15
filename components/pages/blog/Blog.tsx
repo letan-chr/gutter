@@ -42,7 +42,7 @@ const Blog = () => {
           {/* Content Section - col-8 */}
           <div className="lg:col-span-8">
             {/* Search Field */}
-            <div className="mb-10">
+            <div className="mb-10" data-aos="fade-down">
               <div className="relative group">
                 <div className="absolute inset-0 bg-gradient-to-r from-primary/10 via-secondary/10 to-primary/10 rounded-2xl opacity-0 group-hover:opacity-100 group-focus-within:opacity-100 transition-opacity duration-300 blur-xl"></div>
                 <div className="relative bg-white dark:bg-gray-800 rounded-2xl shadow-lg border border-gray-100 dark:border-gray-700/50 overflow-hidden">
@@ -77,9 +77,11 @@ const Blog = () => {
 
             {/* Featured Blog Cards - Full Width, Left Image, Right Content */}
             <div className="space-y-6 mb-12">
-              {featuredPosts.map((post: any) => (
+              {featuredPosts.map((post: any, index: number) => (
                 <article
                   key={post.id}
+                  data-aos="fade-up"
+                  data-aos-delay={index * 100}
                   className="group bg-white dark:bg-gray-800 rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300"
                 >
                   <div className="flex flex-col md:flex-row">
@@ -136,9 +138,11 @@ const Blog = () => {
 
             {/* Regular Blog Posts - Two Columns, Top Image, Bottom Content */}
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
-              {filteredRegularPosts.map((post: any) => (
+              {filteredRegularPosts.map((post: any, index: number) => (
                 <article
                   key={post.id}
+                  data-aos="fade-up"
+                  data-aos-delay={index * 50}
                   className="group bg-white dark:bg-gray-800 rounded-xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300 hover:-translate-y-1"
                 >
                   {/* Top Image */}
@@ -200,7 +204,7 @@ const Blog = () => {
           <div className="lg:col-span-4">
             <div className="lg:sticky lg:top-8 space-y-8">
             {/* Latest Blog Posts List */}
-            <div className="bg-white dark:bg-gray-800 rounded-xl shadow-lg p-6">
+            <div className="bg-white dark:bg-gray-800 rounded-xl shadow-lg p-6" data-aos="fade-left">
               <h3 className="text-2xl font-display font-bold text-gray-900 dark:text-white mb-6 pb-3 border-b-2 border-gray-200 dark:border-gray-700">
                 {lang === 'en' ? 'Latest Posts' : 'የቅርብ ጊዜ ልጥፎች'}
               </h3>
@@ -243,7 +247,7 @@ const Blog = () => {
             </div>
 
             {/* Categories List */}
-            <div className="bg-white dark:bg-gray-800 rounded-xl shadow-lg p-6">
+            <div className="bg-white dark:bg-gray-800 rounded-xl shadow-lg p-6" data-aos="fade-left" data-aos-delay="100">
               <h3 className="text-2xl font-display font-bold text-gray-900 dark:text-white mb-6 pb-3 border-b-2 border-gray-200 dark:border-gray-700">
                 {lang === 'en' ? 'Categories' : 'ምድቦች'}
               </h3>
@@ -275,7 +279,7 @@ const Blog = () => {
             </div>
 
             {/* Amazing CTA Design */}
-            <div className="relative bg-gradient-to-br from-primary to-secondary rounded-2xl shadow-2xl overflow-hidden p-8 text-white">
+            <div className="relative bg-gradient-to-br from-primary to-secondary rounded-2xl shadow-2xl overflow-hidden p-8 text-white" data-aos="fade-left" data-aos-delay="200">
               {/* Decorative Elements */}
               <div className="absolute top-0 right-0 w-32 h-32 bg-white/10 rounded-full blur-2xl"></div>
               <div className="absolute bottom-0 left-0 w-24 h-24 bg-white/10 rounded-full blur-2xl"></div>

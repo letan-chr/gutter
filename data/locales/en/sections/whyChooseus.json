@@ -1,37 +1,37 @@
 {
   "title": "Why Choose Us",
   "subtitle": "Your Trusted Partner",
-  "description": "We have been serving customers with excellence for years.",
+  "description": "We have been serving customers with excellence since 2005.",
   "reasons": [
     {
       "id": 1,
-      "title": "Economic",
-      "description": "Cost-effective solutions that maximize your value and minimize expenses"
+      "title": "Prime Location",
+      "description": "Strategically located near Piassa, the heart of Addis Ababa. Easy access from all parts of the city with excellent visibility and foot traffic."
     },
     {
       "id": 2,
-      "title": "Time",
-      "description": "Efficient service delivery that respects your schedule and deadlines"
+      "title": "Established Experience",
+      "description": "Over 19 years of proven track record since 2005. Successfully completed Gutter Building project and served countless satisfied clients."
     },
     {
       "id": 3,
-      "title": "24*7",
-      "description": "Round-the-clock availability to serve you whenever you need us"
+      "title": "Comprehensive Services",
+      "description": "One-stop solution for all your business needs: rentals, events, catering, and import-export trade services under one roof."
     },
     {
       "id": 4,
-      "title": "User Satisfaction",
-      "description": "Committed to exceeding expectations and ensuring your complete satisfaction"
+      "title": "Modern Facilities",
+      "description": "State-of-the-art Gutter Building with modern amenities, reliable utilities, and professional maintenance services."
     },
     {
       "id": 5,
-      "title": "Security",
-      "description": "Robust security measures to protect your interests and data"
+      "title": "Trusted & Reliable",
+      "description": "Established business organization with strong reputation. Committed to ethical practices and long-term partnerships."
     },
     {
       "id": 6,
-      "title": "Professional",
-      "description": "Expert team with years of experience and professional excellence"
+      "title": "Professional Team",
+      "description": "Experienced team dedicated to excellence. Expert knowledge in real estate, events, trade, and customer service."
     }
   ]
 }

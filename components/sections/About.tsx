@@ -12,7 +12,7 @@ const About = () => {
     <section className="py-12 lg:py-12 bg-gray-50 dark:bg-gray-900">
       <div className="mx-auto px-6 ">
         {/* Header */}
-        <div className="text-center max-w-3xl mx-auto mb-12">
+        <div className="text-center max-w-3xl mx-auto mb-12" data-aos="fade-down">
           <h2 className="text-4xl lg:text-5xl font-bold text-gray-900 dark:text-white mb-4">
             {data.title}
           </h2>
@@ -20,7 +20,7 @@ const About = () => {
         </div>
 
         {/* Three Column Card - Content | Image | Content */}
-        <div className="bg-white dark:bg-gray-800 shadow-2xl overflow-hidden">
+        <div className="bg-white dark:bg-gray-800 shadow-2xl overflow-hidden" data-aos="fade-up">
           <div className="grid grid-cols-1 md:grid-cols-12 gap-0">
             {/* Left Content Column (col-4) */}
             <div className="md:col-span-4 p-8 lg:p-12 flex flex-col justify-center bg-gradient-to-br from-gray-50 to-white dark:from-gray-800 dark:to-gray-850">

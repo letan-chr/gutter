@@ -48,14 +48,14 @@ const WhyChooseus = () => {
 
       <div className="mx-auto px-4 sm:px-6 lg:px-8 relative z-10 max-w-7xl">
         {/* Title Section */}
-        <div className="text-center pt-2 mb-12">
+        <div className="text-center pt-2 mb-12" data-aos="fade-down">
           <h2 className="text-3xl sm:text-4xl lg:text-5xl font-display font-bold text-white">
             {data.title}
           </h2>
         </div>
 
         {/* Circular Layout Container */}
-        <div className="hidden lg:block relative w-full max-w-6xl mx-auto" style={{ minHeight: '700px', paddingBottom: '100px' }}>
+        <div className="hidden lg:block relative w-full max-w-6xl mx-auto" style={{ minHeight: '700px', paddingBottom: '100px' }} data-aos="zoom-in">
           {/* Central Logo */}
           <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 z-20">
             <div className="relative w-72 h-72 xl:w-80 xl:h-80 rounded-full overflow-hidden shadow-2xl">
@@ -121,9 +121,11 @@ const WhyChooseus = () => {
 
         {/* Responsive Grid for Mobile/Tablet */}
         <div className="lg:hidden mt-12 grid grid-cols-1 sm:grid-cols-2 gap-6">
-          {data.reasons.map((reason: any) => (
+          {data.reasons.map((reason: any, index: number) => (
             <div
               key={reason.id}
+              data-aos="fade-up"
+              data-aos-delay={index * 100}
               className="bg-white dark:bg-gray-800 rounded-2xl p-6 shadow-lg border border-gray-100 dark:border-gray-700 hover:shadow-xl transition-shadow"
             >
               <div className="flex items-start gap-3 mb-3">

@@ -38,7 +38,7 @@ const Products = () => {
     <section className="py-12 lg:py-16 bg-white dark:bg-gray-900">
       <div className="mx-auto px-4 sm:px-6 lg:px-8 max-w-7xl">
         {/* Section Header - Modern Layout */}
-        <div className="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-4 mb-10">
+        <div className="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-4 mb-10" data-aos="fade-down">
           {/* Left Side - Title and Subtitle */}
           <div className="flex-1">
             <h2 className="text-3xl sm:text-4xl lg:text-5xl font-display font-bold text-gray-900 dark:text-white mb-2">
@@ -64,7 +64,7 @@ const Products = () => {
         </div>
 
         {/* Category Filter */}
-        <div className="flex flex-wrap justify-center gap-3 mb-10">
+        <div className="flex flex-wrap justify-center gap-3 mb-10" data-aos="fade-up" data-aos-delay="100">
           {categories.map((category: string) => (
             <button
               key={category}
@@ -86,9 +86,11 @@ const Products = () => {
             {/* Left Side - 2 Featured Products (Bigger Cards) - col-6 */}
             {featuredProducts.length > 0 && (
               <div className="lg:col-span-2 flex flex-col gap-4 lg:gap-6">
-                {featuredProducts.map((product: any) => (
+                {featuredProducts.map((product: any, index: number) => (
                   <article
                     key={product.id}
+                    data-aos="fade-right"
+                    data-aos-delay={index * 100}
                     className="group bg-white dark:bg-gray-800 rounded-xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300 hover:-translate-y-1"
                   >
                     {/* Product Image */}
@@ -135,9 +137,11 @@ const Products = () => {
               <>
                 {/* Left Column - col-3 */}
                 <div className="lg:col-span-1 flex flex-col gap-3 lg:gap-4">
-                  {leftColumnProducts.map((product: any) => (
+                  {leftColumnProducts.map((product: any, index: number) => (
                     <article
                       key={product.id}
+                      data-aos="fade-up"
+                      data-aos-delay={index * 50}
                       className="group bg-white dark:bg-gray-800 rounded-xl overflow-hidden shadow-md hover:shadow-xl transition-all duration-300 hover:-translate-y-1 flex-1 flex flex-col"
                     >
                       {/* Product Image */}
@@ -175,9 +179,11 @@ const Products = () => {
 
                 {/* Right Column - col-3 */}
                 <div className="lg:col-span-1 flex flex-col gap-3 lg:gap-4 ">
-                  {rightColumnProducts.map((product: any) => (
+                  {rightColumnProducts.map((product: any, index: number) => (
                     <article
                       key={product.id}
+                      data-aos="fade-up"
+                      data-aos-delay={(index + 3) * 50}
                       className="group bg-white dark:bg-gray-800 rounded-xl overflow-hidden shadow-md hover:shadow-xl transition-all duration-300 hover:-translate-y-1 flex-1 flex flex-col"
                     >
                       {/* Product Image */}

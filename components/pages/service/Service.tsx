@@ -23,6 +23,8 @@ const Service = () => {
             return (
               <div
                 key={service.id}
+                data-aos={i % 2 === 0 ? "fade-right" : "fade-left"}
+                data-aos-delay={i * 100}
                 className={`relative w-full rounded-3xl overflow-hidden shadow-xl ${
                   isDarkCard ? 'bg-gray-800' : 'bg-white'
                 }`}

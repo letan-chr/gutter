@@ -18,7 +18,7 @@ const About = () => {
 
 
           {/* Three Column Card - Content | Image | Content */}
-          <div className="bg-white dark:bg-gray-800 shadow-2xl rounded-3xl overflow-hidden transform hover:scale-[1.01] transition-transform duration-300">
+          <div className="bg-white dark:bg-gray-800 shadow-2xl rounded-3xl overflow-hidden transform hover:scale-[1.01] transition-transform duration-300" data-aos="fade-up">
             <div className="grid grid-cols-1 md:grid-cols-12 gap-0">
               {/* Left Content Column */}
               <div className="md:col-span-4 p-8 lg:p-12 flex flex-col justify-center bg-gradient-to-br from-primary/5 via-white to-white dark:from-primary/10 dark:via-gray-800 dark:to-gray-800 relative overflow-hidden group">

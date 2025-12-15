@@ -8,6 +8,7 @@ import { ThemeProvider } from "@/components/providers/ThemeProvider";
 import { ThemeScript } from "@/components/providers/ThemeScript";
 import { LanguageProvider } from "@/components/providers/LanguageProvider";
 import { LanguageScript } from "@/components/providers/LanguageScript";
+import { AOSProvider } from "@/components/providers/AOSProvider";
 import { Language } from "@/data/utils";
 
 export const metadata: Metadata = {
@@ -34,10 +35,12 @@ export default async function RootLayout({
         <ThemeScript />
         <ThemeProvider>
           <LanguageProvider initialLanguage={initialLanguage}>
-            <Header />
-            {children}
-            <Footer />
-            <Chat />
+            <AOSProvider>
+              <Header />
+              {children}
+              <Footer />
+              <Chat />
+            </AOSProvider>
           </LanguageProvider>
         </ThemeProvider>
       </body>

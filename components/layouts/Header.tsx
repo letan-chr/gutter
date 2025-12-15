@@ -341,8 +341,8 @@ const Header = () => {
           <div className="absolute inset-0 bg-black/10"></div>
           <div className="relative flex items-center justify-between">
             <div>
-              <h2 className="text-2xl font-display font-bold mb-1">{footerData.company.title}</h2>
-              <p className="text-primary-light/90 text-sm">{footerData.company.description}</p>
+              <h2 className="text-2xl font-display font-bold mb-1 text-white">{footerData.company.title}</h2>
+              <p className="text-white text-sm">{footerData.company.description}</p>
             </div>
             <button
               onClick={() => setOffcanvasOpen(false)}

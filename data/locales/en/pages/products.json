@@ -1,25 +1,25 @@
 {
-  "title": "Our Products",
-  "subtitle": "Quality Gutter Solutions",
-  "description": "Explore our comprehensive range of gutter products designed for durability and performance.",
+  "title": "Our Products & Services",
+  "subtitle": "Comprehensive Business Solutions",
+  "description": "Explore our wide range of products and services designed to meet your business needs.",
   "products": [
     {
       "id": 1,
-      "slug": "aluminum-gutters",
-      "title": "Aluminum Gutters",
-      "description": "Lightweight, durable, and rust-resistant aluminum gutter systems perfect for any home.",
-      "features": ["Rust-resistant", "Lightweight", "Easy installation", "Long-lasting"],
-      "price": "From $500",
-      "image": "/images/product1.jpg"
+      "slug": "office-rental-service",
+      "title": "Office Rental Space",
+      "description": "Premium office spaces in prime location near Piassa. Modern facilities, reliable utilities, and professional maintenance included.",
+      "features": ["Prime Location", "Modern Facilities", "Reliable Utilities", "Professional Maintenance"],
+      "price": "Contact for Pricing",
+      "image": "/assets/images/about.jpg"
     },
     {
       "id": 2,
-      "slug": "vinyl-gutters",
-      "title": "Vinyl Gutters",
-      "description": "Affordable and low-maintenance vinyl gutters ideal for budget-conscious homeowners.",
-      "features": ["Affordable", "Low maintenance", "Weather resistant", "Easy to clean"],
-      "price": "From $300",
-      "image": "/images/product2.jpg"
+      "slug": "shop-rental-service",
+      "title": "Shop Rental Space",
+      "description": "Prime retail spaces with high visibility and foot traffic. Perfect location for your business in the heart of Addis Ababa.",
+      "features": ["High Visibility", "Prime Location", "Foot Traffic", "Flexible Terms"],
+      "price": "Contact for Pricing",
+      "image": "/assets/images/breadcrump.jpg"
     }
   ]
 }

@@ -12,7 +12,7 @@ const Service = () => {
     <section className="py-12 lg:py-12 bg-gray-50 dark:bg-gray-900 relative ">
       <div className="mx-auto px-6">
         {/* Header */}
-        <div className="text-center max-w-3xl mx-auto mb-8">
+        <div className="text-center max-w-3xl mx-auto mb-8" data-aos="fade-down">
           <h2 className="text-4xl font-bold text-gray-900 dark:text-white">
             {data.title}
           </h2>
@@ -26,6 +26,8 @@ const Service = () => {
           {data.services.map((service: any, i: number) => (
             <div
               key={service.id}
+              data-aos="fade-up"
+              data-aos-delay={i * 100}
               className={`
                 sticky top-32
                 bg-white dark:bg-gray-800 shadow-2xl

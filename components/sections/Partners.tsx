@@ -29,7 +29,7 @@ const Partners = () => {
 
 
         {/* Partners Swiper */}
-        <div className="relative">
+        <div className="relative" data-aos="fade-up">
           <Swiper
             modules={[Autoplay, FreeMode]}
             spaceBetween={24}

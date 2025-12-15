@@ -19,7 +19,7 @@ const Blog = () => {
     <section className="py-12 lg:py-16 bg-white dark:bg-gray-900">
       <div className="mx-auto px-4 sm:px-6 lg:px-8 max-w-7xl">
         {/* Section Header - Modern Layout */}
-        <div className="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-4 mb-10">
+        <div className="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-4 mb-10" data-aos="fade-down">
           {/* Left Side - Title and Subtitle */}
           <div className="flex-1">
             <h2 className="text-3xl sm:text-4xl lg:text-5xl font-display font-bold text-gray-900 dark:text-white mb-2">
@@ -47,9 +47,11 @@ const Blog = () => {
         {/* Featured Blog Posts - 2 Large Cards */}
         {featuredPosts.length > 0 && (
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 lg:gap-6 mb-10">
-            {featuredPosts.map((post: any) => (
+            {featuredPosts.map((post: any, index: number) => (
               <article
                 key={post.id}
+                data-aos="fade-up"
+                data-aos-delay={index * 100}
                 className="group bg-white dark:bg-gray-800 rounded-xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300 hover:-translate-y-1"
               >
                 {/* Post Image */}
@@ -94,9 +96,11 @@ const Blog = () => {
         {/* Latest Blog Posts - 4 Normal Cards */}
         {latestPosts.length > 0 && (
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
-            {latestPosts.map((post: any) => (
+            {latestPosts.map((post: any, index: number) => (
               <article
                 key={post.id}
+                data-aos="fade-up"
+                data-aos-delay={(index + 2) * 50}
                 className="group bg-white dark:bg-gray-800 rounded-xl overflow-hidden shadow-md hover:shadow-xl transition-all duration-300 hover:-translate-y-1"
               >
                 {/* Post Image */}

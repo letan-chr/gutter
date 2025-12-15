@@ -60,7 +60,7 @@ const Product = () => {
           <div className="lg:col-span-4 order-2 lg:order-1">
             <div className="lg:sticky lg:top-8 space-y-8">
               {/* Latest Products List */}
-              <div className="bg-white dark:bg-gray-800 rounded-xl shadow-lg p-6">
+              <div className="bg-white dark:bg-gray-800 rounded-xl shadow-lg p-6" data-aos="fade-right">
                 <h3 className="text-2xl font-display font-bold text-gray-900 dark:text-white mb-6 pb-3 border-b-2 border-gray-200 dark:border-gray-700">
                   {lang === 'en' ? 'Latest Products' : 'የቅርብ ጊዜ ምርቶች'}
                 </h3>
@@ -104,7 +104,7 @@ const Product = () => {
               </div>
 
               {/* Categories List */}
-              <div className="bg-white dark:bg-gray-800 rounded-xl shadow-lg p-6">
+              <div className="bg-white dark:bg-gray-800 rounded-xl shadow-lg p-6" data-aos="fade-right" data-aos-delay="100">
                 <h3 className="text-2xl font-display font-bold text-gray-900 dark:text-white mb-6 pb-3 border-b-2 border-gray-200 dark:border-gray-700">
                   {lang === 'en' ? 'Categories' : 'ምድቦች'}
                 </h3>
@@ -136,7 +136,7 @@ const Product = () => {
               </div>
 
               {/* CTA Design */}
-              <div className="relative bg-gradient-to-br from-primary to-secondary rounded-2xl shadow-2xl overflow-hidden p-8 text-white">
+              <div className="relative bg-gradient-to-br from-primary to-secondary rounded-2xl shadow-2xl overflow-hidden p-8 text-white" data-aos="fade-right" data-aos-delay="200">
                 {/* Decorative Elements */}
                 <div className="absolute top-0 right-0 w-32 h-32 bg-white/10 rounded-full blur-2xl"></div>
                 <div className="absolute bottom-0 left-0 w-24 h-24 bg-white/10 rounded-full blur-2xl"></div>
@@ -172,7 +172,7 @@ const Product = () => {
           {/* Content Section - col-8 */}
           <div className="lg:col-span-8 order-1 lg:order-2">
             {/* Page Header */}
-            <div className="mb-10">
+            <div className="mb-10" data-aos="fade-down">
               <h1 className="text-4xl lg:text-5xl font-display font-bold text-gray-900 dark:text-white mb-3">
                 {data.title || (lang === 'en' ? 'Our Products' : 'የእኛ ምርቶች')}
               </h1>
@@ -184,13 +184,15 @@ const Product = () => {
             {/* Featured Products Section - Two Cards in One Row, Image Top, Content Bottom */}
             {featuredProducts.length > 0 && (
               <div className="mb-12">
-                <h2 className="text-2xl font-display font-semibold text-gray-900 dark:text-white mb-6">
+                <h2 className="text-2xl font-display font-semibold text-gray-900 dark:text-white mb-6" data-aos="fade-up">
                   {lang === 'en' ? 'Featured Products' : 'የተመረጡ ምርቶች'}
                 </h2>
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                  {featuredProducts.map((product: any) => (
+                  {featuredProducts.map((product: any, index: number) => (
                     <article
                       key={product.id}
+                      data-aos="fade-up"
+                      data-aos-delay={index * 100}
                       className="group bg-white dark:bg-gray-800 rounded-xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300 hover:-translate-y-1"
                     >
                       {/* Top Image */}
@@ -241,13 +243,15 @@ const Product = () => {
             {/* Regular Products Section - Three Columns, Top Image, Bottom Content */}
             {normalProducts.length > 0 && (
               <div>
-                <h2 className="text-2xl font-display font-semibold text-gray-900 dark:text-white mb-6">
+                <h2 className="text-2xl font-display font-semibold text-gray-900 dark:text-white mb-6" data-aos="fade-up">
                   {lang === 'en' ? 'All Products' : 'ሁሉም ምርቶች'}
                 </h2>
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-8">
-                  {normalProducts.map((product: any) => (
+                  {normalProducts.map((product: any, index: number) => (
                     <article
                       key={product.id}
+                      data-aos="fade-up"
+                      data-aos-delay={index * 50}
                       className="group bg-white dark:bg-gray-800 rounded-xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300 hover:-translate-y-1"
                     >
                       {/* Top Image */}

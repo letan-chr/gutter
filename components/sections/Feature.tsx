@@ -12,10 +12,11 @@ const Feature = () => {
     <section className="py-10 lg:py-12 bg-gray-50 dark:bg-gray-900">
       <div className="mx-auto px-6">
         {/* HEADER */}
- 
+
 
         {/* ===== FULL WIDTH DIAGONAL FEATURE CARD ===== */}
         <div
+          data-aos="fade-up"
           className="
           relative bg-white dark:bg-gray-800 rounded-3xl shadow-xl
           overflow-hidden border border-gray-200 dark:border-gray-700
@@ -26,6 +27,8 @@ const Feature = () => {
             {data.features.map((feature: any, index: number) => (
               <div
                 key={feature.id}
+                data-aos="zoom-in"
+                data-aos-delay={index * 100}
                 className="relative flex flex-col items-center text-center px-10 py-8"
               >
                 {/* DIAGONAL CUT DIVIDER (applies except last) */}

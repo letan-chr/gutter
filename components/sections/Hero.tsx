@@ -131,7 +131,7 @@ const Hero = () => {
   };
 
   return (
-    <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
+    <section className="relative h-[calc(100vh-4rem)] lg:h-[calc(100vh-5rem)] flex items-center justify-center overflow-hidden">
       <Swiper
         ref={swiperRef}
         modules={[Autoplay, EffectFade, Pagination]}
@@ -161,10 +161,10 @@ const Hero = () => {
           const realIndex = swiper.realIndex !== undefined ? swiper.realIndex : swiper.activeIndex;
           setActiveIndex(realIndex);
         }}
-        className="hero-swiper !h-screen"
+        className="hero-swiper !h-[calc(100vh-4rem)] lg:!h-[calc(100vh-5rem)]"
       >
         {slides.map((slide, index) => (
-          <SwiperSlide key={index} className="!h-screen">
+          <SwiperSlide key={index} className="!h-[calc(100vh-4rem)] lg:!h-[calc(100vh-5rem)]">
             <HeroSlide 
               slide={slide} 
               index={index} 
