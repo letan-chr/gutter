@@ -1,6 +1,7 @@
+import { BatchResponse, Feature } from "@/types/types";
 import axios from "axios";
 const axiosInstance = axios.create({
-  baseURL: process.env.NEXT_PUBLIC_DOMAIN,
+  baseURL: process.env.NEXT_PUBLIC_API_URL,
   headers: {
     "Content-Type": "application/json",
   },
@@ -21,10 +22,17 @@ axiosInstance.interceptors.request.use(
   }
 );
 
-const getBatchData = async (features: any) => {
-  const response = await axiosInstance.post("/batch", { features });
+export async function getBatchData(
+  features: Feature[]
+): Promise<BatchResponse> {
+  const response = await axiosInstance.post<BatchResponse>("/batch", {
+    features,
+  });
+
   return response.data;
-};
+}
+
+
 const postContactForm = async (data: any) => {
   const response = await axiosInstance.post("/contact-message", data);
   return response.data;
@@ -97,7 +105,6 @@ const getSingleProject = async (id: string) => {
 };
 
 export {
-  getBatchData,
   getProducts,
   getProductBySlug,
   getProductCategories,
