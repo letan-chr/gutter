@@ -89,6 +89,10 @@ export interface Blog {
   translations: BlogTranslation[];
 }
 
+export interface BlogResponse {
+  data: Blog;
+}
+
 export interface BlogListResponse {
   data: Blog[];
   meta: {

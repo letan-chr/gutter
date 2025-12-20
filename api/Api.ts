@@ -3,6 +3,7 @@ import {
   BatchResponse,
   BlogCategoryResponse,
   BlogListResponse,
+  BlogResponse,
   Feature,
   ProductCategoryResponse,
   ProductListResponse,
@@ -109,6 +110,10 @@ export async function getAllBlogs(): Promise<BlogListResponse> {
   const response = await axiosInstance.get<BlogListResponse>("/blog");
   return response.data;
 }
+export async function getBlogBySlug(slug: string): Promise<BlogResponse> {
+  const response = await axiosInstance.get<BlogResponse>(`/blog/slug/${slug}`);
+  return response.data;
+}
 export async function getAllBlogsWithPagination(params?: {
   page?: number;
   per_page?: number;
@@ -120,10 +125,6 @@ export async function getAllBlogsWithPagination(params?: {
   return response.data;
 }
 
-const getBlogBySlug = async (id: string) => {
-  const response = await axiosInstance.get(`/blogs/${id}`);
-  return response.data;
-};
 const getAllTestimonials = async () => {
   const response = await axiosInstance.get("/testimonials");
   return response.data;
@@ -167,7 +168,6 @@ const getSingleProject = async (id: string) => {
 };
 
 export {
-  getBlogBySlug,
   getAllTestimonials,
   getAllClients,
   getAllTeamMembers,
