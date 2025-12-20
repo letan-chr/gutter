@@ -15,8 +15,6 @@ const ProductDetails = ({ product, relatedProducts }: ProductDetailsProps) => {
   const { language: lang } = useLanguage();
   const data = getSectionData("products", lang);
 
-  console.log("product", product);
-
   const IMAGE_BASE = process.env.NEXT_PUBLIC_IMAGE_URL;
 
   const getImageUrl = (path?: string) => {
@@ -41,13 +39,7 @@ const ProductDetails = ({ product, relatedProducts }: ProductDetailsProps) => {
   const [selectedImageIndex, setSelectedImageIndex] = useState(0);
 
   if (!product) {
-    return (
-      <div className="py-20 text-center">
-        <p className="text-gray-500 dark:text-gray-400">
-          {lang === "en" ? "Product not found" : "ምርት አልተገኘም"}
-        </p>
-      </div>
-    );
+    return null;
   }
 
   return (
@@ -63,7 +55,7 @@ const ProductDetails = ({ product, relatedProducts }: ProductDetailsProps) => {
                 {galleryImages[selectedImageIndex] ? (
                   <Image
                     src={galleryImages[selectedImageIndex]}
-                    alt={product.name}
+                    alt={product?.name || "product"}
                     fill
                     className="object-cover transition-opacity duration-300"
                     priority
@@ -138,12 +130,12 @@ const ProductDetails = ({ product, relatedProducts }: ProductDetailsProps) => {
             <div className="lg:w-1/2 px-8 lg:px-10 pt-0 lg:pt-0 pb-8 lg:pb-10 flex flex-col items-start">
               {/* Title */}
               <h1 className="text-3xl lg:text-4xl font-display font-bold text-gray-900 dark:text-white mb-4 leading-tight">
-                {product.name}
+                {product?.name}
               </h1>
 
               {/* Description */}
               <p className="text-lg text-gray-600 dark:text-gray-400 mb-6 leading-relaxed">
-                {product.description}
+                {product?.description}
               </p>
 
               {/* CTA Buttons */}
@@ -165,7 +157,7 @@ const ProductDetails = ({ product, relatedProducts }: ProductDetailsProps) => {
             <div className="prose prose-lg dark:prose-invert max-w-none">
               <div className="text-gray-700 dark:text-gray-300 leading-relaxed space-y-6">
                 {/* Product Details Paragraph */}
-                {product.description && (
+                {product?.description && (
                   <div className="text-base leading-relaxed whitespace-pre-line mb-6">
                     {product.description}
                   </div>

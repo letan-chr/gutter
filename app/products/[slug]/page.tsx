@@ -43,7 +43,11 @@ const page = () => {
 
   if (!product) {
     return (
-      <div className="text-center py-20">No products found for this slug</div>
+      <div className="py-20 text-center">
+        <p className="text-gray-500 dark:text-gray-400">
+          {lang === "en" ? "Product not found" : "ምርት አልተገኘም"}
+        </p>
+      </div>
     );
   }
 
