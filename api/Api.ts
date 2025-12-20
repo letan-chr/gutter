@@ -4,6 +4,8 @@ import {
   BlogCategoryResponse,
   BlogListResponse,
   Feature,
+  ProductCategoryResponse,
+  ProductListResponse,
   ServiceListResponse,
 } from "@/types/types";
 import axios from "axios";
@@ -63,18 +65,29 @@ export async function getAllServicesWithPagination(params?: {
   return response.data;
 }
 
-const getProducts = async () => {
-  const response = await axiosInstance.get("/ecommerce");
+//products and product categories
+export async function getAllProductCategories(): Promise<ProductCategoryResponse> {
+  const response = await axiosInstance.get<ProductCategoryResponse>(
+    "ecommerce/categories"
+  );
+
   return response.data;
-};
-const getProductBySlug = async (id: string) => {
-  const response = await axiosInstance.get(`/products/${id}`);
+}
+export async function getAllProducts(): Promise<ProductListResponse> {
+  const response = await axiosInstance.get<ProductListResponse>("/ecommerce");
+
   return response.data;
-};
-const getProductCategories = async () => {
-  const response = await axiosInstance.get("/product-categories");
+}
+export async function getAllProductsWithPagination(params?: {
+  page?: number;
+  per_page?: number;
+}): Promise<ProductListResponse> {
+  const response = await axiosInstance.get<ProductListResponse>("/ecommerce", {
+    params,
+  });
+
   return response.data;
-};
+}
 
 //blogs and blog categories
 export async function getAllBlogCategories(): Promise<BlogCategoryResponse> {
@@ -146,9 +159,6 @@ const getSingleProject = async (id: string) => {
 };
 
 export {
-  getProducts,
-  getProductBySlug,
-  getProductCategories,
   getBlogBySlug,
   getAllTestimonials,
   getAllClients,

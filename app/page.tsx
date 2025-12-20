@@ -13,19 +13,33 @@ import {
   Feature,
   ServiceType,
   Blog as BlogType,
+  Product,
+  ProductCategory,
 } from "@/types/types";
 import { useEffect, useState } from "react";
-import { getAllBlogs, getAllServices, getBatchData } from "@/api/Api";
+import {
+  getAllBlogs,
+  getAllProductCategories,
+  getAllProducts,
+  getAllServices,
+  getBatchData,
+} from "@/api/Api";
 import { resolveCoreValue } from "@/lib/resolvers/resolveCoreValue";
 import { resolveAboutContent } from "@/lib/resolvers/resolveAbout";
 import { useLanguage } from "@/components/providers/LanguageProvider";
 import { resolveService } from "@/lib/resolvers/serviceResolver";
 import { resolveBlog } from "@/lib/resolvers/blogResolver";
+import { resolveProductCategory } from "@/lib/resolvers/productCategoryResolver";
+import { resolveProduct } from "@/lib/resolvers/productResolver";
 
 export default function Home() {
   const [aboutContent, setAboutContent] = useState<AboutContent | null>(null);
   const [services, setServices] = useState<ServiceType[]>([]);
   const [blogs, setBlogs] = useState<BlogType[]>([]);
+  const [products, setProducts] = useState<Product[]>([]);
+  const [productCategories, setProductCategories] = useState<ProductCategory[]>(
+    []
+  );
   const { language } = useLanguage();
 
   useEffect(() => {
@@ -68,6 +82,25 @@ export default function Home() {
         );
 
         setBlogs(resolvedBlogs);
+
+        // 🔹 Products & Categories
+        const [productsRes, categoriesRes] = await Promise.all([
+          getAllProducts(),
+          getAllProductCategories(),
+        ]);
+
+        // Resolve categories
+        const resolvedCategories = categoriesRes.data.map((category) =>
+          resolveProductCategory(category, language)
+        );
+
+        // Resolve products
+        const resolvedProducts = productsRes.data.map((product) =>
+          resolveProduct(product, language)
+        );
+
+        setProductCategories(resolvedCategories);
+        setProducts(resolvedProducts);
       } catch (err) {
         console.error(err);
       }
@@ -76,17 +109,16 @@ export default function Home() {
     fetchData();
   }, [language]);
 
-  console.log("blogs", blogs);
   console.log("lang", language);
 
   return (
     <>
       <Hero />
-      <About about={aboutContent} services={services}/>
+      <About about={aboutContent} services={services} />
 
       <Service services={services} />
       <WhyChooseus />
-      <Products />
+      <Products products={products} productCategories={productCategories} />
 
       <Cta />
       <Blog blogs={blogs} />

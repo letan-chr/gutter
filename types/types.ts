@@ -111,11 +111,13 @@ export interface Stat {
   updated_at: string;
 }
 
-export type ProductImage = {
+export type ProductCategoryTranslation = {
   id: number;
-  product_id: string;
-  image_path: string;
-  order: number;
+  product_category_id: string; // backend sends string
+  locale: string;
+  name: string;
+  slug: string;
+  description: string;
   created_at: string;
   updated_at: string;
 };
@@ -127,31 +129,71 @@ export type ProductCategory = {
   slug: string;
   description: string;
   image: string | null;
-  status: "active" | "inactive" | string; // backend returns "active"
+  status: "active" | "inactive" | string;
+  created_at: string;
+  updated_at: string;
+
+  translations?: ProductCategoryTranslation[];
+};
+
+export type ProductCategoryResponse = {
+  data: ProductCategory[];
+};
+
+export type ProductTranslation = {
+  id: number;
+  product_id: string; // backend sends string
+  locale: string;
+  name: string;
+  slug: string;
+  description: string;
   created_at: string;
   updated_at: string;
 };
 
-export type CategoryResponse = {
-  data: ProductCategory[];
+export type ProductImage = {
+  id: number;
+  product_id: string;
+  image_path: string;
+  order: number;
+  created_at: string;
+  updated_at: string;
 };
 
 export type Product = {
   id: number;
   business_id: number;
+
   product_category_id: number | null;
+
   name: string;
   slug: string;
   description: string;
-  banner_image: string;
-  price: string; // string because your API returns "466.00"
-  status: "active" | "inactive";
+
+  banner_image: string | null;
+  price: string; // backend returns string ("0.00")
+
+  status: "active" | "inactive" | string;
   is_featured: boolean;
   views_count: number;
+
   created_at: string;
   updated_at: string;
-  category: ProductCategory | null;
-  images: ProductImage[];
+
+  category?: ProductCategory | null;
+  images?: ProductImage[];
+
+  translations?: ProductTranslation[];
+};
+
+export type ProductListResponse = {
+  data: Product[];
+  meta: {
+    current_page: number;
+    last_page: number;
+    per_page: number;
+    total: number;
+  };
 };
 
 export type Partner = {

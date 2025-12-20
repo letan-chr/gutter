@@ -1,44 +1,71 @@
-'use client';
+"use client";
 
-import React, { useState } from 'react';
-import Image from 'next/image';
-import { getSectionData } from '@/data/utils';
-import { useLanguage } from '@/components/providers/LanguageProvider';
+import React, { useMemo, useState } from "react";
+import Image from "next/image";
+import { getSectionData } from "@/data/utils";
+import { useLanguage } from "@/components/providers/LanguageProvider";
+import { Product, ProductCategory } from "@/types/types";
 
-const Products = () => {
+interface ProductSectionProps {
+  products: Product[];
+  productCategories: ProductCategory[];
+}
+
+const Products = ({ products, productCategories }: ProductSectionProps) => {
   const { language: lang } = useLanguage();
-  const [selectedCategory, setSelectedCategory] = useState<string>('all');
-  const data = getSectionData('products', lang);
+  const [selectedCategory, setSelectedCategory] = useState<number | "all">(
+    "all"
+  );
+  const data = getSectionData("products", lang);
 
   // Get categories from products
-  const categories = ['all', ...new Set(data.products.map((product: any) => product.category as string))] as string[];
-  
+  const categories = useMemo(() => {
+    return [
+      { id: "all", title: lang === "en" ? "All" : "ሁሉም" },
+      ...productCategories.map((cat) => ({
+        id: cat.id,
+        title: cat.name,
+      })),
+    ];
+  }, [productCategories, lang]);
+
   // Filter products by category
-  const filteredProducts = selectedCategory === 'all' 
-    ? data.products 
-    : data.products.filter((product: any) => (product.category as string) === selectedCategory);
+  const filteredProducts = useMemo(() => {
+    if (selectedCategory === "all") return products;
+
+    return products.filter(
+      (product) => product.product_category_id === selectedCategory
+    );
+  }, [products, selectedCategory]);
 
   // Get featured products (first 2) and other products (remaining)
-  const featuredProducts = filteredProducts.slice(0, 2);
-  const otherProducts = filteredProducts.slice(2);
-  
-  // Split other products into two columns, limit to 3 products per column (3 rows)
-  const leftColumnProducts = otherProducts.slice(0, 3);
-  const rightColumnProducts = otherProducts.slice(3, 6);
+  const featuredProducts = useMemo(() => {
+    return filteredProducts
+      .filter((product) => product.is_featured)
+      .slice(0, 2);
+  }, [filteredProducts]);
 
-  // Category translation helper
-  const getCategoryLabel = (category: string) => {
-    if (category === 'all') {
-      return lang === 'en' ? 'All' : 'ሁሉም';
-    }
-    return category;
-  };
+  const otherProducts = useMemo(() => {
+    return filteredProducts.filter((product) => !product.is_featured).slice(2);
+  }, [filteredProducts]);
+
+  // Split other products into two columns, limit to 3 products per column (3 rows)
+  const leftColumnProducts = useMemo(() => {
+    return otherProducts.slice(0, 3);
+  }, [otherProducts]);
+
+  const rightColumnProducts = useMemo(() => {
+    return otherProducts.slice(3, 6);
+  }, [otherProducts]);
 
   return (
     <section className="py-12 lg:py-16 bg-white dark:bg-gray-900">
       <div className="mx-auto px-4 sm:px-6 lg:px-8 max-w-7xl">
         {/* Section Header - Modern Layout */}
-        <div className="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-4 mb-10" data-aos="fade-down">
+        <div
+          className="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-4 mb-10"
+          data-aos="fade-down"
+        >
           {/* Left Side - Title and Subtitle */}
           <div className="flex-1">
             <h2 className="text-3xl sm:text-4xl lg:text-5xl font-display font-bold text-gray-900 dark:text-white mb-2">
@@ -48,34 +75,49 @@ const Products = () => {
               {data.subtitle}
             </p>
           </div>
-          
+
           {/* Right Side - Button */}
           <div className="flex-shrink-0">
             <a
               href="/products"
               className="inline-flex items-center gap-2 px-6 py-3 bg-primary hover:bg-primary-dark text-white rounded-lg font-semibold transition-all duration-300 hover:shadow-lg hover:scale-105"
             >
-              {data.viewAll || (lang === 'en' ? 'View All Products' : 'ሁሉንም ምርቶች ይመልከቱ')}
-              <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+              {data.viewAll ||
+                (lang === "en" ? "View All Products" : "ሁሉንም ምርቶች ይመልከቱ")}
+              <svg
+                className="w-5 h-5"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth={2}
+                  d="M9 5l7 7-7 7"
+                />
               </svg>
             </a>
           </div>
         </div>
 
         {/* Category Filter */}
-        <div className="flex flex-wrap justify-center gap-3 mb-10" data-aos="fade-up" data-aos-delay="100">
-          {categories.map((category: string) => (
+        <div
+          className="flex flex-wrap justify-center gap-3 mb-10"
+          data-aos="fade-up"
+          data-aos-delay="100"
+        >
+          {categories.map((category) => (
             <button
-              key={category}
-              onClick={() => setSelectedCategory(category)}
+              key={category.id}
+              onClick={() => setSelectedCategory(category.id as number)}
               className={`px-6 py-2 rounded-full font-medium transition-all duration-300 ${
-                selectedCategory === category
-                  ? 'bg-primary text-white shadow-lg'
-                  : 'bg-gray-100 dark:bg-gray-800 text-gray-700 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-gray-700'
+                selectedCategory === category.id
+                  ? "bg-primary text-white shadow-lg"
+                  : "bg-gray-100 dark:bg-gray-800 text-gray-700 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-gray-700"
               }`}
             >
-              {getCategoryLabel(category)}
+              {category.title}
             </button>
           ))}
         </div>
@@ -86,7 +128,7 @@ const Products = () => {
             {/* Left Side - 2 Featured Products (Bigger Cards) - col-6 */}
             {featuredProducts.length > 0 && (
               <div className="lg:col-span-2 flex flex-col gap-4 lg:gap-6">
-                {featuredProducts.map((product: any, index: number) => (
+                {featuredProducts.map((product: Product, index: number) => (
                   <article
                     key={product.id}
                     data-aos="fade-right"
@@ -96,8 +138,12 @@ const Products = () => {
                     {/* Product Image */}
                     <div className="relative h-52 overflow-hidden flex-shrink-0">
                       <Image
-                        src={product.image || 'https://images.unsplash.com/photo-1563453392212-326f5e854473?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80'}
-                        alt={product.title}
+                        src={
+                          product.banner_image
+                            ? `${process.env.NEXT_PUBLIC_IMAGE_URL}/${product.banner_image}`
+                            : "https://images.unsplash.com/photo-1563453392212-326f5e854473"
+                        }
+                        alt={product.name}
                         fill
                         className="object-cover group-hover:scale-105 transition-transform duration-300"
                         sizes="(max-width: 1024px) 100vw, 50vw"
@@ -107,22 +153,32 @@ const Products = () => {
                     {/* Product Content */}
                     <div className="p-4">
                       <h3 className="text-lg lg:text-xl font-display font-semibold text-gray-900 dark:text-white mb-2 group-hover:text-primary dark:group-hover:text-primary-light transition-colors">
-                        {product.title}
+                        {product.name}
                       </h3>
                       <p className="text-sm text-gray-600 dark:text-gray-400 mb-3">
                         {product.description}
                       </p>
                       <div className="flex items-center justify-between">
                         <span className="text-xl font-bold text-primary dark:text-primary-light">
-                          {product.price}
+                          {lang === "en" ? "Comfortable Price" : "በተመጣጣኝ ዋጋ"}
                         </span>
                         <a
-                          href={`/products/${product.title.toLowerCase().replace(/\s+/g, '-')}`}
+                          href={`/products/${product.slug}`}
                           className="inline-flex items-center text-primary dark:text-primary-light font-medium hover:gap-1 transition-all group/link text-sm"
                         >
-                          {lang === 'en' ? 'View' : 'ይመልከቱ'}
-                          <svg className="w-4 h-4 ml-1 transform group-hover/link:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                          {lang === "en" ? "View" : "ይመልከቱ"}
+                          <svg
+                            className="w-4 h-4 ml-1 transform group-hover/link:translate-x-1 transition-transform"
+                            fill="none"
+                            stroke="currentColor"
+                            viewBox="0 0 24 24"
+                          >
+                            <path
+                              strokeLinecap="round"
+                              strokeLinejoin="round"
+                              strokeWidth={2}
+                              d="M9 5l7 7-7 7"
+                            />
                           </svg>
                         </a>
                       </div>
@@ -137,7 +193,7 @@ const Products = () => {
               <>
                 {/* Left Column - col-3 */}
                 <div className="lg:col-span-1 flex flex-col gap-3 lg:gap-4">
-                  {leftColumnProducts.map((product: any, index: number) => (
+                  {leftColumnProducts.map((product: Product, index: number) => (
                     <article
                       key={product.id}
                       data-aos="fade-up"
@@ -147,8 +203,12 @@ const Products = () => {
                       {/* Product Image */}
                       <div className="relative h-24 overflow-hidden flex-shrink-0">
                         <Image
-                          src={product.image || 'https://images.unsplash.com/photo-1563453392212-326f5e854473?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80'}
-                          alt={product.title}
+                          src={
+                            product.banner_image
+                              ? `${process.env.NEXT_PUBLIC_IMAGE_URL}/${product.banner_image}`
+                              : "https://images.unsplash.com/photo-1563453392212-326f5e854473"
+                          }
+                          alt={product.name}
                           fill
                           className="object-cover group-hover:scale-105 transition-transform duration-300"
                           sizes="(max-width: 1024px) 100vw, 25vw"
@@ -158,18 +218,28 @@ const Products = () => {
                       {/* Product Content */}
                       <div className="p-3 flex-1 flex flex-col">
                         <h4 className="text-lg font-display font-semibold text-gray-900 dark:text-white mb-2 group-hover:text-primary dark:group-hover:text-primary-light transition-colors line-clamp-2">
-                          {product.title}
+                          {product.name}
                         </h4>
                         <p className="text-sm text-gray-600 dark:text-gray-400 mb-2 line-clamp-2 flex-1">
                           {product.description}
                         </p>
                         <a
-                          href={`/products/${product.title.toLowerCase().replace(/\s+/g, '-')}`}
+                          href={`/products/${product.slug}`}
                           className="inline-flex items-center text-primary dark:text-primary-light font-medium hover:gap-1 transition-all group/link text-sm mt-auto"
                         >
-                          {lang === 'en' ? 'Read More' : 'ተጨማሪ ያንብቡ'}
-                          <svg className="w-4 h-4 ml-1 transform group-hover/link:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                          {lang === "en" ? "Read More" : "ተጨማሪ ያንብቡ"}
+                          <svg
+                            className="w-4 h-4 ml-1 transform group-hover/link:translate-x-1 transition-transform"
+                            fill="none"
+                            stroke="currentColor"
+                            viewBox="0 0 24 24"
+                          >
+                            <path
+                              strokeLinecap="round"
+                              strokeLinejoin="round"
+                              strokeWidth={2}
+                              d="M9 5l7 7-7 7"
+                            />
                           </svg>
                         </a>
                       </div>
@@ -189,8 +259,12 @@ const Products = () => {
                       {/* Product Image */}
                       <div className="relative h-24 overflow-hidden flex-shrink-0">
                         <Image
-                          src={product.image || 'https://images.unsplash.com/photo-1563453392212-326f5e854473?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80'}
-                          alt={product.title}
+                          src={
+                            product.banner_image
+                              ? `${process.env.NEXT_PUBLIC_IMAGE_URL}/${product.banner_image}`
+                              : "https://images.unsplash.com/photo-1563453392212-326f5e854473"
+                          }
+                          alt={product.name}
                           fill
                           className="object-cover group-hover:scale-105 transition-transform duration-300"
                           sizes="(max-width: 1024px) 100vw, 25vw"
@@ -200,18 +274,28 @@ const Products = () => {
                       {/* Product Content */}
                       <div className="p-3 flex-1 flex flex-col">
                         <h4 className="text-lg font-display font-semibold text-gray-900 dark:text-white mb-2 group-hover:text-primary dark:group-hover:text-primary-light transition-colors line-clamp-2">
-                          {product.title}
+                          {product.name}
                         </h4>
                         <p className="text-sm text-gray-600 dark:text-gray-400 mb-2 line-clamp-2 flex-1">
                           {product.description}
                         </p>
                         <a
-                          href={`/products/${product.title.toLowerCase().replace(/\s+/g, '-')}`}
+                          href={`/products/${product.slug}`}
                           className="inline-flex items-center text-primary dark:text-primary-light font-medium hover:gap-1 transition-all group/link text-sm mt-auto"
                         >
-                          {lang === 'en' ? 'Read More' : 'ተጨማሪ ያንብቡ'}
-                          <svg className="w-4 h-4 ml-1 transform group-hover/link:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                          {lang === "en" ? "Read More" : "ተጨማሪ ያንብቡ"}
+                          <svg
+                            className="w-4 h-4 ml-1 transform group-hover/link:translate-x-1 transition-transform"
+                            fill="none"
+                            stroke="currentColor"
+                            viewBox="0 0 24 24"
+                          >
+                            <path
+                              strokeLinecap="round"
+                              strokeLinejoin="round"
+                              strokeWidth={2}
+                              d="M9 5l7 7-7 7"
+                            />
                           </svg>
                         </a>
                       </div>
@@ -224,13 +308,15 @@ const Products = () => {
         ) : (
           <div className="text-center py-12">
             <p className="text-gray-500 dark:text-gray-400 text-lg">
-              {lang === 'en' ? 'No products found in this category.' : 'በዚህ ምድብ ውስጥ ምርቶች አልተገኙም።'}
+              {lang === "en"
+                ? "No products found in this category."
+                : "በዚህ ምድብ ውስጥ ምርቶች አልተገኙም።"}
             </p>
           </div>
         )}
       </div>
     </section>
   );
-}
+};
 
 export default Products;
