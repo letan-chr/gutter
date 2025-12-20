@@ -52,6 +52,16 @@ const Footer = () => {
     data = getLayoutData("footer", "en");
   }
 
+  const ALLOWED_SOCIALS = ["facebook", "instagram", "twitter", "linkedin"];
+  const socialLinks = setup?.social_media
+    ? ALLOWED_SOCIALS.map((name) => {
+        const url = setup.social_media[name as keyof typeof setup.social_media];
+        return url ? { name, url } : null;
+      })
+        .filter((item): item is { name: string; url: string } => item !== null)
+        .slice(0, 4)
+    : [];
+
   // Social media icon components
   const getSocialIcon = (name: string) => {
     const socialName = name.toLowerCase();
@@ -99,7 +109,7 @@ const Footer = () => {
             </p>
             {/* Social Links */}
             <div className="flex gap-3">
-              {data.social.links.map((social: any, index: number) => (
+              {socialLinks.map((social: any, index: number) => (
                 <a
                   key={index}
                   href={social.url}
