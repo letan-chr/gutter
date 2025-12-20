@@ -14,7 +14,7 @@ const Service = () => {
   const [meta, setMeta] = useState<ServiceListResponse["meta"] | null>(null);
   const [page, setPage] = useState(1);
 
-  const PER_PAGE = 6;
+  const PER_PAGE = 10;
 
   useEffect(() => {
     async function fetchServices() {
