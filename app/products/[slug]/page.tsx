@@ -1,24 +1,62 @@
-import React from 'react'
-import Breadcrump from '@/components/layouts/Breadcrump';
-import ProductDetails from '@/components/pages/products/ProductDetails';
+"use client";
 
-const page = async ({ params }: { params: Promise<{ slug: string }> }) => {
-  const { slug } = await params;
-  const title = slug
-    .split('-')
-    .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
-    .join(' ');
-  
+import React, { useEffect, useState } from "react";
+import Breadcrump from "@/components/layouts/Breadcrump";
+import ProductDetails from "@/components/pages/products/ProductDetails";
+import { useParams } from "next/navigation";
+import { Product } from "@/types/types";
+import { getAllProducts } from "@/api/Api";
+import { resolveProduct } from "@/lib/resolvers/productResolver";
+import { useLanguage } from "@/components/providers/LanguageProvider";
+
+const page = () => {
+  const { slug } = useParams();
+  const { language: lang } = useLanguage();
+  const [products, setProducts] = useState<Product[]>([]);
+  console.log(slug);
+
+  useEffect(() => {
+    async function fetchData() {
+      try {
+        // 🔹 Products & Categories
+        const [productsRes] = await Promise.all([getAllProducts()]);
+
+        // Resolve products
+        const resolvedProducts = productsRes.data.map((product) =>
+          resolveProduct(product, lang)
+        );
+        setProducts(resolvedProducts);
+      } catch (err) {
+        console.error(err);
+      }
+    }
+
+    fetchData();
+  }, [lang]);
+
+  const normalizedSlug = Array.isArray(slug) ? slug[0] : slug;
+
+  const product = products.find((p) => p.slug === normalizedSlug);
+  const relatedProducts = products
+    .filter((p) => p.slug !== normalizedSlug)
+    .slice(0, 4);
+
+  if (!product) {
+    return (
+      <div className="text-center py-20">No products found for this slug</div>
+    );
+  }
+
   return (
     <>
-      <Breadcrump 
+      <Breadcrump
         backgroundImage="/assets/images/breadcrump.jpg"
-        title={title}
+        title={product.name}
         subtitle="Premium quality gutter solutions for your home"
       />
-      <ProductDetails slug={slug} />
+      <ProductDetails product={product} relatedProducts={relatedProducts} />
     </>
-  )
-}
+  );
+};
 
-export default page
+export default page;
