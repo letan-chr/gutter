@@ -28,7 +28,7 @@ const Blog = () => {
         const [blogsRes, categoriesRes] = await Promise.all([
           getAllBlogsWithPagination({
             page,
-            per_page: 6,
+            per_page: 10,
           }),
           getAllBlogCategories(),
         ]);
