@@ -50,7 +50,7 @@ const Products = ({ products, productCategories }: ProductSectionProps) => {
   const otherProducts = useMemo(() => {
     return filteredProducts
       .filter((product) => !product.is_featured)
-      .slice(0, 4);
+      .slice(0, 8);
   }, [filteredProducts]);
 
   // Split other products into two columns, limit to 3 products per column (3 rows)
