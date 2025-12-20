@@ -1,5 +1,11 @@
 import { ApiResponse } from "@/types/api";
-import { BatchResponse, Feature, ServiceListResponse } from "@/types/types";
+import {
+  BatchResponse,
+  BlogCategoryResponse,
+  BlogListResponse,
+  Feature,
+  ServiceListResponse,
+} from "@/types/types";
 import axios from "axios";
 const axiosInstance = axios.create({
   baseURL: process.env.NEXT_PUBLIC_API_URL,
@@ -65,19 +71,33 @@ const getProductBySlug = async (id: string) => {
   const response = await axiosInstance.get(`/products/${id}`);
   return response.data;
 };
-
 const getProductCategories = async () => {
   const response = await axiosInstance.get("/product-categories");
   return response.data;
 };
-const getBlogsCategories = async () => {
-  const response = await axiosInstance.get("/blog-categories");
+
+//blogs and blog categories
+export async function getAllBlogCategories(): Promise<BlogCategoryResponse> {
+  const response = await axiosInstance.get<BlogCategoryResponse>(
+    "/blog/categories"
+  );
+
   return response.data;
-};
-const getBlogs = async () => {
-  const response = await axiosInstance.get("/blogs");
+}
+export async function getAllBlogs(): Promise<BlogListResponse> {
+  const response = await axiosInstance.get<BlogListResponse>("/blog");
   return response.data;
-};
+}
+export async function getAllBlogsWithPagination(params?: {
+  page?: number;
+  per_page?: number;
+}): Promise<BlogListResponse> {
+  const response = await axiosInstance.get<BlogListResponse>("/blog", {
+    params,
+  });
+
+  return response.data;
+}
 
 const getBlogBySlug = async (id: string) => {
   const response = await axiosInstance.get(`/blogs/${id}`);
@@ -129,8 +149,6 @@ export {
   getProducts,
   getProductBySlug,
   getProductCategories,
-  getBlogsCategories,
-  getBlogs,
   getBlogBySlug,
   getAllTestimonials,
   getAllClients,

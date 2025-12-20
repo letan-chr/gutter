@@ -1,25 +1,29 @@
-'use client';
+"use client";
 
-import React from 'react';
-import Image from 'next/image';
-import { getSectionData, getPageData } from '@/data/utils';
-import { useLanguage } from '@/components/providers/LanguageProvider';
+import React from "react";
+import Image from "next/image";
+import { getSectionData } from "@/data/utils";
+import { useLanguage } from "@/components/providers/LanguageProvider";
+import { Blog as BlogType } from "@/types/types";
 
-const Blog = () => {
+interface BlogSectionProps {
+  blogs: BlogType[];
+}
+
+const Blog = ({ blogs }: BlogSectionProps) => {
   const { language: lang } = useLanguage();
-  const data = getSectionData('blog', lang);
-  const blogData = getPageData('blog', lang);
+  const data = getSectionData("blog", lang);
 
-  // Get featured posts (first 2) and latest posts (next 4, or all remaining if less than 4)
-  const allPosts = blogData.posts || [];
-  const featuredPosts = allPosts.slice(0, 2);
-  const latestPosts = allPosts.slice(2, 6);
+  const featuredBlogs = blogs.filter((blog) => blog.is_featured);
 
   return (
     <section className="py-12 lg:py-16 bg-white dark:bg-gray-900">
       <div className="mx-auto px-4 sm:px-6 lg:px-8 max-w-7xl">
         {/* Section Header - Modern Layout */}
-        <div className="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-4 mb-10" data-aos="fade-down">
+        <div
+          className="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-4 mb-10"
+          data-aos="fade-down"
+        >
           {/* Left Side - Title and Subtitle */}
           <div className="flex-1">
             <h2 className="text-3xl sm:text-4xl lg:text-5xl font-display font-bold text-gray-900 dark:text-white mb-2">
@@ -29,7 +33,7 @@ const Blog = () => {
               {data.subtitle}
             </p>
           </div>
-          
+
           {/* Right Side - Button */}
           <div className="flex-shrink-0">
             <a
@@ -37,17 +41,27 @@ const Blog = () => {
               className="inline-flex items-center gap-2 px-6 py-3 bg-primary hover:bg-primary-dark text-white rounded-lg font-semibold transition-all duration-300 hover:shadow-lg hover:scale-105"
             >
               {data.viewAll}
-              <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+              <svg
+                className="w-5 h-5"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth={2}
+                  d="M9 5l7 7-7 7"
+                />
               </svg>
             </a>
           </div>
         </div>
 
         {/* Featured Blog Posts - 2 Large Cards */}
-        {featuredPosts.length > 0 && (
+        {featuredBlogs.length > 0 && (
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 lg:gap-6 mb-10">
-            {featuredPosts.map((post: any, index: number) => (
+            {featuredBlogs.slice(0, 4).map((post: BlogType, index: number) => (
               <article
                 key={post.id}
                 data-aos="fade-up"
@@ -57,7 +71,11 @@ const Blog = () => {
                 {/* Post Image */}
                 <div className="relative h-44 overflow-hidden">
                   <Image
-                    src={post.image || 'https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?w=800&h=400&fit=crop'}
+                    src={
+                      post.banner_image
+                        ? `${process.env.NEXT_PUBLIC_IMAGE_URL}/${post.banner_image}`
+                        : "https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?w=800&h=400&fit=crop"
+                    }
                     alt={post.title}
                     fill
                     className="object-cover group-hover:scale-105 transition-transform duration-300"
@@ -68,9 +86,11 @@ const Blog = () => {
                 {/* Post Content */}
                 <div className="p-4">
                   <div className="flex items-center gap-2 text-xs text-gray-500 dark:text-gray-400 mb-2">
-                    <span>{post.date}</span>
+                    <span>
+                      {new Date(post.created_at).toLocaleDateString()}
+                    </span>
                     <span>•</span>
-                    <span>{post.author}</span>
+                    <span>{post.category?.title}</span>
                   </div>
                   <h3 className="text-lg lg:text-xl font-display font-semibold text-gray-900 dark:text-white mb-2 group-hover:text-primary dark:group-hover:text-primary-light transition-colors">
                     {post.title}
@@ -82,9 +102,19 @@ const Blog = () => {
                     href={`/blogs/${post.slug}`}
                     className="inline-flex items-center text-primary dark:text-primary-light font-medium hover:gap-1 transition-all group/link text-sm"
                   >
-                    {lang === 'en' ? 'Read More' : 'ተጨማሪ ያንብቡ'}
-                    <svg className="w-4 h-4 ml-1 transform group-hover/link:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                    {lang === "en" ? "Read More" : "ተጨማሪ ያንብቡ"}
+                    <svg
+                      className="w-4 h-4 ml-1 transform group-hover/link:translate-x-1 transition-transform"
+                      fill="none"
+                      stroke="currentColor"
+                      viewBox="0 0 24 24"
+                    >
+                      <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        strokeWidth={2}
+                        d="M9 5l7 7-7 7"
+                      />
                     </svg>
                   </a>
                 </div>
@@ -94,9 +124,9 @@ const Blog = () => {
         )}
 
         {/* Latest Blog Posts - 4 Normal Cards */}
-        {latestPosts.length > 0 && (
+        {blogs.length > 0 && (
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
-            {latestPosts.map((post: any, index: number) => (
+            {blogs.slice(0, 8).map((post: BlogType, index: number) => (
               <article
                 key={post.id}
                 data-aos="fade-up"
@@ -106,7 +136,11 @@ const Blog = () => {
                 {/* Post Image */}
                 <div className="relative h-36 overflow-hidden">
                   <Image
-                    src={post.image || 'https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?w=800&h=400&fit=crop'}
+                    src={
+                      post.banner_image
+                        ? `${process.env.NEXT_PUBLIC_IMAGE_URL}/${post.banner_image}`
+                        : "https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?w=800&h=400&fit=crop"
+                    }
                     alt={post.title}
                     fill
                     className="object-cover group-hover:scale-105 transition-transform duration-300"
@@ -117,9 +151,11 @@ const Blog = () => {
                 {/* Post Content */}
                 <div className="p-3">
                   <div className="flex items-center gap-2 text-xs text-gray-500 dark:text-gray-400 mb-2">
-                    <span>{post.date}</span>
+                    <span>
+                      {new Date(post.created_at).toLocaleDateString()}
+                    </span>
                     <span>•</span>
-                    <span className="truncate">{post.author}</span>
+                    <span className="truncate">{post.category?.title}</span>
                   </div>
                   <h4 className="text-lg font-display font-semibold text-gray-900 dark:text-white mb-2 group-hover:text-primary dark:group-hover:text-primary-light transition-colors line-clamp-2">
                     {post.title}
@@ -131,9 +167,19 @@ const Blog = () => {
                     href={`/blogs/${post.slug}`}
                     className="inline-flex items-center text-primary dark:text-primary-light font-medium hover:gap-1 transition-all group/link text-sm"
                   >
-                    {lang === 'en' ? 'Read More' : 'ተጨማሪ ያንብቡ'}
-                    <svg className="w-4 h-4 ml-1 transform group-hover/link:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                    {lang === "en" ? "Read More" : "ተጨማሪ ያንብቡ"}
+                    <svg
+                      className="w-4 h-4 ml-1 transform group-hover/link:translate-x-1 transition-transform"
+                      fill="none"
+                      stroke="currentColor"
+                      viewBox="0 0 24 24"
+                    >
+                      <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        strokeWidth={2}
+                        d="M9 5l7 7-7 7"
+                      />
                     </svg>
                   </a>
                 </div>
@@ -144,6 +190,6 @@ const Blog = () => {
       </div>
     </section>
   );
-}
+};
 
 export default Blog;

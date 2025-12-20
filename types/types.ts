@@ -19,16 +19,34 @@ export interface BlogImage {
   updated_at: string;
 }
 
-export interface BlogCategory {
+export interface BlogCategoryTranslation {
   id: number;
-  business_id: number;
+  blog_category_id: string;
+  locale: string; // "en", "am", "ar"
   title: string;
   slug: string;
   description: string | null;
-  image: string | null;
-  status: string;
   created_at: string;
   updated_at: string;
+}
+
+export interface BlogCategory {
+  id: number;
+  business_id: number;
+
+  // default (fallback)
+  title: string;
+  slug: string;
+  description: string | null;
+
+  image: string | null;
+  status: string;
+
+  created_at: string;
+  updated_at: string;
+
+  // ✅ translations
+  translations: BlogCategoryTranslation[];
 }
 
 export type BlogCategoryResponse = {

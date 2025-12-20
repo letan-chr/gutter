@@ -8,17 +8,24 @@ import Cta from "@/components/sections/Cta";
 import Blog from "@/components/sections/Blog";
 import Service from "@/components/sections/Service";
 import About from "@/components/sections/About";
-import { AboutContent, Feature, ServiceType } from "@/types/types";
+import {
+  AboutContent,
+  Feature,
+  ServiceType,
+  Blog as BlogType,
+} from "@/types/types";
 import { useEffect, useState } from "react";
-import { getAllServices, getBatchData } from "@/api/Api";
+import { getAllBlogs, getAllServices, getBatchData } from "@/api/Api";
 import { resolveCoreValue } from "@/lib/resolvers/resolveCoreValue";
 import { resolveAboutContent } from "@/lib/resolvers/resolveAbout";
 import { useLanguage } from "@/components/providers/LanguageProvider";
 import { resolveService } from "@/lib/resolvers/serviceResolver";
+import { resolveBlog } from "@/lib/resolvers/blogResolver";
 
 export default function Home() {
   const [aboutContent, setAboutContent] = useState<AboutContent | null>(null);
   const [services, setServices] = useState<ServiceType[]>([]);
+  const [blogs, setBlogs] = useState<BlogType[]>([]);
   const { language } = useLanguage();
 
   useEffect(() => {
@@ -52,6 +59,15 @@ export default function Home() {
         );
 
         setServices(resolvedServices);
+
+        // 🔹 Blogs (no pagination)
+        const blogResponse = await getAllBlogs();
+
+        const resolvedBlogs = blogResponse.data.map((blog) =>
+          resolveBlog(blog, language)
+        );
+
+        setBlogs(resolvedBlogs);
       } catch (err) {
         console.error(err);
       }
@@ -60,7 +76,7 @@ export default function Home() {
     fetchData();
   }, [language]);
 
-  console.log("service", services);
+  console.log("blogs", blogs);
   console.log("lang", language);
 
   return (
@@ -73,7 +89,7 @@ export default function Home() {
       <Products />
 
       <Cta />
-      <Blog />
+      <Blog blogs={blogs} />
       <Partners />
     </>
   );

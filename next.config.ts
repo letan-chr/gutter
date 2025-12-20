@@ -1,23 +1,16 @@
 import type { NextConfig } from "next";
 
-const nextConfig: NextConfig = {
+const nextConfig = {
   images: {
     remotePatterns: [
       {
-        protocol: 'https',
-        hostname: 'logo.clearbit.com',
+        protocol: "https",
+        hostname: "healthnetinternalmedicinespecialitycenter.com",
+        pathname: "/public/storage/**",
       },
       {
-        protocol: 'https',
-        hostname: 'via.placeholder.com',
-      },
-      {
-        protocol: 'https',
-        hostname: '**.clearbit.com',
-      },
-      {
-        protocol: 'https',
-        hostname: 'images.unsplash.com',
+        protocol: "https",
+        hostname: "images.unsplash.com",
       },
     ],
   },
