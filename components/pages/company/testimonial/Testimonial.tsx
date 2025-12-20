@@ -4,22 +4,33 @@ import React, { useEffect, useState } from "react";
 import Image from "next/image";
 import { getPageData } from "@/data/utils";
 import { useLanguage } from "@/components/providers/LanguageProvider";
-import { Testimonial as TestimonialType } from "@/types/types";
-import { getAllTestimonials } from "@/api/Api";
+import { Feature, Stat, Testimonial as TestimonialType } from "@/types/types";
+import { getAllTestimonials, getBatchData } from "@/api/Api";
 import { resolveTestimonial } from "@/lib/resolvers/testimonialResolver";
+import { resolveStat } from "@/lib/resolvers/resolveStats";
 
 const Testimonial = () => {
   const { language: lang } = useLanguage();
   const [testimonials, setTestimonials] = useState<TestimonialType[]>([]);
+  const [stats, setStats] = useState<Stat[]>([]);
   const data = getPageData("testimonials", lang);
 
   useEffect(() => {
+    const features: Feature[] = [{ name: "about_statistic", amount: 4 }];
+
     async function loadTestimonials() {
+      const data = await getBatchData(features);
       const response = await getAllTestimonials();
 
       const resolved = response.data.map((t) => resolveTestimonial(t, lang));
 
       setTestimonials(resolved);
+
+      const rawStats = data.about_statistic?.data ?? [];
+
+      const resolvedStats = rawStats.map((stat) => resolveStat(stat, lang));
+
+      setStats(resolvedStats);
     }
 
     loadTestimonials();
@@ -110,46 +121,18 @@ const Testimonial = () => {
                 : "ደስ የሚሉ ደንበኞቻችንን ይቀላቀሉ"}
             </h2>
             <div className="grid grid-cols-2 md:grid-cols-4 gap-6 lg:gap-8 mb-8">
-              <div className="group relative">
-                <div className="backdrop-blur-sm bg-white/10 dark:bg-white/5 rounded-xl p-6 lg:p-8 border border-white/20 hover:border-white/40 transition-all duration-300 hover:scale-105 hover:bg-white/15">
-                  <div className="text-4xl lg:text-5xl xl:text-6xl font-bold mb-2 text-white group-hover:text-primary transition-colors duration-300">
-                    {data.testimonials.length}+
-                  </div>
-                  <div className="text-white/90 text-sm lg:text-base font-medium">
-                    {lang === "en" ? "Happy Customers" : "ደስ የሚሉ ደንበኞች"}
-                  </div>
-                </div>
-              </div>
-              <div className="group relative">
-                <div className="backdrop-blur-sm bg-white/10 dark:bg-white/5 rounded-xl p-6 lg:p-8 border border-white/20 hover:border-white/40 transition-all duration-300 hover:scale-105 hover:bg-white/15">
-                  <div className="text-4xl lg:text-5xl xl:text-6xl font-bold mb-2 text-white group-hover:text-primary transition-colors duration-300">
-                    5
-                  </div>
-                  <div className="text-white/90 text-sm lg:text-base font-medium">
-                    {lang === "en" ? "Star Rating" : "የኮከብ ደረጃ"}
+              {stats.slice(0, 4).map((s) => (
+                <div key={s.id} className="group relative">
+                  <div className="backdrop-blur-sm bg-white/10 dark:bg-white/5 rounded-xl p-6 lg:p-8 border border-white/20 hover:border-white/40 transition-all duration-300 hover:scale-105 hover:bg-white/15">
+                    <div className="text-4xl lg:text-5xl xl:text-6xl font-bold mb-2 text-white group-hover:text-primary transition-colors duration-300">
+                      {s.value}
+                    </div>
+                    <div className="text-white/90 text-sm lg:text-base font-medium">
+                      {s.name}
+                    </div>
                   </div>
                 </div>
-              </div>
-              <div className="group relative">
-                <div className="backdrop-blur-sm bg-white/10 dark:bg-white/5 rounded-xl p-6 lg:p-8 border border-white/20 hover:border-white/40 transition-all duration-300 hover:scale-105 hover:bg-white/15">
-                  <div className="text-4xl lg:text-5xl xl:text-6xl font-bold mb-2 text-white group-hover:text-primary transition-colors duration-300">
-                    100%
-                  </div>
-                  <div className="text-white/90 text-sm lg:text-base font-medium">
-                    {lang === "en" ? "Satisfaction" : "የደስታ መጠን"}
-                  </div>
-                </div>
-              </div>
-              <div className="group relative">
-                <div className="backdrop-blur-sm bg-white/10 dark:bg-white/5 rounded-xl p-6 lg:p-8 border border-white/20 hover:border-white/40 transition-all duration-300 hover:scale-105 hover:bg-white/15">
-                  <div className="text-4xl lg:text-5xl xl:text-6xl font-bold mb-2 text-white group-hover:text-primary transition-colors duration-300">
-                    10+
-                  </div>
-                  <div className="text-white/90 text-sm lg:text-base font-medium">
-                    {lang === "en" ? "Years Experience" : "የልምድ ዓመታት"}
-                  </div>
-                </div>
-              </div>
+              ))}
             </div>
             <p className="text-white/90 mb-8 text-lg">
               {lang === "en"
