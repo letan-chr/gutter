@@ -4,13 +4,14 @@ import React, { useState, useEffect } from "react";
 import Image from "next/image";
 import { getPageData } from "@/data/utils";
 import { useLanguage } from "@/components/providers/LanguageProvider";
-import { TeamMember } from "@/types/types";
+import { Stat, TeamMember } from "@/types/types";
 
 interface TeamSectionProps {
   teams: TeamMember[];
+  stats: Stat[];
 }
 
-const Team = ({ teams }: TeamSectionProps) => {
+const Team = ({ teams, stats }: TeamSectionProps) => {
   const members = teams;
   const { language: lang } = useLanguage();
   const data = getPageData("team", lang);
@@ -160,46 +161,18 @@ const Team = ({ teams }: TeamSectionProps) => {
               {lang === "en" ? "Meet Our Expert Team" : "የእኛን ባለሙያ ቡድን ይቀድሙ"}
             </h2>
             <div className="grid grid-cols-2 md:grid-cols-4 gap-6 lg:gap-8 mb-8">
-              <div className="group relative">
-                <div className="backdrop-blur-sm bg-white/10 dark:bg-white/5 rounded-xl p-6 lg:p-8 border border-white/20 hover:border-white/40 transition-all duration-300 hover:scale-105 hover:bg-white/15">
-                  <div className="text-4xl lg:text-5xl xl:text-6xl font-bold mb-2 text-white group-hover:text-primary transition-colors duration-300">
-                    {members.length}+
-                  </div>
-                  <div className="text-white/90 text-sm lg:text-base font-medium">
-                    {lang === "en" ? "Team Members" : "የቡድን አባላት"}
-                  </div>
-                </div>
-              </div>
-              <div className="group relative">
-                <div className="backdrop-blur-sm bg-white/10 dark:bg-white/5 rounded-xl p-6 lg:p-8 border border-white/20 hover:border-white/40 transition-all duration-300 hover:scale-105 hover:bg-white/15">
-                  <div className="text-4xl lg:text-5xl xl:text-6xl font-bold mb-2 text-white group-hover:text-primary transition-colors duration-300">
-                    15+
-                  </div>
-                  <div className="text-white/90 text-sm lg:text-base font-medium">
-                    {lang === "en" ? "Years Experience" : "የልምድ ዓመታት"}
+              {stats.slice(0, 4).map((s) => (
+                <div key={s.id} className="group relative">
+                  <div className="backdrop-blur-sm bg-white/10 dark:bg-white/5 rounded-xl p-6 lg:p-8 border border-white/20 hover:border-white/40 transition-all duration-300 hover:scale-105 hover:bg-white/15">
+                    <div className="text-4xl lg:text-5xl xl:text-6xl font-bold mb-2 text-white group-hover:text-primary transition-colors duration-300">
+                      {s.value}
+                    </div>
+                    <div className="text-white/90 text-sm lg:text-base font-medium">
+                      {s.name}
+                    </div>
                   </div>
                 </div>
-              </div>
-              <div className="group relative">
-                <div className="backdrop-blur-sm bg-white/10 dark:bg-white/5 rounded-xl p-6 lg:p-8 border border-white/20 hover:border-white/40 transition-all duration-300 hover:scale-105 hover:bg-white/15">
-                  <div className="text-4xl lg:text-5xl xl:text-6xl font-bold mb-2 text-white group-hover:text-primary transition-colors duration-300">
-                    1000+
-                  </div>
-                  <div className="text-white/90 text-sm lg:text-base font-medium">
-                    {lang === "en" ? "Projects Completed" : "የተጠናቀቁ ፕሮጀክቶች"}
-                  </div>
-                </div>
-              </div>
-              <div className="group relative">
-                <div className="backdrop-blur-sm bg-white/10 dark:bg-white/5 rounded-xl p-6 lg:p-8 border border-white/20 hover:border-white/40 transition-all duration-300 hover:scale-105 hover:bg-white/15">
-                  <div className="text-4xl lg:text-5xl xl:text-6xl font-bold mb-2 text-white group-hover:text-primary transition-colors duration-300">
-                    24/7
-                  </div>
-                  <div className="text-white/90 text-sm lg:text-base font-medium">
-                    {lang === "en" ? "Support" : "ድጋፍ"}
-                  </div>
-                </div>
-              </div>
+              ))}
             </div>
             <p className="text-white/90 mb-8 text-lg">
               {lang === "en"
