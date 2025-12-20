@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState, useId } from "react";
+import React, { useState, useId, useEffect } from "react";
 import { getPageData, getLayoutData } from "@/data/utils";
 import { useLanguage } from "@/components/providers/LanguageProvider";
 import {
@@ -12,8 +12,8 @@ import {
   CheckCircle,
   MessageSquare,
 } from "lucide-react";
-import { postContactForm } from "@/api/Api";
-import { ContactFormData } from "@/types/types";
+import { getBatchData, postContactForm } from "@/api/Api";
+import { ContactFormData, Feature, Setup } from "@/types/types";
 
 const Contact = () => {
   const { language: lang } = useLanguage();
@@ -27,6 +27,29 @@ const Contact = () => {
   const [isSubmitted, setIsSubmitted] = useState(false);
   const data = getPageData("contact", lang);
   const layoutData = getLayoutData("footer", lang);
+
+  const [setup, setSetup] = useState<Setup | null>(null);
+
+  useEffect(() => {
+    const features: Feature[] = [{ name: "about_setup" }];
+
+    async function fetchData() {
+      try {
+        const data = await getBatchData(features);
+
+        setSetup(data.about_setup?.data ?? null);
+      } catch (err) {
+        console.error(err);
+      }
+    }
+
+    fetchData();
+  }, []);
+
+  const primaryPhone = setup?.phone_numbers?.[0]?.value ?? "";
+  const primaryEmail = setup?.email_addresses?.[0]?.value ?? "";
+  const address = setup?.company_address ?? "";
+  const mapSrc = setup?.map_src ?? "";
 
   // Then update your handleSubmit function:
   const handleSubmit = async (e: React.FormEvent) => {
@@ -70,43 +93,45 @@ const Contact = () => {
     });
   };
 
+  const contactCards = [
+    {
+      icon: Phone,
+      title: data.info.phone.title,
+      value: primaryPhone,
+      link: primaryPhone ? `tel:${primaryPhone}` : undefined,
+      color: "bg-blue-50 dark:bg-blue-900/20",
+      iconColor: "text-blue-600",
+    },
+    {
+      icon: Mail,
+      title: data.info.email.title,
+      value: primaryEmail,
+      link: primaryEmail ? `mailto:${primaryEmail}` : undefined,
+      color: "bg-green-50 dark:bg-green-900/20",
+      iconColor: "text-green-600",
+    },
+    {
+      icon: MapPin,
+      title: data.info.address.title,
+      value: address,
+      color: "bg-orange-50 dark:bg-orange-900/20",
+      iconColor: "text-orange-600",
+    },
+    {
+      icon: Clock,
+      title: data.info.hours.title,
+      value: data.info.hours.value, // keep static unless backend adds hours
+      color: "bg-purple-50 dark:bg-purple-900/20",
+      iconColor: "text-purple-600",
+    },
+  ];
+
   return (
     <section className="py-8 bg-gray-50 dark:bg-gray-900">
       <div className="mx-auto px-4">
         {/* Contact Cards Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-12">
-          {[
-            {
-              icon: Phone,
-              title: data.info.phone.title,
-              value: data.info.phone.value,
-              link: `tel:${data.info.phone.value}`,
-              color: "bg-blue-50 dark:bg-blue-900/20",
-              iconColor: "text-blue-600",
-            },
-            {
-              icon: Mail,
-              title: data.info.email.title,
-              value: data.info.email.value,
-              link: `mailto:${data.info.email.value}`,
-              color: "bg-green-50 dark:bg-green-900/20",
-              iconColor: "text-green-600",
-            },
-            {
-              icon: MapPin,
-              title: data.info.address.title,
-              value: data.info.address.value,
-              color: "bg-orange-50 dark:bg-orange-900/20",
-              iconColor: "text-orange-600",
-            },
-            {
-              icon: Clock,
-              title: data.info.hours.title,
-              value: data.info.hours.value,
-              color: "bg-purple-50 dark:bg-purple-900/20",
-              iconColor: "text-purple-600",
-            },
-          ].map((item, index) => (
+          {contactCards.map((item, index) => (
             <div
               key={index}
               className={`${item.color} rounded-xl p-6 border border-gray-200 dark:border-gray-700 hover:shadow-lg transition-shadow`}
@@ -280,9 +305,7 @@ const Contact = () => {
               </div>
               <div className="h-64 w-full relative">
                 <iframe
-                  src={`https://www.google.com/maps?q=${encodeURIComponent(
-                    data.info.address.value
-                  )}&output=embed`}
+                  src={mapSrc}
                   width="100%"
                   height="100%"
                   style={{ border: 0 }}
@@ -309,10 +332,10 @@ const Contact = () => {
                       {lang === "en" ? "Call us directly" : "በቀጥታ ይደውሉ"}
                     </p>
                     <a
-                      href={`tel:${data.info.phone.value}`}
+                      href={`tel:${primaryPhone}`}
                       className="font-medium text-gray-900 dark:text-white hover:text-primary transition-colors"
                     >
-                      {data.info.phone.value}
+                      {primaryPhone}
                     </a>
                   </div>
                 </div>
@@ -325,10 +348,10 @@ const Contact = () => {
                       {lang === "en" ? "Email us" : "ኢሜይል ይላኩ"}
                     </p>
                     <a
-                      href={`mailto:${data.info.email.value}`}
+                      href={`mailto:${primaryEmail}`}
                       className="font-medium text-gray-900 dark:text-white hover:text-primary transition-colors"
                     >
-                      {data.info.email.value}
+                      {primaryEmail}
                     </a>
                   </div>
                 </div>
