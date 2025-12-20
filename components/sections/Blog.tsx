@@ -1,18 +1,51 @@
 "use client";
 
-import React from "react";
+import React, { useEffect, useMemo, useState } from "react";
 import Image from "next/image";
 import { getSectionData } from "@/data/utils";
 import { useLanguage } from "@/components/providers/LanguageProvider";
-import { Blog as BlogType } from "@/types/types";
+import { BlogCategory, Blog as BlogType } from "@/types/types";
+import { resolveBlogCategory } from "@/lib/resolvers/blogCategoryResolver";
+import { getAllBlogCategories } from "@/api/Api";
 
 interface BlogSectionProps {
   blogs: BlogType[];
 }
 
 const Blog = ({ blogs }: BlogSectionProps) => {
+  const [categories, setCategories] = useState<BlogCategory[]>([]);
   const { language: lang } = useLanguage();
   const data = getSectionData("blog", lang);
+
+  useEffect(() => {
+    async function fetchData() {
+      try {
+        const categoriesRes = await getAllBlogCategories();
+        setCategories(
+          categoriesRes.data.map((cat: BlogCategory) =>
+            resolveBlogCategory(cat, lang)
+          )
+        );
+      } catch (error) {
+        console.error(error);
+      }
+    }
+
+    fetchData();
+  }, [lang]);
+
+  const categoryMap = useMemo(() => {
+    const map = new Map<number, BlogCategory>();
+    categories.forEach((cat) => {
+      map.set(cat.id, cat);
+    });
+    return map;
+  }, [categories]);
+
+  const getCategoryTitle = (categoryId?: number) => {
+    if (!categoryId) return "";
+    return categoryMap.get(categoryId)?.title ?? "";
+  };
 
   const featuredBlogs = blogs.filter((blog) => blog.is_featured);
 
@@ -90,7 +123,7 @@ const Blog = ({ blogs }: BlogSectionProps) => {
                       {new Date(post.created_at).toLocaleDateString()}
                     </span>
                     <span>•</span>
-                    <span>{post.category?.title}</span>
+                    <span>{getCategoryTitle(post.category?.id)}</span>
                   </div>
                   <h3 className="text-lg lg:text-xl font-display font-semibold text-gray-900 dark:text-white mb-2 group-hover:text-primary dark:group-hover:text-primary-light transition-colors">
                     {post.title}
@@ -155,7 +188,9 @@ const Blog = ({ blogs }: BlogSectionProps) => {
                       {new Date(post.created_at).toLocaleDateString()}
                     </span>
                     <span>•</span>
-                    <span className="truncate">{post.category?.title}</span>
+                    <span className="truncate">
+                      {getCategoryTitle(post.category?.id)}
+                    </span>
                   </div>
                   <h4 className="text-lg font-display font-semibold text-gray-900 dark:text-white mb-2 group-hover:text-primary dark:group-hover:text-primary-light transition-colors line-clamp-2">
                     {post.title}

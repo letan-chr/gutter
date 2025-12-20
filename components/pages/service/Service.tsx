@@ -38,8 +38,6 @@ const Service = () => {
     fetchServices();
   }, [page, lang]);
 
-  console.log("services", services);
-
   return (
     <section className="py-12 lg:py-20 bg-gray-50 dark:bg-gray-900 relative">
       <div className="mx-auto px-4 sm:px-6 lg:px-8 max-w-7xl">
