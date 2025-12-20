@@ -114,7 +114,7 @@ export default function Home() {
   return (
     <>
       <Hero />
-      <About about={aboutContent} services={services} />
+      <About products={products} about={aboutContent} services={services} />
 
       <Service services={services} />
       <WhyChooseus />

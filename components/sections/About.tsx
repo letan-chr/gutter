@@ -3,14 +3,15 @@
 import React from "react";
 import { getSectionData } from "@/data/utils";
 import { useLanguage } from "@/components/providers/LanguageProvider";
-import { AboutContent, ServiceType, Setup, Stat } from "@/types/types";
+import { AboutContent, Product, ServiceType, Setup, Stat } from "@/types/types";
 
 interface AboutSectionProps {
   about: AboutContent | null;
   services: ServiceType[];
+  products: Product[];
 }
 
-const About = ({ about, services }: AboutSectionProps) => {
+const About = ({ about, services, products }: AboutSectionProps) => {
   const { language: lang } = useLanguage();
   const data = getSectionData("about", lang);
 
@@ -97,7 +98,7 @@ const About = ({ about, services }: AboutSectionProps) => {
               )}
 
               {/* Imported Items */}
-              {data.rightContent.importedItems && (
+              {products.length > 0 && (
                 <div>
                   <h4 className="text-lg font-semibold text-white mb-3">
                     {data.rightContent.importedItemsTitle ||
@@ -105,17 +106,19 @@ const About = ({ about, services }: AboutSectionProps) => {
                     :
                   </h4>
                   <ul className="space-y-2">
-                    {data.rightContent.importedItems.map(
-                      (item: string, index: number) => (
+                    {products
+                      .slice(0, 5)
+                      .map((item: Product, index: number) => (
                         <li
                           key={index}
                           className="flex items-start text-gray-200 dark:text-gray-300"
                         >
                           <span className="text-yellow-400 mr-3 mt-1">•</span>
-                          <span className="text-base lg:text-lg">{item}</span>
+                          <span className="text-base lg:text-lg">
+                            {item.name}
+                          </span>
                         </li>
-                      )
-                    )}
+                      ))}
                   </ul>
                 </div>
               )}
