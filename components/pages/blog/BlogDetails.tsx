@@ -235,10 +235,7 @@ const BlogDetails = ({ post, relatedPosts }: BlogDetailsProps) => {
                     <p className="text-gray-600 dark:text-gray-400 mb-4 text-sm line-clamp-2 leading-relaxed">
                       {relatedPost.excerpt}
                     </p>
-                    <a
-                      href={`/blogs/${relatedPost.slug}`}
-                      className="inline-flex items-center text-primary dark:text-primary-light font-medium text-sm group-hover:gap-1 transition-all"
-                    >
+                    <div className="inline-flex items-center text-primary dark:text-primary-light font-medium text-sm group-hover:gap-1 transition-all">
                       {lang === "en" ? "Read More" : "ተጨማሪ ያንብቡ"}
                       <svg
                         className="w-4 h-4 ml-1 transform group-hover:translate-x-1 transition-transform"
@@ -253,7 +250,7 @@ const BlogDetails = ({ post, relatedPosts }: BlogDetailsProps) => {
                           d="M9 5l7 7-7 7"
                         />
                       </svg>
-                    </a>
+                    </div>
                   </div>
                 </a>
               ))}
