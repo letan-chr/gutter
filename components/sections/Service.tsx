@@ -3,16 +3,26 @@
 import React from "react";
 import { getSectionData } from "@/data/utils";
 import { useLanguage } from "@/components/providers/LanguageProvider";
+import { ServiceType } from "@/types/types";
 
-const Service = () => {
+interface ServiceSectionProps {
+  services: ServiceType[];
+}
+
+const Service = ({ services }: ServiceSectionProps) => {
   const { language: lang } = useLanguage();
   const data = getSectionData("service", lang);
+
+  console.log("serviceData", services);
 
   return (
     <section className="py-12 lg:py-12 bg-gray-50 dark:bg-gray-900 relative ">
       <div className="mx-auto px-6">
         {/* Header */}
-        <div className="text-center max-w-3xl mx-auto mb-8" data-aos="fade-down">
+        <div
+          className="text-center max-w-3xl mx-auto mb-8"
+          data-aos="fade-down"
+        >
           <h2 className="text-4xl font-bold text-gray-900 dark:text-white">
             {data.title}
           </h2>
@@ -23,7 +33,7 @@ const Service = () => {
 
         {/* STACKED SERVICE CARDS */}
         <div className="relative space-y-16 ">
-          {data.services.map((service: any, i: number) => (
+          {services.map((service: ServiceType, i: number) => (
             <div
               key={service.id}
               data-aos="fade-up"
@@ -53,36 +63,36 @@ const Service = () => {
                 {/* LEFT TEXT (7/12 width) - Content Section with background image and diagonal transparent overlay */}
                 <div className="col-span-12 md:col-span-7 relative min-h-[400px]">
                   {/* Background Image */}
-                  <div 
+                  <div
                     className="absolute inset-0 bg-cover bg-center bg-no-repeat rounded-l-3xl"
                     style={{
-                      backgroundImage: `url(${service.image})`,
-                      clipPath: 'polygon(0 0, 100% 0, 85% 100%, 0 100%)'
+                      backgroundImage: `url(${process.env.NEXT_PUBLIC_IMAGE_URL}/${service.banner_image})`,
+                      clipPath: "polygon(0 0, 100% 0, 85% 100%, 0 100%)",
                     }}
                   ></div>
-                  
+
                   {/* Diagonal Black Backdrop Overlay (following diagonal shape) */}
-                  <div 
+                  <div
                     className="absolute inset-0 bg-black/70 backdrop-blur-sm"
                     style={{
-                      clipPath: 'polygon(0 0, 100% 0, 85% 100%, 0 100%)'
+                      clipPath: "polygon(0 0, 100% 0, 85% 100%, 0 100%)",
                     }}
                   ></div>
-                  
+
                   {/* Diagonal Line Separator - Full diagonal from top-right (image section) to bottom-left (content section) */}
-                  <div 
+                  <div
                     className="hidden md:block absolute z-30 pointer-events-none"
                     style={{
-                      top: '0',
-                      right: '15%',
-                      width: '3px',
-                      height: '100%',
-                      background: 'rgba(255,255,255,0.9)',
-                      transform: 'skewX(-12deg)',
-                      transformOrigin: 'top center'
+                      top: "0",
+                      right: "15%",
+                      width: "3px",
+                      height: "100%",
+                      background: "rgba(255,255,255,0.9)",
+                      transform: "skewX(-12deg)",
+                      transformOrigin: "top center",
                     }}
                   ></div>
-                  
+
                   {/* Content with relative positioning */}
                   <div className="relative z-10 p-6 md:p-8 h-full flex flex-col justify-center">
                     <h3 className="text-3xl md:text-4xl font-semibold text-white mb-4 drop-shadow-lg">
@@ -90,13 +100,11 @@ const Service = () => {
                     </h3>
 
                     <p className="text-gray-200 text-lg leading-relaxed mb-6 drop-shadow-md">
-                      {service.description}
+                      {service.short_description}
                     </p>
 
                     <a
-                      href={`/service/${service.title
-                        .toLowerCase()
-                        .replace(/\s+/g, "-")}`}
+                      href={`/service/${service.slug}`}
                       className="px-4 py-2 bg-primary text-white rounded-full font-semibold hover:bg-primary/90 transition inline-block shadow-lg w-fit"
                     >
                       {lang === "en" ? "Learn More" : "ተጨማሪ ይማሩ"}
@@ -107,15 +115,15 @@ const Service = () => {
                 {/* RIGHT IMAGE SECTION (5/12 width) */}
                 <div className="col-span-12 md:col-span-5 relative z-20 min-h-[400px]">
                   {/* Image container covering the curved section */}
-                  <div 
+                  <div
                     className="absolute inset-0 overflow-hidden shadow-2xl"
                     style={{
-                      clipPath: 'polygon(15% 0, 100% 0, 100% 100%, 0 100%)',
-                      boxShadow: '0 25px 50px -12px rgba(0, 0, 0, 0.25)'
+                      clipPath: "polygon(15% 0, 100% 0, 100% 100%, 0 100%)",
+                      boxShadow: "0 25px 50px -12px rgba(0, 0, 0, 0.25)",
                     }}
                   >
                     <img
-                      src={service.image}
+                      src={`${process.env.NEXT_PUBLIC_IMAGE_URL}/${service.banner_image}`}
                       alt={service.title}
                       className="w-full h-full object-cover"
                       loading="lazy"

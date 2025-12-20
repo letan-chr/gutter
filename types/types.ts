@@ -1,3 +1,15 @@
+export interface BlogTranslation {
+  id: number;
+  blog_id: string;
+  locale: string; // e.g. "en", "am", "ar"
+  title: string;
+  slug: string;
+  content: string; // HTML or plain text
+  excerpt: string;
+  created_at: string;
+  updated_at: string;
+}
+
 export interface BlogImage {
   id: number;
   blog_id: string;
@@ -27,20 +39,39 @@ export interface Blog {
   id: number;
   business_id: number;
   blog_category_id: number;
+
+  // default (fallback) content
   title: string;
   slug: string;
   content: string; // HTML string
   excerpt: string;
+
   featured_image: string | null;
   banner_image: string | null;
+
   status: string;
   is_featured: boolean;
   published_at: string | null;
   views_count: number;
+
   created_at: string;
   updated_at: string;
+
   category: BlogCategory | null;
   images: BlogImage[];
+
+  // ✅ NEW
+  translations: BlogTranslation[];
+}
+
+export interface BlogListResponse {
+  data: Blog[];
+  meta: {
+    current_page: number;
+    last_page: number;
+    per_page: number;
+    total: number;
+  };
 }
 
 export interface Stat {
@@ -213,31 +244,62 @@ export interface TeamMember {
   updated_at: string;
 }
 
-export interface ServiceImage {
+export interface ServiceTranslation {
   id: number;
   about_service_id: string;
-  image_path: string;
-  order: string;
+  locale: string; // "en", "ar", etc.
+  title: string;
+  slug: string;
+  short_description: string;
+  description: string; // HTML or plain text
   created_at: string;
   updated_at: string;
 }
 
-export interface Service {
+export interface ServiceImage {
+  id: number;
+  about_service_id: string;
+  image_path: string;
+  order: string; // API returns "0", "1", "2"
+  created_at: string;
+  updated_at: string;
+}
+
+export interface ServiceType {
   id: number;
   business_id: number;
+
+  // default (fallback) content
   title: string;
-  slug: string;
+  slug: string | null;
   short_description: string;
   description: string;
+
   banner_image: string;
   icon_class: string;
   icon_image: string | null;
+
   order: number;
   is_active: boolean;
   views_count: number;
+
   created_at: string;
   updated_at: string;
+
   images: ServiceImage[];
+
+  // ✅ NEW
+  translations: ServiceTranslation[];
+}
+
+export interface ServiceListResponse {
+  data: ServiceType[];
+  meta: {
+    current_page: number;
+    last_page: number;
+    per_page: number;
+    total: number;
+  };
 }
 
 export interface AboutAward {
@@ -261,7 +323,7 @@ export interface AboutAward {
 export interface BatchResponse {
   blog_post?: { data: Blog[] };
 
-  about_service?: { data: Service[] };
+  about_service?: { data: ServiceType[] };
 
   about_content?: { data: AboutContent }; // SINGLE OBJECT
 

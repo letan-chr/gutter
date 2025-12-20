@@ -8,15 +8,17 @@ import Cta from "@/components/sections/Cta";
 import Blog from "@/components/sections/Blog";
 import Service from "@/components/sections/Service";
 import About from "@/components/sections/About";
-import { AboutContent, Feature } from "@/types/types";
+import { AboutContent, Feature, ServiceType } from "@/types/types";
 import { useEffect, useState } from "react";
-import { getBatchData } from "@/api/Api";
+import { getAllServices, getBatchData } from "@/api/Api";
 import { resolveCoreValue } from "@/lib/resolvers/resolveCoreValue";
 import { resolveAboutContent } from "@/lib/resolvers/resolveAbout";
 import { useLanguage } from "@/components/providers/LanguageProvider";
+import { resolveService } from "@/lib/resolvers/serviceResolver";
 
 export default function Home() {
   const [aboutContent, setAboutContent] = useState<AboutContent | null>(null);
+  const [services, setServices] = useState<ServiceType[]>([]);
   const { language } = useLanguage();
 
   useEffect(() => {
@@ -41,6 +43,15 @@ export default function Home() {
           ...resolvedAbout,
           core_values: resolvedCoreValues,
         });
+
+        // 🔹 Services
+        const serviceResponse = await getAllServices();
+
+        const resolvedServices = serviceResponse.data.map((service) =>
+          resolveService(service, language)
+        );
+
+        setServices(resolvedServices);
       } catch (err) {
         console.error(err);
       }
@@ -49,7 +60,7 @@ export default function Home() {
     fetchData();
   }, [language]);
 
-  console.log("about", aboutContent);
+  console.log("service", services);
   console.log("lang", language);
 
   return (
@@ -57,7 +68,7 @@ export default function Home() {
       <Hero />
       <About about={aboutContent} />
 
-      <Service />
+      <Service services={services} />
       <WhyChooseus />
       <Products />
 

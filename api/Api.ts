@@ -1,5 +1,5 @@
 import { ApiResponse } from "@/types/api";
-import { BatchResponse, Feature } from "@/types/types";
+import { BatchResponse, Feature, ServiceListResponse } from "@/types/types";
 import axios from "axios";
 const axiosInstance = axios.create({
   baseURL: process.env.NEXT_PUBLIC_API_URL,
@@ -39,6 +39,11 @@ export async function postContactForm<T>(data: T) {
     data
   );
   return response.data.data;
+}
+
+export async function getAllServices(): Promise<ServiceListResponse> {
+  const response = await axiosInstance.get<ServiceListResponse>("/services");
+  return response.data;
 }
 
 const getProducts = async () => {
