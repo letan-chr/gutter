@@ -79,8 +79,9 @@ const Achievement = ({ stats, awards }: AchievementProps) => {
               <div className="absolute inset-0">
                 <Image
                   src={
-                    `${process.env.NEXT_PUBLIC_IMAGE_URL}/${achievement.image}` ||
-                    "/placeholder-achievement.jpg"
+                    achievement.image
+                      ? `${process.env.NEXT_PUBLIC_IMAGE_URL}/${achievement.image}`
+                      : "/placeholder-achievement.jpg"
                   }
                   alt={achievement.title}
                   fill
@@ -265,7 +266,11 @@ const Achievement = ({ stats, awards }: AchievementProps) => {
                     }`}
                   >
                     <Image
-                      src={`${process.env.NEXT_PUBLIC_IMAGE_URL}/${achievements[selectedImageIndex].image}`}
+                      src={
+                        achievements[selectedImageIndex]?.image
+                          ? `${process.env.NEXT_PUBLIC_IMAGE_URL}/${achievements[selectedImageIndex].image}`
+                          : "/placeholder-achievement.jpg"
+                      }
                       alt={achievements[selectedImageIndex].title}
                       fill
                       className="object-contain rounded-lg"
