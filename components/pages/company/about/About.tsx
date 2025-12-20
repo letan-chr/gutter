@@ -4,16 +4,18 @@ import React, { useEffect, useState } from "react";
 import { getPageData, getSectionData } from "@/data/utils";
 import { useLanguage } from "@/components/providers/LanguageProvider";
 import Partners from "@/components/sections/Partners";
-import { AboutContent, Feature, ServiceType } from "@/types/types";
-import { getAllServices, getBatchData } from "@/api/Api";
+import { AboutContent, Feature, Product, ServiceType } from "@/types/types";
+import { getAllProducts, getAllServices, getBatchData } from "@/api/Api";
 import { resolveAboutContent } from "@/lib/resolvers/resolveAbout";
 import { resolveCoreValue } from "@/lib/resolvers/resolveCoreValue";
 import { resolveService } from "@/lib/resolvers/serviceResolver";
+import { resolveProduct } from "@/lib/resolvers/productResolver";
 
 const About = () => {
   const { language: lang } = useLanguage();
   const [aboutContent, setAboutContent] = useState<AboutContent | null>(null);
   const [services, setServices] = useState<ServiceType[]>([]);
+  const [products, setProducts] = useState<Product[]>([]);
   const pageData = getPageData("about", lang);
   const sectionData = getSectionData("about", lang);
 
@@ -47,6 +49,15 @@ const About = () => {
         );
 
         setServices(resolvedServices);
+
+        // 🔹 Products & Categories
+        const [productsRes] = await Promise.all([getAllProducts()]);
+
+        // Resolve products
+        const resolvedProducts = productsRes.data.map((product) =>
+          resolveProduct(product, lang)
+        );
+        setProducts(resolvedProducts);
       } catch (err) {
         console.error(err);
       }
@@ -182,8 +193,9 @@ const About = () => {
                           {sectionData.rightContent.importedItemsTitle}
                         </h4>
                         <ul className="space-y-2">
-                          {sectionData.rightContent.importedItems.map(
-                            (item: string, index: number) => (
+                          {products
+                            .slice(0, 5)
+                            .map((item: Product, index: number) => (
                               <li
                                 key={index}
                                 className="flex items-start gap-2 text-gray-200 dark:text-gray-300"
@@ -201,10 +213,9 @@ const About = () => {
                                     d="M5 13l4 4L19 7"
                                   />
                                 </svg>
-                                <span>{item}</span>
+                                <span>{item.name}</span>
                               </li>
-                            )
-                          )}
+                            ))}
                         </ul>
                       </div>
                     )}
