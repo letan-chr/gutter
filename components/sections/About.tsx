@@ -38,14 +38,18 @@ const About = ({ about }: AboutSectionProps) => {
                 {data.leftContent.title}
               </h3>
               <p className="text-gray-600 dark:text-gray-300 text-base lg:text-lg leading-relaxed">
-                {data.leftContent.description}
+                {about?.text ? about?.text : data.leftContent.description}
               </p>
             </div>
 
             {/* Image Column (col-4) */}
             <div className="md:col-span-4 relative h-64 md:h-auto overflow-hidden">
               <img
-                src={data.image}
+                src={
+                  about?.about_image
+                    ? `${process.env.NEXT_PUBLIC_IMAGE_URL}/${about?.about_image}`
+                    : data.image
+                }
                 alt={data.title}
                 className="w-full h-full object-cover"
                 loading="lazy"

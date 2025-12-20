@@ -1,3 +1,4 @@
+import { ApiResponse } from "@/types/api";
 import { BatchResponse, Feature } from "@/types/types";
 import axios from "axios";
 const axiosInstance = axios.create({
@@ -32,11 +33,13 @@ export async function getBatchData(
   return response.data;
 }
 
-
-const postContactForm = async (data: any) => {
-  const response = await axiosInstance.post("/contact-message", data);
-  return response.data;
-};
+export async function postContactForm<T>(data: T) {
+  const response = await axiosInstance.post<ApiResponse<unknown>>(
+    "/contact-message",
+    data
+  );
+  return response.data.data;
+}
 
 const getProducts = async () => {
   const response = await axiosInstance.get("/ecommerce");
@@ -116,7 +119,6 @@ export {
   getAllTeamMembers,
   getAllAboutUsData,
   getAllContactUsData,
-  postContactForm,
   postNewsletterSubscription,
   postProductInquiry,
   getAllAwards,
