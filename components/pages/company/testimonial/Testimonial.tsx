@@ -37,7 +37,7 @@ const Testimonial = () => {
             >
               {/* Rating Stars */}
               <div className="flex gap-1 mb-4">
-                {[...Array(testimonial.rating)].map((_, i) => (
+                {[...Array(Number(testimonial.rating) || 0)].map((_, i) => (
                   <svg
                     key={i}
                     className="w-5 h-5 text-yellow-400"
