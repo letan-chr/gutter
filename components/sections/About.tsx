@@ -3,13 +3,14 @@
 import React from "react";
 import { getSectionData } from "@/data/utils";
 import { useLanguage } from "@/components/providers/LanguageProvider";
-import { AboutContent, Setup, Stat } from "@/types/types";
+import { AboutContent, ServiceType, Setup, Stat } from "@/types/types";
 
 interface AboutSectionProps {
   about: AboutContent | null;
+  services: ServiceType[];
 }
 
-const About = ({ about }: AboutSectionProps) => {
+const About = ({ about, services }: AboutSectionProps) => {
   const { language: lang } = useLanguage();
   const data = getSectionData("about", lang);
 
@@ -72,25 +73,25 @@ const About = ({ about }: AboutSectionProps) => {
               )}
 
               {/* Services List */}
-              {data.rightContent.services && (
+              {services.length > 0 && (
                 <div className="mb-6">
                   <h4 className="text-lg font-semibold text-white mb-3">
                     {data.rightContent.servicesTitle || "Our Services Include"}:
                   </h4>
                   <ul className="space-y-2">
-                    {data.rightContent.services.map(
-                      (service: string, index: number) => (
+                    {services
+                      .slice(0, 5)
+                      .map((service: ServiceType, index: number) => (
                         <li
                           key={index}
                           className="flex items-start text-gray-200 dark:text-gray-300"
                         >
                           <span className="text-yellow-400 mr-3 mt-1">•</span>
                           <span className="text-base lg:text-lg">
-                            {service}
+                            {service.title}
                           </span>
                         </li>
-                      )
-                    )}
+                      ))}
                   </ul>
                 </div>
               )}
