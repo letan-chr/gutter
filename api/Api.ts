@@ -9,6 +9,7 @@ import {
   ProductListResponse,
   ServiceListResponse,
   ServiceResponse,
+  TestimonialListResponse,
 } from "@/types/types";
 import axios from "axios";
 const axiosInstance = axios.create({
@@ -125,10 +126,13 @@ export async function getAllBlogsWithPagination(params?: {
   return response.data;
 }
 
-const getAllTestimonials = async () => {
-  const response = await axiosInstance.get("/testimonials");
+export async function getAllTestimonials(): Promise<TestimonialListResponse> {
+  const response = await axiosInstance.get<TestimonialListResponse>(
+    "/testimonials"
+  );
   return response.data;
-};
+}
+
 const getAllClients = async () => {
   const response = await axiosInstance.get("/partners");
   return response.data;
@@ -168,7 +172,6 @@ const getSingleProject = async (id: string) => {
 };
 
 export {
-  getAllTestimonials,
   getAllClients,
   getAllTeamMembers,
   getAllAboutUsData,

@@ -1,20 +1,36 @@
-'use client';
+"use client";
 
-import React from 'react';
-import Image from 'next/image';
-import { getPageData } from '@/data/utils';
-import { useLanguage } from '@/components/providers/LanguageProvider';
+import React, { useEffect, useState } from "react";
+import Image from "next/image";
+import { getPageData } from "@/data/utils";
+import { useLanguage } from "@/components/providers/LanguageProvider";
+import { Testimonial as TestimonialType } from "@/types/types";
+import { getAllTestimonials } from "@/api/Api";
+import { resolveTestimonial } from "@/lib/resolvers/testimonialResolver";
 
 const Testimonial = () => {
   const { language: lang } = useLanguage();
-  const data = getPageData('testimonials', lang);
+  const [testimonials, setTestimonials] = useState<TestimonialType[]>([]);
+  const data = getPageData("testimonials", lang);
+
+  useEffect(() => {
+    async function loadTestimonials() {
+      const response = await getAllTestimonials();
+
+      const resolved = response.data.map((t) => resolveTestimonial(t, lang));
+
+      setTestimonials(resolved);
+    }
+
+    loadTestimonials();
+  }, [lang]);
 
   return (
     <section className="py-12 lg:py-20 bg-white dark:bg-gray-900 min-h-screen">
       <div className="mx-auto px-4 sm:px-6 lg:px-8 max-w-7xl">
         {/* Testimonials Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-16">
-          {data.testimonials.map((testimonial: any) => (
+          {testimonials.map((testimonial: TestimonialType) => (
             <div
               key={testimonial.id}
               className="bg-white dark:bg-gray-800 rounded-2xl p-8 shadow-lg hover:shadow-2xl transition-all duration-300 border border-gray-200 dark:border-gray-700"
@@ -35,14 +51,24 @@ const Testimonial = () => {
 
               {/* Testimonial Content */}
               <p className="text-gray-700 dark:text-gray-300 mb-6 leading-relaxed text-lg italic">
-                "{testimonial.content}"
+                "{testimonial.description}"
               </p>
 
               {/* Author Info */}
               <div className="flex items-center gap-4">
                 <div className="w-16 h-16 bg-gradient-to-br from-primary/20 to-secondary/20 dark:from-primary/30 dark:to-secondary/30 rounded-full flex items-center justify-center">
-                  <svg className="w-8 h-8 text-primary dark:text-primary-light" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
+                  <svg
+                    className="w-8 h-8 text-primary dark:text-primary-light"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth={2}
+                      d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"
+                    />
                   </svg>
                 </div>
                 <div>
@@ -50,7 +76,7 @@ const Testimonial = () => {
                     {testimonial.name}
                   </h4>
                   <p className="text-sm text-gray-600 dark:text-gray-400">
-                    {testimonial.position}
+                    {testimonial.role}
                   </p>
                 </div>
               </div>
@@ -79,7 +105,9 @@ const Testimonial = () => {
           {/* Content */}
           <div className="relative p-8 lg:p-12 text-center text-white">
             <h2 className="text-3xl lg:text-4xl font-display font-bold mb-10 lg:mb-12">
-              {lang === 'en' ? 'Join Our Happy Customers' : 'ደስ የሚሉ ደንበኞቻችንን ይቀላቀሉ'}
+              {lang === "en"
+                ? "Join Our Happy Customers"
+                : "ደስ የሚሉ ደንበኞቻችንን ይቀላቀሉ"}
             </h2>
             <div className="grid grid-cols-2 md:grid-cols-4 gap-6 lg:gap-8 mb-8">
               <div className="group relative">
@@ -88,7 +116,7 @@ const Testimonial = () => {
                     {data.testimonials.length}+
                   </div>
                   <div className="text-white/90 text-sm lg:text-base font-medium">
-                    {lang === 'en' ? 'Happy Customers' : 'ደስ የሚሉ ደንበኞች'}
+                    {lang === "en" ? "Happy Customers" : "ደስ የሚሉ ደንበኞች"}
                   </div>
                 </div>
               </div>
@@ -98,7 +126,7 @@ const Testimonial = () => {
                     5
                   </div>
                   <div className="text-white/90 text-sm lg:text-base font-medium">
-                    {lang === 'en' ? 'Star Rating' : 'የኮከብ ደረጃ'}
+                    {lang === "en" ? "Star Rating" : "የኮከብ ደረጃ"}
                   </div>
                 </div>
               </div>
@@ -108,7 +136,7 @@ const Testimonial = () => {
                     100%
                   </div>
                   <div className="text-white/90 text-sm lg:text-base font-medium">
-                    {lang === 'en' ? 'Satisfaction' : 'የደስታ መጠን'}
+                    {lang === "en" ? "Satisfaction" : "የደስታ መጠን"}
                   </div>
                 </div>
               </div>
@@ -118,27 +146,27 @@ const Testimonial = () => {
                     10+
                   </div>
                   <div className="text-white/90 text-sm lg:text-base font-medium">
-                    {lang === 'en' ? 'Years Experience' : 'የልምድ ዓመታት'}
+                    {lang === "en" ? "Years Experience" : "የልምድ ዓመታት"}
                   </div>
                 </div>
               </div>
             </div>
             <p className="text-white/90 mb-8 text-lg">
-              {lang === 'en' 
-                ? 'Experience the quality service that our customers love.' 
-                : 'ደንበኞቻችን የሚወዱትን የጥራት አገልግሎት ይሞክሩ።'}
+              {lang === "en"
+                ? "Experience the quality service that our customers love."
+                : "ደንበኞቻችን የሚወዱትን የጥራት አገልግሎት ይሞክሩ።"}
             </p>
             <a
               href="/contacts"
               className="inline-block px-8 py-4 bg-white text-primary rounded-lg font-semibold text-lg hover:bg-gray-100 transition-colors hover:scale-105 active:scale-95"
             >
-              {lang === 'en' ? 'Get Started Today' : 'ዛሬ ይጀምሩ'}
+              {lang === "en" ? "Get Started Today" : "ዛሬ ይጀምሩ"}
             </a>
           </div>
         </div>
       </div>
     </section>
   );
-}
+};
 
 export default Testimonial;

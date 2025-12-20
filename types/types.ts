@@ -212,20 +212,44 @@ export type Partner = {
   updated_at: string;
 };
 
+export interface TestimonialTranslation {
+  id: number;
+  about_testimonial_id: number | string;
+  locale: string; // "en" | "am"
+  name: string;
+  role: string;
+  description: string;
+  company: string | null;
+  created_at: string;
+  updated_at: string;
+}
+
 export interface Testimonial {
   id: number;
   business_id: number;
-  title_prefix: string; // "Dr", "Mrs", "Eng"
+  title_prefix: string; // "Mr", "Ms", "Mrs"
   name: string;
-  role: string; // example: "Pariatur Consequatu"
-  description: string; // testimonial text from API
-  image: string; // path: "about/testimonials/...jpg"
-  rating: string | number; // API returns string "5"
-  company: string; // "Travis Jarvis Inc"
-  order: string; // API returns string "10"
+  role: string;
+  description: string;
+  image: string; // "about/testimonials/...jpg"
+  rating: string | number; // API returns string
+  company: string | null;
+  order: string; // API returns string
   views_count: number;
   created_at: string;
   updated_at: string;
+
+  translations: TestimonialTranslation[];
+}
+
+export interface TestimonialListResponse {
+  data: Testimonial[];
+  meta: {
+    current_page: number;
+    last_page: number;
+    per_page: number;
+    total: number;
+  };
 }
 
 export interface AboutGalleryImage {
