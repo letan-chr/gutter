@@ -19,15 +19,17 @@ const Products = ({ products, productCategories }: ProductSectionProps) => {
   const data = getSectionData("products", lang);
 
   // Get categories from products
-  const categories = useMemo(() => {
-    return [
-      { id: "all", title: lang === "en" ? "All" : "ሁሉም" },
-      ...productCategories.map((cat) => ({
-        id: cat.id,
-        title: cat.name,
-      })),
-    ];
-  }, [productCategories, lang]);
+  const categories = useMemo(
+    () =>
+      [
+        { id: "all", title: lang === "en" ? "All" : "ሁሉም" },
+        ...productCategories.map((cat) => ({
+          id: cat.id,
+          title: cat.name,
+        })),
+      ] as const,
+    [productCategories, lang]
+  );
 
   // Filter products by category
   const filteredProducts = useMemo(() => {
@@ -46,7 +48,9 @@ const Products = ({ products, productCategories }: ProductSectionProps) => {
   }, [filteredProducts]);
 
   const otherProducts = useMemo(() => {
-    return filteredProducts.filter((product) => !product.is_featured).slice(2);
+    return filteredProducts
+      .filter((product) => !product.is_featured)
+      .slice(0, 4);
   }, [filteredProducts]);
 
   // Split other products into two columns, limit to 3 products per column (3 rows)
@@ -110,7 +114,7 @@ const Products = ({ products, productCategories }: ProductSectionProps) => {
           {categories.map((category) => (
             <button
               key={category.id}
-              onClick={() => setSelectedCategory(category.id as number)}
+              onClick={() => setSelectedCategory(category.id)}
               className={`px-6 py-2 rounded-full font-medium transition-all duration-300 ${
                 selectedCategory === category.id
                   ? "bg-primary text-white shadow-lg"
@@ -249,58 +253,60 @@ const Products = ({ products, productCategories }: ProductSectionProps) => {
 
                 {/* Right Column - col-3 */}
                 <div className="lg:col-span-1 flex flex-col gap-3 lg:gap-4 ">
-                  {rightColumnProducts.map((product: any, index: number) => (
-                    <article
-                      key={product.id}
-                      data-aos="fade-up"
-                      data-aos-delay={(index + 3) * 50}
-                      className="group bg-white dark:bg-gray-800 rounded-xl overflow-hidden shadow-md hover:shadow-xl transition-all duration-300 hover:-translate-y-1 flex-1 flex flex-col"
-                    >
-                      {/* Product Image */}
-                      <div className="relative h-24 overflow-hidden flex-shrink-0">
-                        <Image
-                          src={
-                            product.banner_image
-                              ? `${process.env.NEXT_PUBLIC_IMAGE_URL}/${product.banner_image}`
-                              : "https://images.unsplash.com/photo-1563453392212-326f5e854473"
-                          }
-                          alt={product.name}
-                          fill
-                          className="object-cover group-hover:scale-105 transition-transform duration-300"
-                          sizes="(max-width: 1024px) 100vw, 25vw"
-                        />
-                      </div>
+                  {rightColumnProducts.map(
+                    (product: Product, index: number) => (
+                      <article
+                        key={product.id}
+                        data-aos="fade-up"
+                        data-aos-delay={(index + 3) * 50}
+                        className="group bg-white dark:bg-gray-800 rounded-xl overflow-hidden shadow-md hover:shadow-xl transition-all duration-300 hover:-translate-y-1 flex-1 flex flex-col"
+                      >
+                        {/* Product Image */}
+                        <div className="relative h-24 overflow-hidden flex-shrink-0">
+                          <Image
+                            src={
+                              product.banner_image
+                                ? `${process.env.NEXT_PUBLIC_IMAGE_URL}/${product.banner_image}`
+                                : "https://images.unsplash.com/photo-1563453392212-326f5e854473"
+                            }
+                            alt={product.name}
+                            fill
+                            className="object-cover group-hover:scale-105 transition-transform duration-300"
+                            sizes="(max-width: 1024px) 100vw, 25vw"
+                          />
+                        </div>
 
-                      {/* Product Content */}
-                      <div className="p-3 flex-1 flex flex-col">
-                        <h4 className="text-lg font-display font-semibold text-gray-900 dark:text-white mb-2 group-hover:text-primary dark:group-hover:text-primary-light transition-colors line-clamp-2">
-                          {product.name}
-                        </h4>
-                        <p className="text-sm text-gray-600 dark:text-gray-400 mb-2 line-clamp-2 flex-1">
-                          {product.description}
-                        </p>
-                        <a
-                          href={`/products/${product.slug}`}
-                          className="inline-flex items-center text-primary dark:text-primary-light font-medium hover:gap-1 transition-all group/link text-sm mt-auto"
-                        >
-                          {lang === "en" ? "Read More" : "ተጨማሪ ያንብቡ"}
-                          <svg
-                            className="w-4 h-4 ml-1 transform group-hover/link:translate-x-1 transition-transform"
-                            fill="none"
-                            stroke="currentColor"
-                            viewBox="0 0 24 24"
+                        {/* Product Content */}
+                        <div className="p-3 flex-1 flex flex-col">
+                          <h4 className="text-lg font-display font-semibold text-gray-900 dark:text-white mb-2 group-hover:text-primary dark:group-hover:text-primary-light transition-colors line-clamp-2">
+                            {product.name}
+                          </h4>
+                          <p className="text-sm text-gray-600 dark:text-gray-400 mb-2 line-clamp-2 flex-1">
+                            {product.description}
+                          </p>
+                          <a
+                            href={`/products/${product.slug}`}
+                            className="inline-flex items-center text-primary dark:text-primary-light font-medium hover:gap-1 transition-all group/link text-sm mt-auto"
                           >
-                            <path
-                              strokeLinecap="round"
-                              strokeLinejoin="round"
-                              strokeWidth={2}
-                              d="M9 5l7 7-7 7"
-                            />
-                          </svg>
-                        </a>
-                      </div>
-                    </article>
-                  ))}
+                            {lang === "en" ? "Read More" : "ተጨማሪ ያንብቡ"}
+                            <svg
+                              className="w-4 h-4 ml-1 transform group-hover/link:translate-x-1 transition-transform"
+                              fill="none"
+                              stroke="currentColor"
+                              viewBox="0 0 24 24"
+                            >
+                              <path
+                                strokeLinecap="round"
+                                strokeLinejoin="round"
+                                strokeWidth={2}
+                                d="M9 5l7 7-7 7"
+                              />
+                            </svg>
+                          </a>
+                        </div>
+                      </article>
+                    )
+                  )}
                 </div>
               </>
             )}
