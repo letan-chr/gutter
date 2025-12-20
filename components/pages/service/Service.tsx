@@ -107,7 +107,7 @@ const Service = () => {
                       )}
 
                       <a
-                        href={`/service/${service.slug}}`}
+                        href={`/service/${service.slug}`}
                         className="inline-flex items-center px-8 py-4 bg-primary text-white rounded-xl font-semibold shadow-lg hover:scale-105 transition-all"
                       >
                         {lang === "en" ? "Learn More" : "ተጨማሪ ይማሩ"}

@@ -7,6 +7,7 @@ import {
   ProductCategoryResponse,
   ProductListResponse,
   ServiceListResponse,
+  ServiceResponse,
 } from "@/types/types";
 import axios from "axios";
 const axiosInstance = axios.create({
@@ -51,6 +52,13 @@ export async function postContactForm<T>(data: T) {
 
 export async function getAllServices(): Promise<ServiceListResponse> {
   const response = await axiosInstance.get<ServiceListResponse>("/services");
+  return response.data;
+}
+
+export async function getServiceBySlug(slug: string): Promise<ServiceResponse> {
+  const response = await axiosInstance.get<ServiceResponse>(
+    `/services/slug/${slug}`
+  );
   return response.data;
 }
 

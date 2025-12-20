@@ -1,57 +1,50 @@
-'use client';
+"use client";
 
-import React, { useState, useMemo } from 'react';
-import Image from 'next/image';
-import { getSectionData } from '@/data/utils';
-import { useLanguage } from '@/components/providers/LanguageProvider';
+import React, { useState, useMemo } from "react";
+import Image from "next/image";
+import { getSectionData } from "@/data/utils";
+import { useLanguage } from "@/components/providers/LanguageProvider";
+import { ServiceType } from "@/types/types";
 
-const ServiceDetails = ({ slug }: { slug: string }) => {
+interface ServiceDetailProps {
+  service: ServiceType | null;
+  relatedServices: ServiceType[];
+}
+
+const ServiceDetails = ({ service, relatedServices }: ServiceDetailProps) => {
   const { language: lang } = useLanguage();
-  const data = getSectionData('service', lang);
-  
+  const data = getSectionData("service", lang);
+
   // Helper function to generate slug from title
   const generateSlug = (title: string) => {
-    return title.toLowerCase().replace(/\s+/g, '-');
+    return title.toLowerCase().replace(/\s+/g, "-");
   };
-  
-  // Find the service by slug (generate slug from title if slug doesn't exist)
-  const service = data.services.find((s: any) => {
-    const serviceSlug = s.slug || generateSlug(s.title);
-    return serviceSlug === slug;
-  }) || data.services[0];
 
-  // Create gallery array - use service.gallery if exists, otherwise create from main image
-  const galleryImages = useMemo(() => {
-    if (service?.gallery && Array.isArray(service.gallery) && service.gallery.length > 0) {
-      return service.gallery;
+  const IMAGE_BASE = process.env.NEXT_PUBLIC_IMAGE_URL;
+
+  const getImageUrl = (path?: string) => {
+    if (!path) {
+      return "https://images.unsplash.com/photo-1563453392212-326f5e854473";
     }
-    // Create a gallery from the main image with some variations
-    const baseImage = service?.image || 'https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?w=800&h=400&fit=crop';
-    return [
-      baseImage,
-      baseImage.replace('w=800&h=400', 'w=800&h=400&q=80'),
-      baseImage.replace('w=800&h=400', 'w=800&h=400&q=75'),
-      baseImage.replace('w=800&h=400', 'w=800&h=400&q=70'),
-    ];
+    return `${IMAGE_BASE}/${path}`;
+  };
+
+  const galleryImages = useMemo(() => {
+    if (service?.images?.length) {
+      return service.images.map((img: any) => getImageUrl(img.image_path));
+    }
+
+    if (service?.banner_image) {
+      return [getImageUrl(service.banner_image)];
+    }
+
+    return [];
   }, [service]);
 
   const [selectedImageIndex, setSelectedImageIndex] = useState(0);
 
-  // Get related services from the same category
-  const relatedServices = useMemo(() => {
-    return data.services
-      .filter((s: any) => s.id !== service?.id && (s.category === service?.category || (!s.category && !service?.category)))
-      .slice(0, 4);
-  }, [data.services, service]);
-
   if (!service) {
-    return (
-      <div className="py-20 text-center">
-        <p className="text-gray-500 dark:text-gray-400">
-          {lang === 'en' ? 'Service not found' : 'አገልግሎት አልተገኘም'}
-        </p>
-      </div>
-    );
+    return null;
   }
 
   return (
@@ -74,8 +67,18 @@ const ServiceDetails = ({ slug }: { slug: string }) => {
                   />
                 ) : (
                   <div className="w-full h-full bg-gradient-to-br from-primary/20 to-secondary/20 dark:from-primary/30 dark:to-secondary/30 flex items-center justify-center">
-                    <svg className="w-24 h-24 text-primary dark:text-primary-light" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                    <svg
+                      className="w-24 h-24 text-primary dark:text-primary-light"
+                      fill="none"
+                      stroke="currentColor"
+                      viewBox="0 0 24 24"
+                    >
+                      <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        strokeWidth={2}
+                        d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"
+                      />
                     </svg>
                   </div>
                 )}
@@ -85,7 +88,7 @@ const ServiceDetails = ({ slug }: { slug: string }) => {
               {galleryImages.length > 1 && (
                 <div className="p-4 bg-gray-50 dark:bg-gray-900/50 border-t border-gray-200 dark:border-gray-700">
                   <h3 className="text-sm font-semibold text-gray-900 dark:text-white mb-3">
-                    {lang === 'en' ? 'Gallery' : 'ጋለሪ'}
+                    {lang === "en" ? "Gallery" : "ጋለሪ"}
                   </h3>
                   <div className="flex gap-2 overflow-x-auto pb-2">
                     {galleryImages.map((image: string, index: number) => (
@@ -94,8 +97,8 @@ const ServiceDetails = ({ slug }: { slug: string }) => {
                         onClick={() => setSelectedImageIndex(index)}
                         className={`relative w-20 h-20 flex-shrink-0 rounded-lg overflow-hidden border-2 transition-all ${
                           selectedImageIndex === index
-                            ? 'border-primary dark:border-primary-light ring-2 ring-primary/20'
-                            : 'border-transparent hover:border-gray-300 dark:hover:border-gray-600'
+                            ? "border-primary dark:border-primary-light ring-2 ring-primary/20"
+                            : "border-transparent hover:border-gray-300 dark:hover:border-gray-600"
                         }`}
                       >
                         <Image
@@ -106,8 +109,18 @@ const ServiceDetails = ({ slug }: { slug: string }) => {
                         />
                         {selectedImageIndex === index && (
                           <div className="absolute inset-0 bg-primary/20 flex items-center justify-center">
-                            <svg className="w-5 h-5 text-primary dark:text-primary-light" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+                            <svg
+                              className="w-5 h-5 text-primary dark:text-primary-light"
+                              fill="none"
+                              stroke="currentColor"
+                              viewBox="0 0 24 24"
+                            >
+                              <path
+                                strokeLinecap="round"
+                                strokeLinejoin="round"
+                                strokeWidth={2}
+                                d="M5 13l4 4L19 7"
+                              />
                             </svg>
                           </div>
                         )}
@@ -127,36 +140,17 @@ const ServiceDetails = ({ slug }: { slug: string }) => {
 
               {/* Description */}
               <p className="text-lg text-gray-600 dark:text-gray-400 mb-6 leading-relaxed">
-                {service.description}
+                {service.short_description}
               </p>
-
-              {/* Features */}
-              {service.features && service.features.length > 0 && (
-                <div className="mb-6">
-                  <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-4">
-                    {lang === 'en' ? 'Key Features' : 'ዋና ባህሪያት'}
-                  </h3>
-                  <ul className="space-y-3">
-                    {service.features.map((feature: string, index: number) => (
-                      <li key={index} className="flex items-start gap-3">
-                        <svg className="w-6 h-6 text-tertiary flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
-                        </svg>
-                        <span className="text-gray-700 dark:text-gray-300">{feature}</span>
-                      </li>
-                    ))}
-                  </ul>
-                </div>
-              )}
 
               {/* CTA Buttons */}
               <div className="pt-6 border-t border-gray-200 dark:border-gray-700 w-full">
                 <div className="flex flex-col sm:flex-row gap-4">
                   <button className="flex-1 px-6 py-3 bg-primary hover:bg-primary-dark text-white rounded-lg font-semibold transition-colors">
-                    {lang === 'en' ? 'Get Quote' : 'ዋጋ ያግኙ'}
+                    {lang === "en" ? "Get Quote" : "ዋጋ ያግኙ"}
                   </button>
                   <button className="flex-1 px-6 py-3 bg-secondary hover:bg-secondary-light text-white rounded-lg font-semibold transition-colors">
-                    {lang === 'en' ? 'Contact Us' : 'ያግኙን'}
+                    {lang === "en" ? "Contact Us" : "ያግኙን"}
                   </button>
                 </div>
               </div>
@@ -168,54 +162,93 @@ const ServiceDetails = ({ slug }: { slug: string }) => {
             <div className="prose prose-lg dark:prose-invert max-w-none">
               <div className="text-gray-700 dark:text-gray-300 leading-relaxed space-y-6">
                 {/* Service Details Paragraph */}
-                {(service.content || service.description) && (
-                  <div className="text-base leading-relaxed whitespace-pre-line mb-6">
-                    {service.content || service.description}
-                  </div>
+                {service.description && (
+                  <div
+                    className="text-base leading-relaxed whitespace-pre-line mb-6"
+                    dangerouslySetInnerHTML={{
+                      __html: service.description,
+                    }}
+                  ></div>
                 )}
-                
+
                 {/* Three Cards */}
                 <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-                    <div className="bg-gray-50 dark:bg-gray-900/50 rounded-xl p-6">
-                      <div className="w-12 h-12 bg-primary/10 dark:bg-primary/20 rounded-lg flex items-center justify-center mb-4">
-                        <svg className="w-6 h-6 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
-                        </svg>
-                      </div>
-                      <h4 className="font-semibold text-gray-900 dark:text-white mb-2">
-                        {lang === 'en' ? 'Quality Guaranteed' : 'የጥራት ዋስትና'}
-                      </h4>
-                      <p className="text-sm text-gray-600 dark:text-gray-400">
-                        {lang === 'en' ? 'Premium materials and craftsmanship' : 'ከፍተኛ ቁሳቁሶች እና ሙያ'}
-                      </p>
+                  <div className="bg-gray-50 dark:bg-gray-900/50 rounded-xl p-6">
+                    <div className="w-12 h-12 bg-primary/10 dark:bg-primary/20 rounded-lg flex items-center justify-center mb-4">
+                      <svg
+                        className="w-6 h-6 text-primary"
+                        fill="none"
+                        stroke="currentColor"
+                        viewBox="0 0 24 24"
+                      >
+                        <path
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                          strokeWidth={2}
+                          d="M5 13l4 4L19 7"
+                        />
+                      </svg>
                     </div>
-                    <div className="bg-gray-50 dark:bg-gray-900/50 rounded-xl p-6">
-                      <div className="w-12 h-12 bg-secondary/10 dark:bg-secondary/20 rounded-lg flex items-center justify-center mb-4">
-                        <svg className="w-6 h-6 text-secondary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
-                        </svg>
-                      </div>
-                      <h4 className="font-semibold text-gray-900 dark:text-white mb-2">
-                        {lang === 'en' ? 'Fast Installation' : 'ፈጣን መጫን'}
-                      </h4>
-                      <p className="text-sm text-gray-600 dark:text-gray-400">
-                        {lang === 'en' ? 'Professional installation service' : 'ሙያዊ የመጫን አገልግሎት'}
-                      </p>
-                    </div>
-                    <div className="bg-gray-50 dark:bg-gray-900/50 rounded-xl p-6">
-                      <div className="w-12 h-12 bg-tertiary/10 dark:bg-tertiary/20 rounded-lg flex items-center justify-center mb-4">
-                        <svg className="w-6 h-6 text-tertiary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
-                        </svg>
-                      </div>
-                      <h4 className="font-semibold text-gray-900 dark:text-white mb-2">
-                        {lang === 'en' ? 'Warranty Included' : 'ዋስትና ተካትቷል'}
-                      </h4>
-                      <p className="text-sm text-gray-600 dark:text-gray-400">
-                        {lang === 'en' ? 'Comprehensive warranty coverage' : 'የተሟላ ዋስትና ሽፋን'}
-                      </p>
-                    </div>
+                    <h4 className="font-semibold text-gray-900 dark:text-white mb-2">
+                      {lang === "en" ? "Quality Guaranteed" : "የጥራት ዋስትና"}
+                    </h4>
+                    <p className="text-sm text-gray-600 dark:text-gray-400">
+                      {lang === "en"
+                        ? "Premium materials and craftsmanship"
+                        : "ከፍተኛ ቁሳቁሶች እና ሙያ"}
+                    </p>
                   </div>
+                  <div className="bg-gray-50 dark:bg-gray-900/50 rounded-xl p-6">
+                    <div className="w-12 h-12 bg-secondary/10 dark:bg-secondary/20 rounded-lg flex items-center justify-center mb-4">
+                      <svg
+                        className="w-6 h-6 text-secondary"
+                        fill="none"
+                        stroke="currentColor"
+                        viewBox="0 0 24 24"
+                      >
+                        <path
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                          strokeWidth={2}
+                          d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"
+                        />
+                      </svg>
+                    </div>
+                    <h4 className="font-semibold text-gray-900 dark:text-white mb-2">
+                      {lang === "en" ? "Fast Installation" : "ፈጣን መጫን"}
+                    </h4>
+                    <p className="text-sm text-gray-600 dark:text-gray-400">
+                      {lang === "en"
+                        ? "Professional installation service"
+                        : "ሙያዊ የመጫን አገልግሎት"}
+                    </p>
+                  </div>
+                  <div className="bg-gray-50 dark:bg-gray-900/50 rounded-xl p-6">
+                    <div className="w-12 h-12 bg-tertiary/10 dark:bg-tertiary/20 rounded-lg flex items-center justify-center mb-4">
+                      <svg
+                        className="w-6 h-6 text-tertiary"
+                        fill="none"
+                        stroke="currentColor"
+                        viewBox="0 0 24 24"
+                      >
+                        <path
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                          strokeWidth={2}
+                          d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"
+                        />
+                      </svg>
+                    </div>
+                    <h4 className="font-semibold text-gray-900 dark:text-white mb-2">
+                      {lang === "en" ? "Warranty Included" : "ዋስትና ተካትቷል"}
+                    </h4>
+                    <p className="text-sm text-gray-600 dark:text-gray-400">
+                      {lang === "en"
+                        ? "Comprehensive warranty coverage"
+                        : "የተሟላ ዋስትና ሽፋን"}
+                    </p>
+                  </div>
+                </div>
               </div>
             </div>
           </div>
@@ -225,11 +258,12 @@ const ServiceDetails = ({ slug }: { slug: string }) => {
         {relatedServices.length > 0 && (
           <div className="mb-8">
             <h2 className="text-2xl lg:text-3xl font-display font-bold text-gray-900 dark:text-white mb-6">
-              {lang === 'en' ? 'Related Services' : 'ተዛማጅ አገልግሎቶች'}
+              {lang === "en" ? "Related Services" : "ተዛማጅ አገልግሎቶች"}
             </h2>
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-              {relatedServices.map((relatedService: any) => {
-                const relatedSlug = relatedService.slug || generateSlug(relatedService.title);
+              {relatedServices.map((relatedService: ServiceType) => {
+                const relatedSlug =
+                  relatedService.slug || generateSlug(relatedService.title);
                 return (
                   <a
                     key={relatedService.id}
@@ -238,37 +272,54 @@ const ServiceDetails = ({ slug }: { slug: string }) => {
                   >
                     {/* Image */}
                     <div className="relative h-48 overflow-hidden">
-                      {relatedService.image ? (
+                      {relatedService.banner_image ? (
                         <Image
-                          src={relatedService.image}
+                          src={getImageUrl(relatedService.banner_image)}
                           alt={relatedService.title}
                           fill
                           className="object-cover group-hover:scale-105 transition-transform duration-300"
                         />
                       ) : (
                         <div className="w-full h-full bg-gradient-to-br from-primary/20 to-secondary/20 dark:from-primary/30 dark:to-secondary/30 flex items-center justify-center">
-                          <svg className="w-16 h-16 text-primary dark:text-primary-light" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                          <svg
+                            className="w-16 h-16 text-primary dark:text-primary-light"
+                            fill="none"
+                            stroke="currentColor"
+                            viewBox="0 0 24 24"
+                          >
+                            <path
+                              strokeLinecap="round"
+                              strokeLinejoin="round"
+                              strokeWidth={2}
+                              d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"
+                            />
                           </svg>
                         </div>
                       )}
                     </div>
                     {/* Content */}
                     <div className="p-5">
-                      <div className="flex items-center gap-2 text-xs text-gray-500 dark:text-gray-400 mb-2">
-                        <span>{relatedService.category || (lang === 'en' ? 'Service' : 'አገልግሎት')}</span>
-                      </div>
                       <h3 className="text-lg font-display font-semibold text-gray-900 dark:text-white mb-2 group-hover:text-primary dark:group-hover:text-primary-light transition-colors line-clamp-2">
                         {relatedService.title}
                       </h3>
                       <p className="text-gray-600 dark:text-gray-400 mb-4 text-sm line-clamp-2 leading-relaxed">
-                        {relatedService.description}
+                        {relatedService.short_description}
                       </p>
                       <div className="flex items-center justify-end">
                         <span className="inline-flex items-center text-primary dark:text-primary-light font-medium text-sm group-hover:gap-1 transition-all">
-                          {lang === 'en' ? 'View' : 'ይመልከቱ'}
-                          <svg className="w-4 h-4 ml-1 transform group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                          {lang === "en" ? "View" : "ይመልከቱ"}
+                          <svg
+                            className="w-4 h-4 ml-1 transform group-hover:translate-x-1 transition-transform"
+                            fill="none"
+                            stroke="currentColor"
+                            viewBox="0 0 24 24"
+                          >
+                            <path
+                              strokeLinecap="round"
+                              strokeLinejoin="round"
+                              strokeWidth={2}
+                              d="M9 5l7 7-7 7"
+                            />
                           </svg>
                         </span>
                       </div>
@@ -282,6 +333,6 @@ const ServiceDetails = ({ slug }: { slug: string }) => {
       </div>
     </article>
   );
-}
+};
 
 export default ServiceDetails;

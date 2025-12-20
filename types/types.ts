@@ -359,6 +359,10 @@ export interface ServiceType {
   translations: ServiceTranslation[];
 }
 
+export interface ServiceResponse {
+  data: ServiceType;
+}
+
 export interface ServiceListResponse {
   data: ServiceType[];
   meta: {
