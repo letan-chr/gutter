@@ -1,1 +1,1 @@
-export const DEFAULT_LANGUAGE = "ar";
+export const DEFAULT_LANGUAGE = "en";
