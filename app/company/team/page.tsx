@@ -37,8 +37,6 @@ const page = () => {
     fetchData();
   }, []);
 
-  console.log("teams", teams);
-
   return (
     <>
       <Breadcrump
