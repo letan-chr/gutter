@@ -46,6 +46,17 @@ export async function getAllServices(): Promise<ServiceListResponse> {
   return response.data;
 }
 
+export async function getAllServicesWithPagination(params?: {
+  page?: number;
+  per_page?: number;
+}): Promise<ServiceListResponse> {
+  const response = await axiosInstance.get<ServiceListResponse>("/services", {
+    params,
+  });
+
+  return response.data;
+}
+
 const getProducts = async () => {
   const response = await axiosInstance.get("/ecommerce");
   return response.data;
@@ -54,6 +65,7 @@ const getProductBySlug = async (id: string) => {
   const response = await axiosInstance.get(`/products/${id}`);
   return response.data;
 };
+
 const getProductCategories = async () => {
   const response = await axiosInstance.get("/product-categories");
   return response.data;
@@ -66,6 +78,7 @@ const getBlogs = async () => {
   const response = await axiosInstance.get("/blogs");
   return response.data;
 };
+
 const getBlogBySlug = async (id: string) => {
   const response = await axiosInstance.get(`/blogs/${id}`);
   return response.data;

@@ -33,7 +33,7 @@ const Service = ({ services }: ServiceSectionProps) => {
 
         {/* STACKED SERVICE CARDS */}
         <div className="relative space-y-16 ">
-          {services.map((service: ServiceType, i: number) => (
+          {services.slice(0, 6).map((service: ServiceType, i: number) => (
             <div
               key={service.id}
               data-aos="fade-up"
