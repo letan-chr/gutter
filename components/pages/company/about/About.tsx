@@ -415,37 +415,12 @@ const About = () => {
                               {pageData.content.mission.title}
                             </h3>
                           </div>
-                          <p className="text-lg text-gray-700 dark:text-gray-300 leading-relaxed mb-4">
-                            {pageData.content.mission.description}
-                          </p>
-                          {pageData.content.mission.details &&
-                            pageData.content.mission.details.length > 0 && (
-                              <ul className="mt-4 space-y-2">
-                                {pageData.content.mission.details.map(
-                                  (detail: string, index: number) => (
-                                    <li
-                                      key={index}
-                                      className="flex items-start gap-2 text-gray-600 dark:text-gray-400"
-                                    >
-                                      <svg
-                                        className="w-5 h-5 text-secondary mt-0.5 flex-shrink-0"
-                                        fill="none"
-                                        stroke="currentColor"
-                                        viewBox="0 0 24 24"
-                                      >
-                                        <path
-                                          strokeLinecap="round"
-                                          strokeLinejoin="round"
-                                          strokeWidth={2}
-                                          d="M5 13l4 4L19 7"
-                                        />
-                                      </svg>
-                                      <span>{detail}</span>
-                                    </li>
-                                  )
-                                )}
-                              </ul>
-                            )}
+                          <p
+                            className="text-lg text-gray-700 dark:text-gray-300 leading-relaxed mb-4"
+                            dangerouslySetInnerHTML={{
+                              __html: aboutContent?.mission ?? "",
+                            }}
+                          ></p>
                         </div>
                       </div>
 
@@ -479,37 +454,12 @@ const About = () => {
                               {pageData.content.vision.title}
                             </h3>
                           </div>
-                          <p className="text-lg text-gray-700 dark:text-gray-300 leading-relaxed mb-4">
-                            {pageData.content.vision.description}
-                          </p>
-                          {pageData.content.vision.details &&
-                            pageData.content.vision.details.length > 0 && (
-                              <ul className="mt-4 space-y-2">
-                                {pageData.content.vision.details.map(
-                                  (detail: string, index: number) => (
-                                    <li
-                                      key={index}
-                                      className="flex items-start gap-2 text-gray-600 dark:text-gray-400"
-                                    >
-                                      <svg
-                                        className="w-5 h-5 text-tertiary mt-0.5 flex-shrink-0"
-                                        fill="none"
-                                        stroke="currentColor"
-                                        viewBox="0 0 24 24"
-                                      >
-                                        <path
-                                          strokeLinecap="round"
-                                          strokeLinejoin="round"
-                                          strokeWidth={2}
-                                          d="M5 13l4 4L19 7"
-                                        />
-                                      </svg>
-                                      <span>{detail}</span>
-                                    </li>
-                                  )
-                                )}
-                              </ul>
-                            )}
+                          <p
+                            className="text-lg text-gray-700 dark:text-gray-300 leading-relaxed mb-4"
+                            dangerouslySetInnerHTML={{
+                              __html: aboutContent?.vision ?? "",
+                            }}
+                          ></p>
                         </div>
                       </div>
                     </div>
