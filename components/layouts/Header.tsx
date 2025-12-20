@@ -1,10 +1,12 @@
-'use client';
+"use client";
 
-import React, { useState, useRef, useEffect } from 'react';
-import { ThemeToggle } from '@/components/ui/ThemeToggle';
-import { getLayoutData } from '@/data/utils';
-import { useLanguage } from '@/components/providers/LanguageProvider';
-import Image from 'next/image';
+import React, { useState, useRef, useEffect } from "react";
+import { ThemeToggle } from "@/components/ui/ThemeToggle";
+import { getLayoutData } from "@/data/utils";
+import { useLanguage } from "@/components/providers/LanguageProvider";
+import Image from "next/image";
+import { Feature, Setup } from "@/types/types";
+import { getBatchData } from "@/api/Api";
 
 interface NavItem {
   label: string;
@@ -16,29 +18,54 @@ const Header = () => {
   const { language: lang, toggleLanguage } = useLanguage();
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [companyDropdownOpen, setCompanyDropdownOpen] = useState(false);
-  const [mobileCompanyDropdownOpen, setMobileCompanyDropdownOpen] = useState(false);
+  const [mobileCompanyDropdownOpen, setMobileCompanyDropdownOpen] =
+    useState(false);
   const [offcanvasOpen, setOffcanvasOpen] = useState(false);
   const dropdownRef = useRef<HTMLDivElement>(null);
   const offcanvasRef = useRef<HTMLDivElement>(null);
   const dropdownTimeoutRef = useRef<NodeJS.Timeout | null>(null);
-  const data = getLayoutData('header', lang);
-  const footerData = getLayoutData('footer', lang);
+  const data = getLayoutData("header", lang);
+  const footerData = getLayoutData("footer", lang);
+  const [setup, setSetup] = useState<Setup | null>(null);
+
+  useEffect(() => {
+    const features: Feature[] = [{ name: "about_setup" }];
+
+    async function fetchData() {
+      try {
+        const data = await getBatchData(features);
+
+        setSetup(data.about_setup?.data ?? null);
+      } catch (err) {
+        console.error(err);
+      }
+    }
+
+    fetchData();
+  }, []);
+
+  const logoSrc = setup?.logo_small
+    ? `${process.env.NEXT_PUBLIC_IMAGE_URL}/${setup?.logo_small}`
+    : `${process.env.NEXT_PUBLIC_IMAGE_URL}/${setup?.logo_large}`;
 
   // Build navigation items
   const navItems: NavItem[] = [
-    { label: data.nav.home, href: '/' },
+    { label: data.nav.home, href: "/" },
     data.nav.company, // This is now an object with label and items
-    { label: data.nav.services, href: '/service' },
-    { label: data.nav.products, href: '/products' },
-    { label: data.nav.blog, href: '/blogs' },
-    { label: data.nav.vacancy, href: '/vacancies' },
-    { label: data.nav.contact, href: '/contacts' },
+    { label: data.nav.services, href: "/service" },
+    { label: data.nav.products, href: "/products" },
+    { label: data.nav.blog, href: "/blogs" },
+    { label: data.nav.vacancy, href: "/vacancies" },
+    { label: data.nav.contact, href: "/contacts" },
   ];
 
   // Close dropdown when clicking outside
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
-      if (dropdownRef.current && !dropdownRef.current.contains(event.target as Node)) {
+      if (
+        dropdownRef.current &&
+        !dropdownRef.current.contains(event.target as Node)
+      ) {
         // Clear any pending timeout
         if (dropdownTimeoutRef.current) {
           clearTimeout(dropdownTimeoutRef.current);
@@ -49,11 +76,11 @@ const Header = () => {
     };
 
     if (companyDropdownOpen) {
-      document.addEventListener('mousedown', handleClickOutside);
+      document.addEventListener("mousedown", handleClickOutside);
     }
 
     return () => {
-      document.removeEventListener('mousedown', handleClickOutside);
+      document.removeEventListener("mousedown", handleClickOutside);
       // Clean up timeout on unmount
       if (dropdownTimeoutRef.current) {
         clearTimeout(dropdownTimeoutRef.current);
@@ -64,32 +91,35 @@ const Header = () => {
   // Close offcanvas when clicking outside or pressing ESC
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
-      if (offcanvasRef.current && !offcanvasRef.current.contains(event.target as Node)) {
+      if (
+        offcanvasRef.current &&
+        !offcanvasRef.current.contains(event.target as Node)
+      ) {
         const target = event.target as HTMLElement;
-        if (!target.closest('[data-offcanvas-trigger]')) {
+        if (!target.closest("[data-offcanvas-trigger]")) {
           setOffcanvasOpen(false);
         }
       }
     };
 
     const handleEscape = (event: KeyboardEvent) => {
-      if (event.key === 'Escape' && offcanvasOpen) {
+      if (event.key === "Escape" && offcanvasOpen) {
         setOffcanvasOpen(false);
       }
     };
 
     if (offcanvasOpen) {
-      document.addEventListener('mousedown', handleClickOutside);
-      document.addEventListener('keydown', handleEscape);
-      document.body.style.overflow = 'hidden';
+      document.addEventListener("mousedown", handleClickOutside);
+      document.addEventListener("keydown", handleEscape);
+      document.body.style.overflow = "hidden";
     } else {
-      document.body.style.overflow = '';
+      document.body.style.overflow = "";
     }
 
     return () => {
-      document.removeEventListener('mousedown', handleClickOutside);
-      document.removeEventListener('keydown', handleEscape);
-      document.body.style.overflow = '';
+      document.removeEventListener("mousedown", handleClickOutside);
+      document.removeEventListener("keydown", handleEscape);
+      document.body.style.overflow = "";
     };
   }, [offcanvasOpen]);
 
@@ -109,7 +139,7 @@ const Header = () => {
               >
                 <div className="absolute inset-0 bg-gradient-to-r from-primary/20 to-secondary/20 rounded-lg blur-xl opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
                 <Image
-                  src="/assets/images/logo/logo.jpg"
+                  src={logoSrc}
                   alt="Logo"
                   width={80}
                   height={80}
@@ -649,6 +679,6 @@ const Header = () => {
       </div>
     </>
   );
-}
+};
 
 export default Header;
