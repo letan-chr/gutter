@@ -4,23 +4,34 @@ import React, { useEffect, useState } from "react";
 import { getPageData, getSectionData } from "@/data/utils";
 import { useLanguage } from "@/components/providers/LanguageProvider";
 import Partners from "@/components/sections/Partners";
-import { AboutContent, Feature, Product, ServiceType } from "@/types/types";
+import {
+  AboutContent,
+  Feature,
+  Product,
+  ServiceType,
+  Stat,
+} from "@/types/types";
 import { getAllProducts, getAllServices, getBatchData } from "@/api/Api";
 import { resolveAboutContent } from "@/lib/resolvers/resolveAbout";
 import { resolveCoreValue } from "@/lib/resolvers/resolveCoreValue";
 import { resolveService } from "@/lib/resolvers/serviceResolver";
 import { resolveProduct } from "@/lib/resolvers/productResolver";
+import { resolveStat } from "@/lib/resolvers/resolveStats";
 
 const About = () => {
   const { language: lang } = useLanguage();
   const [aboutContent, setAboutContent] = useState<AboutContent | null>(null);
   const [services, setServices] = useState<ServiceType[]>([]);
   const [products, setProducts] = useState<Product[]>([]);
+  const [stats, setStats] = useState<Stat[]>([]);
   const pageData = getPageData("about", lang);
   const sectionData = getSectionData("about", lang);
 
   useEffect(() => {
-    const features: Feature[] = [{ name: "about_content", amount: 4 }];
+    const features: Feature[] = [
+      { name: "about_content", amount: 4 },
+      { name: "about_statistic", amount: 100 },
+    ];
 
     async function fetchData() {
       try {
@@ -41,6 +52,12 @@ const About = () => {
           ...resolvedAbout,
           core_values: resolvedCoreValues,
         });
+
+        const rawStats = data.about_statistic?.data ?? [];
+
+        const resolvedStats = rawStats.map((stat) => resolveStat(stat, lang));
+
+        setStats(resolvedStats);
 
         const serviceResponse = await getAllServices();
 
@@ -65,6 +82,27 @@ const About = () => {
 
     fetchData();
   }, [lang]);
+
+  function getFAIcon(iconName?: string) {
+    const valid =
+      typeof iconName === "string" &&
+      iconName.trim() !== "" &&
+      (iconName.startsWith("fa ") ||
+        iconName.startsWith("fa-") ||
+        iconName.startsWith("fas ") ||
+        iconName.startsWith("fas-") ||
+        iconName.startsWith("fab ") ||
+        iconName.startsWith("fab-") ||
+        iconName.startsWith("far ") ||
+        iconName.startsWith("far-"));
+
+    if (valid) {
+      return <i className={`${iconName} text-3xl`}></i>;
+    }
+
+    // BETTER fallback for stats
+    return <i className="fa-solid fa-gem text-3xl"></i>;
+  }
 
   return (
     <section className="py-12 lg:py-20 bg-gradient-to-b from-white via-gray-50 to-white dark:from-gray-900 dark:via-gray-900 dark:to-gray-900 min-h-screen">
@@ -470,52 +508,19 @@ const About = () => {
 
             {/* Stats Section */}
             <div className="grid grid-cols-2 md:grid-cols-4 gap-6 mt-12">
-              {[
-                {
-                  label: "Years Experience",
-                  value: "19+",
-                  icon: "M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z",
-                },
-                {
-                  label: "Happy Clients",
-                  value: "500+",
-                  icon: "M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z",
-                },
-                {
-                  label: "Projects Completed",
-                  value: "1000+",
-                  icon: "M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z",
-                },
-                {
-                  label: "Team Members",
-                  value: "50+",
-                  icon: "M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197M13 7a4 4 0 11-8 0 4 4 0 018 0z",
-                },
-              ].map((stat, index) => (
+              {stats.map((stat, index) => (
                 <div
                   key={index}
                   className="bg-gradient-to-br from-white to-gray-50 dark:from-gray-800 dark:to-gray-900 rounded-2xl p-6 text-center transform hover:scale-110 hover:shadow-xl transition-all duration-300 border border-gray-200/50 dark:border-gray-700/50 group"
                 >
                   <div className="w-16 h-16 bg-gradient-to-br from-primary/20 to-secondary/20 dark:from-primary/30 dark:to-secondary/30 rounded-xl flex items-center justify-center mx-auto mb-4 transform group-hover:rotate-6 transition-transform duration-300">
-                    <svg
-                      className="w-8 h-8 text-primary dark:text-secondary"
-                      fill="none"
-                      stroke="currentColor"
-                      viewBox="0 0 24 24"
-                    >
-                      <path
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                        strokeWidth={2}
-                        d={stat.icon}
-                      />
-                    </svg>
+                    {getFAIcon(stat.icon_class || "fa-solid fa-gem")}
                   </div>
                   <div className="text-3xl lg:text-4xl font-bold bg-gradient-to-r from-primary via-secondary to-tertiary bg-clip-text text-transparent mb-2">
                     {stat.value}
                   </div>
                   <div className="text-sm text-gray-600 dark:text-gray-400 font-medium">
-                    {stat.label}
+                    {stat.name}
                   </div>
                 </div>
               ))}

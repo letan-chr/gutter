@@ -8,6 +8,7 @@
     "start": "NODE_ENV=production node server.js"
   },
   "dependencies": {
+    "@fortawesome/fontawesome-free": "^7.1.0",
     "aos": "^2.3.4",
     "axios": "^1.13.2",
     "lucide-react": "^0.556.0",

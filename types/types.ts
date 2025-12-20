@@ -103,16 +103,28 @@ export interface BlogListResponse {
   };
 }
 
+export interface StatTranslation {
+  id: number;
+  about_statistic_id: number | string;
+  locale: string; // "en" | "am"
+  name: string;
+  value: string;
+  created_at: string;
+  updated_at: string;
+}
+
 export interface Stat {
   id: number;
   business_id: number;
-  name: string; // e.g. "products"
-  value: string; // e.g. "100+"
-  image: string | null; // backend may return null
-  icon_class: string | null; // e.g. "fas fa user"
+  name: string; // fallback name
+  value: string; // fallback value
+  image: string | null;
+  icon_class: string | null;
   views_count: number;
   created_at: string;
   updated_at: string;
+
+  translations: StatTranslation[];
 }
 
 export type ProductCategoryTranslation = {
