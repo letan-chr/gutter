@@ -304,10 +304,7 @@ const ProductDetails = ({ product, relatedProducts }: ProductDetailsProps) => {
                       {relatedProduct.description}
                     </p>
                     <div className="flex items-center justify-end">
-                      <a
-                        href={`/products/${relatedProduct.slug}`}
-                        className="inline-flex items-center text-primary dark:text-primary-light font-medium text-sm group-hover:gap-1 transition-all"
-                      >
+                      <div className="inline-flex items-center text-primary dark:text-primary-light font-medium text-sm group-hover:gap-1 transition-all">
                         {lang === "en" ? "View" : "ይመልከቱ"}
                         <svg
                           className="w-4 h-4 ml-1 transform group-hover:translate-x-1 transition-transform"
@@ -322,7 +319,7 @@ const ProductDetails = ({ product, relatedProducts }: ProductDetailsProps) => {
                             d="M9 5l7 7-7 7"
                           />
                         </svg>
-                      </a>
+                      </div>
                     </div>
                   </div>
                 </a>
