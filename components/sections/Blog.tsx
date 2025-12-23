@@ -94,7 +94,7 @@ const Blog = ({ blogs }: BlogSectionProps) => {
         {/* Featured Blog Posts - 2 Large Cards */}
         {featuredBlogs.length > 0 && (
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 lg:gap-6 mb-10">
-            {featuredBlogs.slice(0, 4).map((post: BlogType, index: number) => (
+            {featuredBlogs.slice(0, 2).map((post: BlogType, index: number) => (
               <article
                 key={post.id}
                 data-aos="fade-up"
@@ -159,7 +159,7 @@ const Blog = ({ blogs }: BlogSectionProps) => {
         {/* Latest Blog Posts - 4 Normal Cards */}
         {blogs.length > 0 && (
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
-            {blogs.slice(0, 8).map((post: BlogType, index: number) => (
+            {blogs.slice(0, 4).map((post: BlogType, index: number) => (
               <article
                 key={post.id}
                 data-aos="fade-up"
