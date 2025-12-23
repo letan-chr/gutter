@@ -1,66 +1,63 @@
-"use client";
-
-import React, { useEffect, useState } from "react";
+import { getAllProducts } from "@/api/Api";
 import Breadcrump from "@/components/layouts/Breadcrump";
 import ProductDetails from "@/components/pages/products/ProductDetails";
-import { useParams } from "next/navigation";
 import { Product } from "@/types/types";
-import { getAllProducts } from "@/api/Api";
-import { resolveProduct } from "@/lib/resolvers/productResolver";
-import { useLanguage } from "@/components/providers/LanguageProvider";
 
-const page = () => {
-  const { slug } = useParams();
-  const { language: lang } = useLanguage();
-  const [products, setProducts] = useState<Product[]>([]);
-  console.log(slug);
+/**
+ * Pre-generate product slugs
+ */
+export async function generateStaticParams() {
+  const res = await getAllProducts();
 
-  useEffect(() => {
-    async function fetchData() {
-      try {
-        // 🔹 Products & Categories
-        const [productsRes] = await Promise.all([getAllProducts()]);
+  return res.data.map((product: Product) => ({
+    slug: product.slug,
+  }));
+}
 
-        // Resolve products
-        const resolvedProducts = productsRes.data.map((product) =>
-          resolveProduct(product, lang)
-        );
-        setProducts(resolvedProducts);
-      } catch (err) {
-        console.error(err);
-      }
-    }
+/**
+ * SERVER PAGE
+ */
+export default async function Page({
+  params,
+}: {
+  params: Promise<{ slug: string }>;
+}) {
+  const { slug } = await params;
 
-    fetchData();
-  }, [lang]);
+  const normalizedSlug = slug;
 
-  const normalizedSlug = Array.isArray(slug) ? slug[0] : slug;
+  // 🔹 Fetch ALL products (same as your client code)
+  const productsRes = await getAllProducts();
+  const products = productsRes.data;
 
-  const product = products.find((p) => p.slug === normalizedSlug);
+  // 🔹 Filter by slug (same logic)
+  const product = products.find((p: Product) => p.slug === normalizedSlug);
   const relatedProducts = products
-    .filter((p) => p.slug !== normalizedSlug)
+    .filter((p: Product) => p.slug !== normalizedSlug)
     .slice(0, 4);
 
   if (!product) {
     return (
       <div className="py-20 text-center">
-        <p className="text-gray-500 dark:text-gray-400">
-          {lang === "en" ? "Product not found" : "ምርት አልተገኘም"}
-        </p>
+        <p className="text-gray-500 dark:text-gray-400">Product not found</p>
       </div>
     );
   }
 
   return (
     <>
+      {/* Breadcrumb can be static or resolved later */}
       <Breadcrump
         backgroundImage="/assets/images/breadcrump.jpg"
         title={product.name}
         subtitle="Premium quality gutter solutions for your home"
       />
-      <ProductDetails product={product} relatedProducts={relatedProducts} />
+
+      {/* ⬇️ Pass RAW DATA */}
+      <ProductDetails
+        unResolvedProduct={product}
+        unResolvedRelatedProducts={relatedProducts}
+      />
     </>
   );
-};
-
-export default page;
+}

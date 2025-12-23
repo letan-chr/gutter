@@ -1,72 +1,69 @@
-"use client";
-
-import React, { useEffect, useState } from "react";
+import { getAllServices, getServiceBySlug } from "@/api/Api";
 import Breadcrump from "@/components/layouts/Breadcrump";
 import ServiceDetails from "@/components/pages/service/ServiceDetails";
-import { useParams } from "next/navigation";
-import { getAllServices, getServiceBySlug } from "@/api/Api";
-import { resolveService } from "@/lib/resolvers/serviceResolver";
+import { getServiceSlug } from "@/lib/utils/getServiceSlug";
 import { ServiceType } from "@/types/types";
-import { useLanguage } from "@/components/providers/LanguageProvider";
 
-const page = () => {
-  const { slug } = useParams<{ slug: string }>();
-  const { language: lang } = useLanguage();
-  const [service, setService] = useState<ServiceType | null>(null);
-  const [relatedServices, setRelatedServices] = useState<ServiceType[]>([]);
+/**
+ * Pre-generate all service slugs at build time
+ */
+export async function generateStaticParams() {
+  const res = await getAllServices();
 
-  const normalizedSlug = Array.isArray(slug) ? slug[0] : slug;
+  return res.data
+    .map((service: ServiceType) => {
+      const slug = getServiceSlug(service);
 
-  useEffect(() => {
-    if (!normalizedSlug) return;
+      if (!slug) return null;
 
-    async function fetchData() {
-      try {
-        // 1️⃣ Fetch service by slug
-        const serviceRes = await getServiceBySlug(normalizedSlug);
-        const resolvedService = resolveService(serviceRes.data, lang);
-        setService(resolvedService);
+      return { slug };
+    })
+    .filter(Boolean) as { slug: string }[];
+}
 
-        // 2️⃣ Fetch all services
-        const allServicesRes = await getAllServices();
-        const resolvedAll = allServicesRes.data.map((s) =>
-          resolveService(s, lang)
-        );
+/**
+ * Service details page (SERVER COMPONENT)
+ */
+export default async function Page({
+  params,
+}: {
+  params: Promise<{ slug: string }>;
+}) {
+  const { slug } = await params;
 
-        // 3️⃣ Related services = all except current, limit 4
-        const related = resolvedAll
-          .filter((s) => s.slug !== normalizedSlug)
-          .slice(0, 4);
+  const normalizedSlug = slug;
 
-        setRelatedServices(related);
-      } catch (error) {
-        console.error(error);
-      }
-    }
+  try {
+    // 1️⃣ Fetch RAW service (NO language resolving)
+    const serviceRes = await getServiceBySlug(normalizedSlug);
+    const service: ServiceType = serviceRes.data;
 
-    fetchData();
-  }, [normalizedSlug, lang]);
+    // 2️⃣ Fetch RAW services for related services
+    const allServicesRes = await getAllServices();
+    const relatedServices = allServicesRes.data
+      .filter((s: ServiceType) => s.slug !== normalizedSlug)
+      .slice(0, 4);
 
-  if (!service) {
+    return (
+      <>
+        <Breadcrump
+          backgroundImage="/assets/images/breadcrump-for-service.jpg"
+          title={service.title}
+          subtitle="Professional service tailored to your needs"
+        />
+
+        {/* ⬇️ PASS RAW DATA */}
+        <ServiceDetails
+          unResolvedService={service}
+          unResolvedRelatedServices={relatedServices}
+        />
+      </>
+    );
+  } catch {
     return (
       <div className="py-20 text-center">
-        <p className="text-gray-500 dark:text-gray-400">
-          {lang === "en" ? "Service not found" : "አገልግሎት አልተገኘም"}
-        </p>
+        <p className="text-gray-500 dark:text-gray-400">Service not found</p>
       </div>
     );
   }
-
-  return (
-    <>
-      <Breadcrump
-        backgroundImage="/assets/images/breadcrump-for-service.jpg"
-        title={service.title}
-        subtitle="Professional service tailored to your needs"
-      />
-      <ServiceDetails service={service} relatedServices={relatedServices} />
-    </>
-  );
-};
-
-export default page;
+}

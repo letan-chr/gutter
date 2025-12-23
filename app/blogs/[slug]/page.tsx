@@ -1,83 +1,63 @@
-"use client";
-
 import { getAllBlogs, getBlogBySlug } from "@/api/Api";
 import Breadcrump from "@/components/layouts/Breadcrump";
 import BlogDetails from "@/components/pages/blog/BlogDetails";
-import { useLanguage } from "@/components/providers/LanguageProvider";
-import { resolveBlog } from "@/lib/resolvers/blogResolver";
 import { Blog } from "@/types/types";
-import { useParams } from "next/navigation";
-import React, { useEffect, useState } from "react";
 
-const page = () => {
-  const { slug } = useParams<{ slug: string }>();
-  const { language: lang } = useLanguage();
+/**
+ * Pre-generate all blog slugs at build time
+ */
+export async function generateStaticParams() {
+  const res = await getAllBlogs();
 
-  const [blog, setBlog] = useState<Blog | null>(null);
-  const [relatedBlogs, setRelatedBlogs] = useState<Blog[]>([]);
+  return res.data.map((blog: Blog) => ({
+    slug: blog.slug,
+  }));
+}
 
-  const normalizedSlug = Array.isArray(slug) ? slug[0] : slug;
+/**
+ * Blog details page (SERVER COMPONENT)
+ */
+export default async function Page({
+  params,
+}: {
+  params: Promise<{ slug: string }>;
+}) {
+  const { slug } = await params;
 
-  useEffect(() => {
-    if (!normalizedSlug) return;
+  const normalizedSlug = slug;
 
-    async function fetchData() {
-      try {
-        // 1️⃣ Fetch blog by slug
-        const blogRes = await getBlogBySlug(normalizedSlug);
-        const resolvedBlog = resolveBlog(blogRes.data, lang);
-        setBlog(resolvedBlog);
+  try {
+    // 1️⃣ Fetch RAW blog (no language resolving here)
+    const blogRes = await getBlogBySlug(normalizedSlug);
+    const blog = blogRes.data;
 
-        // 2️⃣ Fetch all blogs
-        const allBlogsRes = await getAllBlogs();
-        const resolvedAll = allBlogsRes.data.map((b: Blog) =>
-          resolveBlog(b, lang)
-        );
+    // 2️⃣ Fetch RAW blogs for related posts
+    const allBlogsRes = await getAllBlogs();
+    const relatedBlogs = allBlogsRes.data
+      .filter((b: Blog) => b.slug !== normalizedSlug)
+      .slice(0, 4);
 
-        // 3️⃣ Related blogs (exclude current, limit 4)
-        const related = resolvedAll
-          .filter((b) => b.slug !== normalizedSlug)
-          .slice(0, 4);
+    return (
+      <>
+        {/* Breadcrump can still be simple or static */}
+        <Breadcrump
+          backgroundImage="/assets/images/breadcrump.jpg"
+          title={blog.title}
+          subtitle="Read our latest insights and updates"
+        />
 
-        setRelatedBlogs(related);
-      } catch (error) {
-        console.error(error);
-      }
-    }
-
-    fetchData();
-  }, [normalizedSlug, lang]);
-
-  if (!blog) {
+        {/* ⬇️ PASS RAW DATA */}
+        <BlogDetails
+          unResolvedPost={blog}
+          unResolvedRelatedPosts={relatedBlogs}
+        />
+      </>
+    );
+  } catch {
     return (
       <div className="py-20 text-center">
-        <p className="text-gray-500 dark:text-gray-400">
-          {lang === "en" ? "Post not found" : "ልጥፍ አልተገኘም"}
-        </p>
+        <p className="text-gray-500 dark:text-gray-400">Post not found</p>
       </div>
     );
   }
-
-  if (!blog) {
-    return (
-      <div className="py-20 text-center">
-        <p className="text-gray-500 dark:text-gray-400">
-          {lang === "en" ? "Post not found" : "ልጥፍ አልተገኘም"}
-        </p>
-      </div>
-    );
-  }
-
-  return (
-    <>
-      <Breadcrump
-        backgroundImage="/assets/images/breadcrump.jpg"
-        title={blog?.title}
-        subtitle="Read our latest insights and updates"
-      />
-      <BlogDetails post={blog} relatedPosts={relatedBlogs} />
-    </>
-  );
-};
-
-export default page;
+}

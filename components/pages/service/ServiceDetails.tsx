@@ -5,14 +5,26 @@ import Image from "next/image";
 import { getSectionData } from "@/data/utils";
 import { useLanguage } from "@/components/providers/LanguageProvider";
 import { ServiceType } from "@/types/types";
+import { resolveService } from "@/lib/resolvers/serviceResolver";
 
 interface ServiceDetailProps {
-  service: ServiceType | null;
-  relatedServices: ServiceType[];
+  unResolvedService: ServiceType | null;
+  unResolvedRelatedServices: ServiceType[];
 }
 
-const ServiceDetails = ({ service, relatedServices }: ServiceDetailProps) => {
+const ServiceDetails = ({
+  unResolvedService,
+  unResolvedRelatedServices,
+}: ServiceDetailProps) => {
   const { language: lang } = useLanguage();
+  if (!unResolvedService) {
+    return null;
+  }
+  // ✅ Resolve language here
+  const service = resolveService(unResolvedService, lang);
+  const relatedServices = unResolvedRelatedServices.map((s) =>
+    resolveService(s, lang)
+  );
   const data = getSectionData("service", lang);
 
   // Helper function to generate slug from title

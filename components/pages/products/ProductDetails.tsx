@@ -5,14 +5,26 @@ import Image from "next/image";
 import { getSectionData } from "@/data/utils";
 import { useLanguage } from "@/components/providers/LanguageProvider";
 import { Product } from "@/types/types";
+import { resolveProduct } from "@/lib/resolvers/productResolver";
 
 interface ProductDetailsProps {
-  product: Product | null;
-  relatedProducts: Product[];
+  unResolvedProduct: Product | null;
+  unResolvedRelatedProducts: Product[];
 }
 
-const ProductDetails = ({ product, relatedProducts }: ProductDetailsProps) => {
+const ProductDetails = ({
+  unResolvedProduct,
+  unResolvedRelatedProducts,
+}: ProductDetailsProps) => {
   const { language: lang } = useLanguage();
+  if (!unResolvedProduct) {
+    return null;
+  }
+  // ✅ Resolve on client
+  const product = resolveProduct(unResolvedProduct, lang);
+  const relatedProducts = unResolvedRelatedProducts.map((p) =>
+    resolveProduct(p, lang)
+  );
   const data = getSectionData("products", lang);
 
   const IMAGE_BASE = process.env.NEXT_PUBLIC_IMAGE_URL;

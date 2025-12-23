@@ -5,14 +5,23 @@ import Image from "next/image";
 import { getPageData } from "@/data/utils";
 import { useLanguage } from "@/components/providers/LanguageProvider";
 import { Blog } from "@/types/types";
+import { resolveBlog } from "@/lib/resolvers/blogResolver";
 
 interface BlogDetailsProps {
-  post: Blog | null;
-  relatedPosts: Blog[];
+  unResolvedPost: Blog | null;
+  unResolvedRelatedPosts: Blog[];
 }
 
-const BlogDetails = ({ post, relatedPosts }: BlogDetailsProps) => {
+const BlogDetails = ({
+  unResolvedPost,
+  unResolvedRelatedPosts,
+}: BlogDetailsProps) => {
   const { language: lang } = useLanguage();
+  if (!unResolvedPost) {
+    return null;
+  }
+  const post = resolveBlog(unResolvedPost, lang);
+  const relatedPosts = unResolvedRelatedPosts.map((b) => resolveBlog(b, lang));
   const data = getPageData("blog", lang);
 
   const IMAGE_BASE = process.env.NEXT_PUBLIC_IMAGE_URL;
