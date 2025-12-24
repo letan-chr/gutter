@@ -8,9 +8,16 @@ import { Document as DocumentType, DocumentCategory } from "@/types/types";
 import { resolveDocument } from "@/lib/resolvers/resolvedDocyument";
 import { resolveDocumentCategory } from "@/lib/resolvers/resolveDocumentCategory";
 
+const INLINE_VIEW_TYPES = ["pdf", "jpg", "jpeg", "png"];
 const IMAGE_TYPES = ["jpg", "jpeg", "png"];
 
-const isImage = (type: string) => IMAGE_TYPES.includes(type.toLowerCase());
+const normalizeType = (type?: string) =>
+  typeof type === "string" ? type.toLowerCase() : "";
+
+const canViewInline = (type?: string) =>
+  INLINE_VIEW_TYPES.includes(normalizeType(type));
+
+const isImage = (type?: string) => IMAGE_TYPES.includes(normalizeType(type));
 
 interface DocumentProps {
   unResolvedDocuments: DocumentType[];
@@ -105,9 +112,16 @@ const Document = ({
   };
 
   const handleViewDocument = (doc: DocumentType) => {
-    if (!canViewInline(doc.file_type)) return;
-    setSelectedDocument(doc);
-    setIsViewerOpen(true);
+    if (canViewInline(doc.file_type)) {
+      setSelectedDocument(doc);
+      setIsViewerOpen(true);
+      return;
+    }
+
+    window.open(
+      `${process.env.NEXT_PUBLIC_IMAGE_URL}/${doc.file_path}`,
+      "_blank"
+    );
   };
 
   const handleDownload = (doc: DocumentType) => {
@@ -120,10 +134,6 @@ const Document = ({
     link.click();
     document.body.removeChild(link);
   };
-
-  const canViewInline = (type: string) =>
-    typeof type === "string" &&
-    ["pdf", "jpg", "jpeg", "png"].includes(type.toLowerCase());
 
   return (
     <>
@@ -302,7 +312,7 @@ const Document = ({
                 </div>
               ) : selectedDocument.file_type === "pdf" ? (
                 <iframe
-                  src={selectedDocument.file_path}
+                  src={`${process.env.NEXT_PUBLIC_IMAGE_URL}/${selectedDocument.file_path}`}
                   className="w-full h-full border-0"
                   title={selectedDocument.name}
                 />
