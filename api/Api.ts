@@ -4,6 +4,8 @@ import {
   BlogCategoryResponse,
   BlogListResponse,
   BlogResponse,
+  DocumentCategoryApiResponse,
+  DocumentsApiResponse,
   Feature,
   ProductCategoryResponse,
   ProductListResponse,
@@ -130,6 +132,20 @@ export async function getAllTestimonials(): Promise<TestimonialListResponse> {
   const response = await axiosInstance.get<TestimonialListResponse>(
     "/testimonials"
   );
+  return response.data;
+}
+
+export async function getAllDocumentCategories(): Promise<DocumentCategoryApiResponse> {
+  const response = await axiosInstance.get<DocumentCategoryApiResponse>(
+    "/document-categories"
+  );
+
+  return response.data;
+}
+
+export async function getAllDocuments(): Promise<DocumentsApiResponse> {
+  const response = await axiosInstance.get<DocumentsApiResponse>("/documents");
+
   return response.data;
 }
 

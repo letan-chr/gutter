@@ -1,74 +1,93 @@
-'use client';
+"use client";
 
-import React, { useState } from 'react';
-import Image from 'next/image';
-import { getPageData } from '@/data/utils';
-import { useLanguage } from '@/components/providers/LanguageProvider';
+import React, { useState } from "react";
+import Image from "next/image";
+import { getPageData } from "@/data/utils";
+import { useLanguage } from "@/components/providers/LanguageProvider";
+import { Document as DocumentType, DocumentCategory } from "@/types/types";
+import { resolveDocument } from "@/lib/resolvers/resolvedDocyument";
+import { resolveDocumentCategory } from "@/lib/resolvers/resolveDocumentCategory";
 
-interface Document {
-  id: number;
-  title: string;
-  description: string;
-  type: 'pdf' | 'doc' | 'ppt' | 'image' | string;
-  fileUrl: string;
-  thumbnail: string;
-  size: string;
-  date: string;
+interface DocumentProps {
+  unResolvedDocuments: DocumentType[];
+  unResolvedCategories: DocumentCategory[];
 }
 
-const Document = () => {
+const Document = ({
+  unResolvedDocuments,
+  unResolvedCategories,
+}: DocumentProps) => {
   const { language: lang } = useLanguage();
-  const data = getPageData('document', lang);
-  const [selectedDocument, setSelectedDocument] = useState<Document | null>(null);
+  const [activeCategory, setActiveCategory] = useState<number | "all">("all");
+
+  if (!unResolvedDocuments) {
+    return null;
+  }
+  const documents = unResolvedDocuments.map((doc) =>
+    resolveDocument(doc, lang)
+  );
+  const categories = unResolvedCategories.map((cat) =>
+    resolveDocumentCategory(cat, lang)
+  );
+
+  const filteredDocuments =
+    activeCategory === "all"
+      ? documents
+      : documents.filter((doc) => doc.document_category_id === activeCategory);
+
+  const data = getPageData("document", lang);
+  const [selectedDocument, setSelectedDocument] = useState<DocumentType | null>(
+    null
+  );
   const [isViewerOpen, setIsViewerOpen] = useState(false);
 
   const getFileIcon = (type: string) => {
     switch (type.toLowerCase()) {
-      case 'pdf':
-        return '📄';
-      case 'doc':
-      case 'docx':
-        return '📝';
-      case 'ppt':
-      case 'pptx':
-        return '📊';
-      case 'image':
-      case 'jpg':
-      case 'jpeg':
-      case 'png':
-        return '🖼️';
+      case "pdf":
+        return "📄";
+      case "doc":
+      case "docx":
+        return "📝";
+      case "ppt":
+      case "pptx":
+        return "📊";
+      case "image":
+      case "jpg":
+      case "jpeg":
+      case "png":
+        return "🖼️";
       default:
-        return '📎';
+        return "📎";
     }
   };
 
   const getFileTypeLabel = (type: string) => {
     switch (type.toLowerCase()) {
-      case 'pdf':
-        return 'PDF';
-      case 'doc':
-      case 'docx':
-        return 'Word';
-      case 'ppt':
-      case 'pptx':
-        return 'PowerPoint';
-      case 'image':
-        return 'Image';
+      case "pdf":
+        return "PDF";
+      case "doc":
+      case "docx":
+        return "Word";
+      case "ppt":
+      case "pptx":
+        return "PowerPoint";
+      case "image":
+        return "Image";
       default:
         return type.toUpperCase();
     }
   };
 
-  const handleViewDocument = (document: Document) => {
+  const handleViewDocument = (document: DocumentType) => {
     setSelectedDocument(document);
     setIsViewerOpen(true);
   };
 
-  const handleDownload = (doc: Document) => {
-    const link = document.createElement('a');
-    link.href = doc.fileUrl;
-    link.download = doc.title;
-    link.target = '_blank';
+  const handleDownload = (doc: DocumentType) => {
+    const link = document.createElement("a");
+    link.href = doc.file_path;
+    link.download = doc.name;
+    link.target = "_blank";
     document.body.appendChild(link);
     link.click();
     document.body.removeChild(link);
@@ -76,7 +95,13 @@ const Document = () => {
 
   const canViewInline = (type: string) => {
     const lowerType = type.toLowerCase();
-    return lowerType === 'pdf' || lowerType === 'image' || lowerType === 'jpg' || lowerType === 'jpeg' || lowerType === 'png';
+    return (
+      lowerType === "pdf" ||
+      lowerType === "image" ||
+      lowerType === "jpg" ||
+      lowerType === "jpeg" ||
+      lowerType === "png"
+    );
   };
 
   return (
@@ -93,38 +118,69 @@ const Document = () => {
             </p>
           </div>
 
+          <div className="flex flex-wrap justify-center gap-3 mb-10">
+            <button
+              onClick={() => setActiveCategory("all")}
+              className={`px-4 py-2 rounded-full text-sm font-semibold
+              ${
+                activeCategory === "all"
+                  ? "bg-primary text-white"
+                  : "bg-gray-200 dark:bg-gray-700"
+              }`}
+            >
+              {lang === "en" ? "All" : "ሁሉም"}
+            </button>
+
+            {categories.map((cat) => (
+              <button
+                key={cat.id}
+                onClick={() => setActiveCategory(cat.id)}
+                className={`px-4 py-2 rounded-full text-sm font-semibold
+                ${
+                  activeCategory === cat.id
+                    ? "bg-primary text-white"
+                    : "bg-gray-200 dark:bg-gray-700"
+                }`}
+              >
+                {cat.name}
+              </button>
+            ))}
+          </div>
+
           {/* Documents Grid */}
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8">
-            {data.documents.map((doc: Document) => (
+            {filteredDocuments.map((doc: DocumentType) => (
               <div
                 key={doc.id}
                 className="group relative bg-gradient-to-br from-gray-50 to-white dark:from-gray-800 dark:to-gray-900 rounded-2xl overflow-hidden hover:shadow-2xl transition-all duration-300 hover:-translate-y-2 border border-gray-200 dark:border-gray-700"
               >
                 {/* Thumbnail */}
                 <div className="relative h-48 overflow-hidden bg-gradient-to-br from-primary/10 to-secondary/10">
-                  {doc.type === 'image' ? (
+                  {doc.file_type === "jpg" ? (
                     <Image
-                      src={doc.thumbnail}
-                      alt={doc.title}
+                      src={`${process.env.NEXT_PUBLIC_IMAGE_URL}/${doc.file_path}`}
+                      alt={doc.name}
                       fill
                       className="object-cover group-hover:scale-110 transition-transform duration-300"
                       sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
                     />
                   ) : (
                     <div className="w-full h-full flex items-center justify-center">
-                      <div className="text-8xl opacity-30">{getFileIcon(doc.type)}</div>
+                      <div className="text-8xl opacity-30">
+                        {getFileIcon(doc.file_type)}
+                      </div>
                     </div>
                   )}
                   {/* Type Badge */}
                   <div className="absolute top-4 right-4 bg-white/90 dark:bg-gray-900/90 backdrop-blur-sm px-3 py-1 rounded-full text-xs font-semibold text-gray-900 dark:text-white">
-                    {getFileTypeLabel(doc.type)}
+                    {getFileTypeLabel(doc.file_type)}
                   </div>
                 </div>
 
                 {/* Content */}
                 <div className="p-6">
                   <h3 className="text-xl font-display font-semibold text-gray-900 dark:text-white mb-2 group-hover:text-primary dark:group-hover:text-primary-light transition-colors">
-                    {doc.title}
+                    {doc.name}
                   </h3>
                   <p className="text-gray-600 dark:text-gray-400 text-sm mb-4 line-clamp-2">
                     {doc.description}
@@ -132,18 +188,22 @@ const Document = () => {
 
                   {/* Meta Info */}
                   <div className="flex items-center justify-between text-xs text-gray-500 dark:text-gray-400 mb-4">
-                    <span>{doc.size}</span>
-                    <span>{new Date(doc.date).toLocaleDateString(lang === 'en' ? 'en-US' : 'am-ET')}</span>
+                    <span>{doc.file_size}</span>
+                    <span>
+                      {new Date(doc.created_at).toLocaleDateString(
+                        lang === "en" ? "en-US" : "am-ET"
+                      )}
+                    </span>
                   </div>
 
                   {/* Actions */}
                   <div className="flex gap-2">
-                    {canViewInline(doc.type) && (
+                    {canViewInline(doc.file_type) && (
                       <button
                         onClick={() => handleViewDocument(doc)}
                         className="flex-1 bg-primary hover:bg-primary-dark text-white px-4 py-2 rounded-lg font-semibold transition-colors duration-300 flex items-center justify-center gap-2"
                       >
-                        <span>{lang === 'en' ? 'View' : 'እይታ'}</span>
+                        <span>{lang === "en" ? "View" : "እይታ"}</span>
                         <span>👁️</span>
                       </button>
                     )}
@@ -151,7 +211,7 @@ const Document = () => {
                       onClick={() => handleDownload(doc)}
                       className="flex-1 bg-secondary hover:bg-secondary-dark text-white px-4 py-2 rounded-lg font-semibold transition-colors duration-300 flex items-center justify-center gap-2"
                     >
-                      <span>{lang === 'en' ? 'Download' : 'ያውርዱ'}</span>
+                      <span>{lang === "en" ? "Download" : "ያውርዱ"}</span>
                       <span>⬇️</span>
                     </button>
                   </div>
@@ -170,10 +230,11 @@ const Document = () => {
             <div className="flex items-center justify-between p-6 border-b border-gray-200 dark:border-gray-700">
               <div>
                 <h2 className="text-2xl font-display font-bold text-gray-900 dark:text-white">
-                  {selectedDocument.title}
+                  {selectedDocument.name}
                 </h2>
                 <p className="text-sm text-gray-500 dark:text-gray-400 mt-1">
-                  {selectedDocument.size} • {getFileTypeLabel(selectedDocument.type)}
+                  {selectedDocument.file_size} •{" "}
+                  {getFileTypeLabel(selectedDocument.file_size)}
                 </p>
               </div>
               <div className="flex items-center gap-2">
@@ -181,16 +242,26 @@ const Document = () => {
                   onClick={() => handleDownload(selectedDocument)}
                   className="bg-primary hover:bg-primary-dark text-white px-4 py-2 rounded-lg font-semibold transition-colors duration-300 flex items-center gap-2"
                 >
-                  <span>{lang === 'en' ? 'Download' : 'ያውርዱ'}</span>
+                  <span>{lang === "en" ? "Download" : "ያውርዱ"}</span>
                   <span>⬇️</span>
                 </button>
                 <button
                   onClick={() => setIsViewerOpen(false)}
                   className="bg-gray-200 hover:bg-gray-300 dark:bg-gray-700 dark:hover:bg-gray-600 text-gray-900 dark:text-white p-2 rounded-lg transition-colors duration-300"
-                  aria-label={lang === 'en' ? 'Close' : 'ዝጋ'}
+                  aria-label={lang === "en" ? "Close" : "ዝጋ"}
                 >
-                  <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+                  <svg
+                    className="w-6 h-6"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth={2}
+                      d="M6 18L18 6M6 6l12 12"
+                    />
                   </svg>
                 </button>
               </div>
@@ -198,39 +269,41 @@ const Document = () => {
 
             {/* Viewer Content */}
             <div className="relative w-full h-[calc(90vh-120px)] overflow-auto bg-gray-100 dark:bg-gray-800">
-              {selectedDocument.type === 'image' ? (
+              {selectedDocument.file_type === "jpg" ? (
                 <div className="flex items-center justify-center h-full p-4">
                   <Image
-                    src={selectedDocument.fileUrl}
-                    alt={selectedDocument.title}
+                    src={`${process.env.NEXT_PUBLIC_IMAGE_URL}/${selectedDocument.file_path}`}
+                    alt={selectedDocument.name}
                     width={1200}
                     height={800}
                     className="max-w-full max-h-full object-contain rounded-lg"
                     unoptimized
                   />
                 </div>
-              ) : selectedDocument.type === 'pdf' ? (
+              ) : selectedDocument.file_type === "pdf" ? (
                 <iframe
-                  src={selectedDocument.fileUrl}
+                  src={selectedDocument.file_path}
                   className="w-full h-full border-0"
-                  title={selectedDocument.title}
+                  title={selectedDocument.name}
                 />
               ) : (
                 <div className="flex flex-col items-center justify-center h-full p-8 text-center">
-                  <div className="text-8xl mb-4">{getFileIcon(selectedDocument.type)}</div>
+                  <div className="text-8xl mb-4">
+                    {getFileIcon(selectedDocument.file_type)}
+                  </div>
                   <h3 className="text-2xl font-bold text-gray-900 dark:text-white mb-2">
-                    {selectedDocument.title}
+                    {selectedDocument.name}
                   </h3>
                   <p className="text-gray-600 dark:text-gray-400 mb-6">
-                    {lang === 'en' 
-                      ? 'This file type cannot be viewed inline. Please download to view.' 
-                      : 'ይህ የፋይል አይነት በመስመር ላይ ሊታይ አይችልም። ለመመልከት እባክዎ ያውርዱ።'}
+                    {lang === "en"
+                      ? "This file type cannot be viewed inline. Please download to view."
+                      : "ይህ የፋይል አይነት በመስመር ላይ ሊታይ አይችልም። ለመመልከት እባክዎ ያውርዱ።"}
                   </p>
                   <button
                     onClick={() => handleDownload(selectedDocument)}
                     className="bg-primary hover:bg-primary-dark text-white px-6 py-3 rounded-lg font-semibold transition-colors duration-300 flex items-center gap-2"
                   >
-                    <span>{lang === 'en' ? 'Download Now' : 'አሁን ያውርዱ'}</span>
+                    <span>{lang === "en" ? "Download Now" : "አሁን ያውርዱ"}</span>
                     <span>⬇️</span>
                   </button>
                 </div>
@@ -244,4 +317,3 @@ const Document = () => {
 };
 
 export default Document;
-

@@ -1,6 +1,8 @@
 import type { NextConfig } from "next";
 
-const nextConfig = {
+const nextConfig: NextConfig = {
+  output: "standalone", // 🔴 REQUIRED for cPanel
+
   images: {
     remotePatterns: [
       {
