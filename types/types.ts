@@ -553,3 +553,75 @@ export interface ContactFormData {
   phone: string;
   message: string;
 }
+
+export type DocumentCategoryTranslation = {
+  id: number;
+  document_category_id: string; // comes as string from API
+  locale: "en" | "am" | string;
+  name: string;
+  slug: string;
+  description: string | null;
+  created_at: string;
+  updated_at: string;
+};
+
+export type DocumentCategory = {
+  id: number;
+  business_id: number;
+  name: string;
+  slug: string;
+  description: string | null;
+  order: number;
+  status: "active" | "inactive" | string;
+  created_at: string;
+  updated_at: string;
+  translations: DocumentCategoryTranslation[];
+};
+
+export type DocumentCategoryApiResponse = {
+  data: DocumentCategory[];
+};
+
+export type DocumentTranslation = {
+  id: number;
+  document_id: string; // API returns string
+  locale: "en" | "am" | string;
+  name: string;
+  slug: string;
+  description: string | null;
+  created_at: string;
+  updated_at: string;
+};
+
+export type Document = {
+  id: number;
+  business_id: number;
+  document_category_id: number;
+  name: string;
+  slug: string;
+  description: string | null;
+
+  file_path: string;
+  file_type: string;
+  file_size: string;
+
+  is_featured: boolean;
+  status: "active" | "inactive" | string;
+  order: number;
+
+  views_count: number;
+  downloads_count: number;
+  published_at: string | null;
+
+  created_at: string;
+  updated_at: string;
+
+  category: DocumentCategory;
+  tags: any[]; // empty array for now, can refine later
+  translations: DocumentTranslation[];
+};
+
+export type DocumentsApiResponse = {
+  data: Document[];
+  meta: PaginationMeta;
+};
