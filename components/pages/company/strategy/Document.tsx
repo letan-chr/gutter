@@ -8,6 +8,10 @@ import { Document as DocumentType, DocumentCategory } from "@/types/types";
 import { resolveDocument } from "@/lib/resolvers/resolvedDocyument";
 import { resolveDocumentCategory } from "@/lib/resolvers/resolveDocumentCategory";
 
+const IMAGE_TYPES = ["jpg", "jpeg", "png"];
+
+const isImage = (type: string) => IMAGE_TYPES.includes(type.toLowerCase());
+
 interface DocumentProps {
   unResolvedDocuments: DocumentType[];
   unResolvedCategories: DocumentCategory[];
@@ -41,6 +45,24 @@ const Document = ({
   );
   const [isViewerOpen, setIsViewerOpen] = useState(false);
 
+  const formatFileSize = (sizeInKB: number | string) => {
+    const size = typeof sizeInKB === "string" ? Number(sizeInKB) : sizeInKB;
+
+    if (!size || isNaN(size)) return "-";
+
+    if (size < 1024) {
+      return `${size.toFixed(0)} KB`;
+    }
+
+    const sizeInMB = size / 1024;
+    if (sizeInMB < 1024) {
+      return `${sizeInMB.toFixed(2)} MB`;
+    }
+
+    const sizeInGB = sizeInMB / 1024;
+    return `${sizeInGB.toFixed(2)} GB`;
+  };
+
   const getFileIcon = (type: string) => {
     switch (type.toLowerCase()) {
       case "pdf":
@@ -61,48 +83,47 @@ const Document = ({
     }
   };
 
-  const getFileTypeLabel = (type: string) => {
+  const getFileTypeLabel = (type: any) => {
+    if (!type || typeof type !== "string") return "FILE";
+
     switch (type.toLowerCase()) {
       case "pdf":
         return "PDF";
+      case "jpg":
+      case "jpeg":
+      case "png":
+        return "IMAGE";
       case "doc":
       case "docx":
-        return "Word";
+        return "WORD";
       case "ppt":
       case "pptx":
-        return "PowerPoint";
-      case "image":
-        return "Image";
+        return "PPT";
       default:
         return type.toUpperCase();
     }
   };
 
-  const handleViewDocument = (document: DocumentType) => {
-    setSelectedDocument(document);
+  const handleViewDocument = (doc: DocumentType) => {
+    if (!canViewInline(doc.file_type)) return;
+    setSelectedDocument(doc);
     setIsViewerOpen(true);
   };
 
   const handleDownload = (doc: DocumentType) => {
     const link = document.createElement("a");
-    link.href = doc.file_path;
+    link.href = `${process.env.NEXT_PUBLIC_IMAGE_URL}/${doc.file_path}`;
     link.download = doc.name;
     link.target = "_blank";
+    link.rel = "noopener noreferrer";
     document.body.appendChild(link);
     link.click();
     document.body.removeChild(link);
   };
 
-  const canViewInline = (type: string) => {
-    const lowerType = type.toLowerCase();
-    return (
-      lowerType === "pdf" ||
-      lowerType === "image" ||
-      lowerType === "jpg" ||
-      lowerType === "jpeg" ||
-      lowerType === "png"
-    );
-  };
+  const canViewInline = (type: string) =>
+    typeof type === "string" &&
+    ["pdf", "jpg", "jpeg", "png"].includes(type.toLowerCase());
 
   return (
     <>
@@ -156,7 +177,7 @@ const Document = ({
               >
                 {/* Thumbnail */}
                 <div className="relative h-48 overflow-hidden bg-gradient-to-br from-primary/10 to-secondary/10">
-                  {doc.file_type === "jpg" ? (
+                  {isImage(doc.file_type) ? (
                     <Image
                       src={`${process.env.NEXT_PUBLIC_IMAGE_URL}/${doc.file_path}`}
                       alt={doc.name}
@@ -188,7 +209,7 @@ const Document = ({
 
                   {/* Meta Info */}
                   <div className="flex items-center justify-between text-xs text-gray-500 dark:text-gray-400 mb-4">
-                    <span>{doc.file_size}</span>
+                    <span>{formatFileSize(doc.file_size)}</span>
                     <span>
                       {new Date(doc.created_at).toLocaleDateString(
                         lang === "en" ? "en-US" : "am-ET"
@@ -201,10 +222,9 @@ const Document = ({
                     {canViewInline(doc.file_type) && (
                       <button
                         onClick={() => handleViewDocument(doc)}
-                        className="flex-1 bg-primary hover:bg-primary-dark text-white px-4 py-2 rounded-lg font-semibold transition-colors duration-300 flex items-center justify-center gap-2"
+                        className="flex-1 bg-primary text-white px-4 py-2 rounded-lg"
                       >
-                        <span>{lang === "en" ? "View" : "እይታ"}</span>
-                        <span>👁️</span>
+                        {lang === "en" ? "View" : "እይታ"} 👁️
                       </button>
                     )}
                     <button
@@ -233,8 +253,8 @@ const Document = ({
                   {selectedDocument.name}
                 </h2>
                 <p className="text-sm text-gray-500 dark:text-gray-400 mt-1">
-                  {selectedDocument.file_size} •{" "}
-                  {getFileTypeLabel(selectedDocument.file_size)}
+                  {formatFileSize(selectedDocument.file_size)} •{" "}
+                  {getFileTypeLabel(selectedDocument.file_type)}
                 </p>
               </div>
               <div className="flex items-center gap-2">
