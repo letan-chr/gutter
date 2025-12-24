@@ -1,4 +1,3 @@
-import type { NextConfig } from "next";
 
 const nextConfig = {
   images: {
@@ -16,4 +15,4 @@ const nextConfig = {
   },
 };
 
-export default nextConfig;
+module.exports = nextConfig;

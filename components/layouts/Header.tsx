@@ -139,7 +139,7 @@ const Header = () => {
               >
                 <div className="absolute inset-0 bg-gradient-to-r from-primary/20 to-secondary/20 rounded-lg blur-xl opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
                 <Image
-                  src={logoSrc}
+                  src={`${process.env.NEXT_PUBLIC_IMAGE_URL}/${setup?.logo_small}`}
                   alt="Logo"
                   width={80}
                   height={80}
@@ -177,9 +177,8 @@ const Header = () => {
                       <button className="text-gray-700 dark:text-gray-300 hover:text-primary dark:hover:text-primary-light font-semibold transition-all duration-300 relative group flex items-center gap-1.5 py-2 px-1 rounded-lg hover:bg-primary/5 dark:hover:bg-primary/10">
                         {item.label}
                         <svg
-                          className={`w-4 h-4 transition-transform duration-300 ${
-                            companyDropdownOpen ? "rotate-180" : ""
-                          }`}
+                          className={`w-4 h-4 transition-transform duration-300 ${companyDropdownOpen ? "rotate-180" : ""
+                            }`}
                           fill="none"
                           stroke="currentColor"
                           viewBox="0 0 24 24"
@@ -349,9 +348,8 @@ const Header = () => {
                         >
                           {item.label}
                           <svg
-                            className={`w-5 h-5 transition-transform duration-300 ${
-                              mobileCompanyDropdownOpen ? "rotate-180" : ""
-                            }`}
+                            className={`w-5 h-5 transition-transform duration-300 ${mobileCompanyDropdownOpen ? "rotate-180" : ""
+                              }`}
                             fill="none"
                             stroke="currentColor"
                             viewBox="0 0 24 24"
@@ -415,9 +413,8 @@ const Header = () => {
 
       {/* Offcanvas - Company Information */}
       <div
-        className={`fixed inset-0 z-[60] transition-opacity duration-300 ${
-          offcanvasOpen ? "opacity-100 visible" : "opacity-0 invisible"
-        }`}
+        className={`fixed inset-0 z-[60] transition-opacity duration-300 ${offcanvasOpen ? "opacity-100 visible" : "opacity-0 invisible"
+          }`}
         onClick={() => setOffcanvasOpen(false)}
       >
         {/* Backdrop */}
@@ -426,9 +423,8 @@ const Header = () => {
         {/* Offcanvas Panel */}
         <div
           ref={offcanvasRef}
-          className={`absolute right-0 top-0 h-full w-full max-w-md bg-white dark:bg-gray-900 shadow-2xl transform transition-transform duration-300 ease-out ${
-            offcanvasOpen ? "translate-x-0" : "translate-x-full"
-          }`}
+          className={`absolute right-0 top-0 h-full w-full max-w-md bg-white dark:bg-gray-900 shadow-2xl transform transition-transform duration-300 ease-out ${offcanvasOpen ? "translate-x-0" : "translate-x-full"
+            }`}
           onClick={(e) => e.stopPropagation()}
         >
           {/* Header */}
