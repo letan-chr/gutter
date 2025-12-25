@@ -46,7 +46,7 @@ const Hero = () => {
       title: lang === 'en' ? 'Premium Office & Shop Rental Spaces' : 'ደረጃቸዉን የጠበቁ ለሱቅ እና ለቢሮ የሚሆኑ ክፍልች',
       description: lang === 'en' 
         ? 'Modern, fully-equipped office and shop spaces designed for productivity and success. Perfect for businesses of all sizes.'
-        : 'ለስራዎ ስኬት የሚያግዙ አስፈሊጊዉ ነገር ሁሉም የተሟላላቸዉ ለሱቅ እና ለቢሮ የሚሆኑ ክፍልች ። ለሁሉም የንግድ መጠኖች ተስማሚ የሆኑ።',
+        : 'ለስራዎ ስኬት የሚያግዙ አስፈሊጊዉ ነገር ሁሉም የተሟላላቸዉ ለሱቅ እና ለቢሮ የሚሆኑ ክፍሎች ። ለሁሉም የንግድ መጠኖች ተስማሚ የሆኑ።',
       video: '/assets/video/gutter-office-rental.mp4',
       ctaPrimary: lang === 'en' ? 'Book Now' : 'አሁን ይዘዙ',
       ctaSecondary: lang === 'en' ? 'Learn More' : 'ተጨማሪ ለማወቅ',
@@ -55,10 +55,10 @@ const Hero = () => {
     },
     {
       // Slide 3: Wedding Hall Rental
-      title: lang === 'en' ? 'Elegant Wedding Hall Rental' : 'ደረጃዉን የጠበቀ የሰርግ አዲራሽ ኪራይ  ',
+      title: lang === 'en' ? 'Elegant Wedding Hall Rental' : 'ደረጃዉን የጠበቀ የሰርግ አዳራሽ ኪራይ  ',
       description: lang === 'en'
         ? 'Beautiful wedding halls for your special day. Spacious, elegant venues with modern amenities for unforgettable celebrations.'
-        : 'ለሌዩ ቀንዎ ውብ የሆነ የሰርግ አዲራሽ፤ በዘመናዊ ቁሳቁሶች የተሟላላቸዉ አዲራሽ፤ ሰፊ፣ የተዋበት እና የማይረሳ ጊዜን የሚያሳሌፉበት።',
+        : 'ለልዩ ቀንዎ ውብ የሆነ የሰርግ አዳራሽ፤ በዘመናዊ ቁሳቁሶች የተሟላላቸዉ አዳራሽ፤ ሰፊ፣ የተዋበ እና የማይረሳ ጊዜን የሚያሳልፉበት።',
       video: '/assets/video/wedding-hall.mp4',
       ctaPrimary: lang === 'en' ? 'Book Now' : 'አሁን ይዘዙ',
       ctaSecondary: lang === 'en' ? 'Learn More' : 'ተጨማሪ ለማወቅ',
