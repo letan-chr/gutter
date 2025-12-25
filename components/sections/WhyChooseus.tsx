@@ -46,7 +46,7 @@ const WhyChooseus = () => {
         <div className="absolute inset-0 bg-black/90"></div>
       </div>
 
-      <div className="mx-auto px-4 sm:px-6 lg:px-8 relative z-10 max-w-7xl">
+      <div className="mx-auto px-4 sm:px-6 lg:px-8 relative z-10 ">
         {/* Title Section */}
         <div className="text-center pt-2 mb-12" data-aos="fade-down">
           <h2 className="text-3xl sm:text-4xl lg:text-5xl font-display font-bold text-white">

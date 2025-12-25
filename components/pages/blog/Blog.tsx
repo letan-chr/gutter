@@ -88,7 +88,7 @@ const Blog = () => {
 
   return (
     <section className="py-12 lg:py-12 bg-white dark:bg-gray-900 min-h-screen">
-      <div className="mx-auto px-4 sm:px-6 lg:px-8 max-w-7xl">
+      <div className="mx-auto px-4 sm:px-6 lg:px-8">
         {/* Main Layout: Content (col-8) + Sidebar (col-4) */}
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8">
           {/* Content Section - col-8 */}

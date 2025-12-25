@@ -66,7 +66,7 @@ const Team = ({ teams, stats }: TeamSectionProps) => {
 
   return (
     <section className="py-12 lg:py-20 bg-white dark:bg-gray-900 min-h-screen">
-      <div className="mx-auto px-4 sm:px-6 lg:px-8 max-w-7xl">
+      <div className="mx-auto px-4 sm:px-6 lg:px-8">
         {/* Team Grid - Three Cards in One Row */}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6 lg:gap-8 mb-16">
           {members.map((member: TeamMember, index: number) => (

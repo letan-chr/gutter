@@ -67,7 +67,7 @@ const Gallery = ({ albums, images }: GalleryProps) => {
   if (!data || !images || images.length === 0) {
     return (
       <section className="py-12 lg:py-20 bg-white dark:bg-gray-900 min-h-screen">
-        <div className="mx-auto px-4 sm:px-6 lg:px-8 max-w-7xl">
+        <div className="mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center">
             <p className="text-gray-600 dark:text-gray-400">
               No gallery images available.
@@ -80,7 +80,7 @@ const Gallery = ({ albums, images }: GalleryProps) => {
 
   return (
     <section className="py-12 lg:py-20 bg-white dark:bg-gray-900 min-h-screen">
-      <div className="mx-auto px-4 sm:px-6 lg:px-8 max-w-7xl">
+      <div className="mx-auto px-4 sm:px-6 lg:px-8">
         {/* Gallery Grid */}
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 mb-12">
           {images.map((image: any, index: number) => (

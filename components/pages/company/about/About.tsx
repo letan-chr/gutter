@@ -106,7 +106,7 @@ const About = () => {
 
   return (
     <section className="py-12 lg:py-20 bg-gradient-to-b from-white via-gray-50 to-white dark:from-gray-900 dark:via-gray-900 dark:to-gray-900 min-h-screen">
-      <div className="mx-auto px-4 sm:px-6 lg:px-8 max-w-7xl">
+      <div className="mx-auto px-4 sm:px-6 lg:px-8">
         {/* Hero Section - Enhanced Three Column Layout */}
         <div className="mb-20">
           {/* Three Column Card - Content | Image | Content */}

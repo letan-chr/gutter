@@ -138,7 +138,7 @@ const Document = ({
   return (
     <>
       <section className="py-12 lg:py-12 bg-white dark:bg-gray-900 min-h-screen">
-        <div className="mx-auto px-4 sm:px-6 lg:px-8 max-w-7xl">
+        <div className="mx-auto px-4 sm:px-6 lg:px-8">
           {/* Header */}
           <div className="text-center mb-12">
             <h1 className="text-4xl lg:text-5xl font-display font-bold text-gray-900 dark:text-white mb-4">

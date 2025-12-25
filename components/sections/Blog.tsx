@@ -51,7 +51,7 @@ const Blog = ({ blogs }: BlogSectionProps) => {
 
   return (
     <section className="py-12 lg:py-16 bg-white dark:bg-gray-900">
-      <div className="mx-auto px-4 sm:px-6 lg:px-8 max-w-7xl">
+      <div className="mx-auto px-4 sm:px-6 lg:px-8">
         {/* Section Header - Modern Layout */}
         <div
           className="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-4 mb-10"
