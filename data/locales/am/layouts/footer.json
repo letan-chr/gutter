@@ -1,18 +1,18 @@
 {
   "company": {
-    "title": "ጋተር ሼር ኩባንያ",
-    "description": "ለጥራት የጋተር መፍትሄዎች የታመነ አጋርዎ።",
-    "logo": "ጋተር ሼር"
+    "title": "ገተር አክሲዮን ማሕበር",
+    "description": "ጥራት ላላቸዉ የአሸንዳ መፍትሄዎች ታማኝ አጋርዎ",
+    "logo": "ገተር አክሲዮን ማሕበር"
   },
   "links": {
     "quickLinks": {
       "title": "ፈጣን አገናኞች",
       "items": [
-        { "label": "መነሻ", "url": "/" },
+        { "label": "ዋና ገጽ", "url": "/" },
         { "label": "ስለእኛ", "url": "/company/about" },
         { "label": "አገልግሎቶች", "url": "/service" },
-        { "label": "ምርቶች", "url": "/products" },
-        { "label": "ብሎግ", "url": "/blogs" },
+        { "label": "ኢምፖርት ኤክስፖርት", "url": "/products" },
+        { "label": "ኩነቶችና መጣጥፎች", "url": "/blogs" },
         { "label": "ያግኙን", "url": "/contacts" }
       ]
     },
@@ -37,8 +37,8 @@
   },
   "contact": {
     "title": "የግንኙነት መረጃ",
-    "address": "አራዳ ክፍለ ከተማ ወረዳ 4 የቤት ቁጥር አዲስ (ገተር ሕንፃ)፣ አዲስ አበባ።",
-    "phone": "251 966 215350",
+    "address": "ከፒያሳ ወደ እንቁላል ፋብሪካ መንገድ አርበኞች ት/ት ቤት አቅራቢያ - ገተር ሕንጻ",
+    "phone": "0966215350",
     "email": "gutter2008@gmail.com"
   },
   "social": {
