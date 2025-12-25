@@ -238,11 +238,20 @@ const Footer = () => {
         <div className="border-t border-gray-800/50 mt-8 pt-4">
           <div className="flex flex-col md:flex-row items-center justify-between gap-4">
             <p className="text-gray-500 text-sm text-center md:text-left">
-              {data.copyright}
+              {data.copyright.replace("{year}", new Date().getFullYear().toString())}
             </p>
-            <div className="flex items-center gap-4">
-              <p className="text-gray-500 text-sm">{data.copyright}</p>
-            </div>
+            {data.poweredBy && (
+              <div className="flex items-center gap-4">
+                <a
+                  href={data.poweredBy.url}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-gray-500 hover:text-primary transition-colors text-sm"
+                >
+                  {data.poweredBy.text}
+                </a>
+              </div>
+            )}
           </div>
         </div>
       </div>

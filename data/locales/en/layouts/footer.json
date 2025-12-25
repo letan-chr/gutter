@@ -50,6 +50,10 @@
       { "name": "LinkedIn", "url": "#" }
     ]
   },
-  "copyright": "© 2024 Gutter Share Company. All rights reserved."
+  "copyright": "© {year} Gutter Share Company. All rights reserved.",
+  "poweredBy": {
+    "text": "Powered by Keradion Technology",
+    "url": "https://keradiontechnology.com"
+  }
 }
 

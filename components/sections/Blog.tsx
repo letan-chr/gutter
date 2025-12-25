@@ -62,9 +62,7 @@ const Blog = ({ blogs }: BlogSectionProps) => {
             <h2 className="text-3xl sm:text-4xl lg:text-5xl font-display font-bold text-gray-900 dark:text-white mb-2">
               {data.title}
             </h2>
-            <p className="text-xl text-gray-600 dark:text-gray-300">
-              {data.subtitle}
-            </p>
+            
           </div>
 
           {/* Right Side - Button */}

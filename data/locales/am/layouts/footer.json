@@ -50,6 +50,10 @@
       { "name": "ሊንክድኢን", "url": "#" }
     ]
   },
-  "copyright": "© 2024 ጋተር ሼር ኩባንያ። ሁሉም መብቶች የተጠበቁ ናቸው።"
+  "copyright": "© {year} ገተር አክስዮን ማሕበር፤ ሁለም መብቶች የተጠበቁ ናቸው።",
+  "poweredBy": {
+    "text": "በከራድዮን ቴክኖልጂ የተሰራ",
+    "url": "https://keradiontechnology.com"
+  }
 }
 
