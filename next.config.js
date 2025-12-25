@@ -1,5 +1,5 @@
 
-const nextConfig: NextConfig = {
+const nextConfig = {
   output: "standalone", // 🔴 REQUIRED for cPanel
 
   images: {

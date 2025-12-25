@@ -43,25 +43,25 @@ const Hero = () => {
     },
     {
       // Slide 2: Office and Shop Office Rental
-      title: lang === 'en' ? 'Premium Office & Shop Rental Spaces' : 'ከፍተኛ የቢሮ እና ሱቅ ምእራፍ ምድብ',
+      title: lang === 'en' ? 'Premium Office & Shop Rental Spaces' : 'ደረጃቸዉን የጠበቁ ለሱቅ እና ለቢሮ የሚሆኑ ክፍልች',
       description: lang === 'en' 
         ? 'Modern, fully-equipped office and shop spaces designed for productivity and success. Perfect for businesses of all sizes.'
-        : 'ዘመናዊ፣ ሙሉ በሙሉ የተገጠመ የቢሮ እና የሱቅ ቦታዎች ለምርታማነት እና ለስኬት የተነደፉ። ለሁሉም የንግድ መጠኖች ተስማሚ።',
+        : 'ለስራዎ ስኬት የሚያግዙ አስፈሊጊዉ ነገር ሁሉም የተሟላላቸዉ ለሱቅ እና ለቢሮ የሚሆኑ ክፍልች ። ለሁሉም የንግድ መጠኖች ተስማሚ የሆኑ።',
       video: '/assets/video/gutter-office-rental.mp4',
       ctaPrimary: lang === 'en' ? 'Book Now' : 'አሁን ይዘዙ',
-      ctaSecondary: lang === 'en' ? 'Learn More' : 'ተጨማሪ ይማሩ',
+      ctaSecondary: lang === 'en' ? 'Learn More' : 'ተጨማሪ ለማወቅ',
       ctaPrimaryLink: '/contacts',
       ctaSecondaryLink: '/contacts',
     },
     {
       // Slide 3: Wedding Hall Rental
-      title: lang === 'en' ? 'Elegant Wedding Hall Rental' : 'የሚያምር የጋቶ አዳራሽ ምእራፍ',
+      title: lang === 'en' ? 'Elegant Wedding Hall Rental' : 'ደረጃዉን የጠበቀ የሰርግ አዲራሽ ኪራይ  ',
       description: lang === 'en'
         ? 'Beautiful wedding halls for your special day. Spacious, elegant venues with modern amenities for unforgettable celebrations.'
-        : 'ለተለየ ቀንዎ ውብ የጋቶ አዳራሾች። ሰፊ፣ የሚያምር ቦታዎች ከዘመናዊ ዕቃዎች ጋር ለማይረሳ በዓላት።',
+        : 'ለሌዩ ቀንዎ ውብ የሆነ የሰርግ አዲራሽ፤ በዘመናዊ ቁሳቁሶች የተሟላላቸዉ አዲራሽ፤ ሰፊ፣ የተዋበት እና የማይረሳ ጊዜን የሚያሳሌፉበት።',
       video: '/assets/video/wedding-hall.mp4',
       ctaPrimary: lang === 'en' ? 'Book Now' : 'አሁን ይዘዙ',
-      ctaSecondary: lang === 'en' ? 'Learn More' : 'ተጨማሪ ይማሩ',
+      ctaSecondary: lang === 'en' ? 'Learn More' : 'ተጨማሪ ለማወቅ',
       ctaPrimaryLink: '/contacts',
       ctaSecondaryLink: '/contacts',
     },
@@ -131,7 +131,7 @@ const Hero = () => {
   };
 
   return (
-    <section className="relative h-[calc(100vh-4rem)] lg:h-[calc(100vh-5rem)] flex items-center justify-center overflow-hidden">
+    <section className="relative min-h-[calc(100vh-4rem)] lg:min-h-[calc(100vh-5rem)] h-[calc(100vh-4rem)] lg:h-[calc(100vh-5rem)] flex items-center justify-center overflow-hidden">
       <Swiper
         ref={swiperRef}
         modules={[Autoplay, EffectFade, Pagination]}
@@ -177,11 +177,11 @@ const Hero = () => {
       </Swiper>
 
       {/* Enhanced Scroll Indicator */}
-      <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2 animate-bounce z-30 pointer-events-none">
-        <div className="flex flex-col items-center gap-2">
-          <span className="text-xs text-white/70 uppercase tracking-wider font-semibold">Scroll</span>
-          <div className="w-6 h-10 border-2 border-white/50 rounded-full flex items-start justify-center p-2">
-            <div className="w-1.5 h-1.5 bg-white rounded-full animate-bounce"></div>
+      <div className="absolute bottom-4 sm:bottom-6 md:bottom-8 left-1/2 transform -translate-x-1/2 animate-bounce z-30 pointer-events-none">
+        <div className="flex flex-col items-center gap-1 sm:gap-2">
+          <span className="text-[10px] sm:text-xs text-white/70 uppercase tracking-wider font-semibold">Scroll</span>
+          <div className="w-5 h-8 sm:w-6 sm:h-10 border-2 border-white/50 rounded-full flex items-start justify-center p-1.5 sm:p-2">
+            <div className="w-1 h-1 sm:w-1.5 sm:h-1.5 bg-white rounded-full animate-bounce"></div>
           </div>
         </div>
       </div>
@@ -311,36 +311,36 @@ const HeroSlide: React.FC<HeroSlideProps> = ({ slide, index, videoRefs, isActive
       </div>
 
       {/* Floating Decorative Elements - Reduced opacity */}
-      <div className="absolute top-20 left-10 w-72 h-72 bg-primary/10 rounded-full blur-3xl animate-pulse z-5"></div>
-      <div className="absolute bottom-20 right-10 w-96 h-96 bg-secondary/10 rounded-full blur-3xl animate-pulse delay-1000 z-5"></div>
-      <div className="absolute top-1/2 left-1/4 w-64 h-64 bg-tertiary/8 rounded-full blur-3xl animate-pulse delay-500 z-5"></div>
+      <div className="absolute top-10 sm:top-20 left-4 sm:left-10 w-32 h-32 sm:w-48 sm:h-48 md:w-72 md:h-72 bg-primary/10 rounded-full blur-3xl animate-pulse z-5"></div>
+      <div className="absolute bottom-10 sm:bottom-20 right-4 sm:right-10 w-40 h-40 sm:w-64 sm:h-64 md:w-96 md:h-96 bg-secondary/10 rounded-full blur-3xl animate-pulse delay-1000 z-5"></div>
+      <div className="absolute top-1/2 left-1/4 w-24 h-24 sm:w-40 sm:h-40 md:w-64 md:h-64 bg-tertiary/8 rounded-full blur-3xl animate-pulse delay-500 z-5"></div>
 
       {/* Content Container */}
-      <div className="mx-auto px-4 sm:px-6 lg:px-8 relative z-20 w-full h-full flex items-start pt-20 sm:pt-24 md:pt-32">
-        <div className="max-w-5xl mx-auto text-center w-full">
+      <div className="mx-auto px-3 sm:px-4 md:px-6 lg:px-8 relative z-20 w-full h-full flex items-center justify-center py-4 sm:py-6 md:py-8">
+        <div className="max-w-5xl mx-auto text-center w-full flex flex-col items-center justify-center gap-3 sm:gap-4 md:gap-6 lg:gap-8">
           {/* Main Heading */}
-          <h1 className="text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-display font-bold text-white mb-8 leading-tight drop-shadow-2xl animate-slide-up" style={{ animationDelay: '0.1s' }}>
+          <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl 2xl:text-8xl font-display font-bold text-white leading-tight drop-shadow-2xl animate-slide-up px-2" style={{ animationDelay: '0.1s' }}>
             <span className="block bg-gradient-to-r from-white via-gray-100 to-white bg-clip-text text-transparent">
               {slide.title}
             </span>
           </h1>
 
           {/* Description */}
-          <div className="inline-block px-6 py-4 mb-10 bg-white/10 dark:bg-white/5 backdrop-blur-md rounded-2xl border border-white/20 shadow-xl animate-slide-up" style={{ animationDelay: '0.2s' }}>
-            <p className="text-xl sm:text-2xl text-gray-100 dark:text-gray-200 max-w-3xl mx-auto leading-relaxed font-medium">
+          <div className="inline-block px-3 py-2 sm:px-4 sm:py-3 md:px-6 md:py-4 bg-white/10 dark:bg-white/5 backdrop-blur-md rounded-xl md:rounded-2xl border border-white/20 shadow-xl animate-slide-up max-w-full sm:max-w-2xl md:max-w-3xl mx-auto" style={{ animationDelay: '0.2s' }}>
+            <p className="text-sm sm:text-base md:text-lg lg:text-xl xl:text-2xl text-gray-100 dark:text-gray-200 leading-relaxed font-medium px-1">
               {slide.description}
             </p>
           </div>
 
           {/* CTA Buttons */}
-          <div className="flex flex-col sm:flex-row items-center justify-center gap-6 animate-slide-up" style={{ animationDelay: '0.3s' }}>
+          <div className="flex flex-col sm:flex-row items-center justify-center gap-3 sm:gap-4 md:gap-6 animate-slide-up w-full px-2" style={{ animationDelay: '0.3s' }}>
             <a
               href={slide.ctaPrimaryLink}
-              className="group relative w-full sm:w-auto px-10 py-5 bg-primary hover:bg-primary-dark text-white rounded-xl font-bold text-lg transition-all duration-300 hover:shadow-2xl hover:shadow-primary/50 hover:scale-110 transform overflow-hidden"
+              className="group relative w-full sm:w-auto px-6 py-3 sm:px-8 sm:py-4 md:px-10 md:py-5 bg-primary hover:bg-primary-dark text-white rounded-lg md:rounded-xl font-bold text-sm sm:text-base md:text-lg transition-all duration-300 hover:shadow-2xl hover:shadow-primary/50 hover:scale-105 sm:hover:scale-110 transform overflow-hidden"
             >
               <span className="relative z-10 flex items-center justify-center gap-2">
                 {slide.ctaPrimary}
-                <svg className="w-5 h-5 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <svg className="w-4 h-4 sm:w-5 sm:h-5 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 7l5 5m0 0l-5 5m5-5H6" />
                 </svg>
               </span>
@@ -348,14 +348,14 @@ const HeroSlide: React.FC<HeroSlideProps> = ({ slide, index, videoRefs, isActive
             </a>
             <a
               href={slide.ctaSecondaryLink}
-              className="group w-full sm:w-auto px-10 py-5 bg-white/10 dark:bg-white/5 backdrop-blur-md text-white border-2 border-white/30 hover:border-white/50 hover:bg-white/20 dark:hover:bg-white/10 rounded-xl font-bold text-lg transition-all duration-300 hover:shadow-2xl hover:scale-110 transform"
+              className="group w-full sm:w-auto px-6 py-3 sm:px-8 sm:py-4 md:px-10 md:py-5 bg-white/10 dark:bg-white/5 backdrop-blur-md text-white border-2 border-white/30 hover:border-white/50 hover:bg-white/20 dark:hover:bg-white/10 rounded-lg md:rounded-xl font-bold text-sm sm:text-base md:text-lg transition-all duration-300 hover:shadow-2xl hover:scale-105 sm:hover:scale-110 transform"
             >
               {slide.ctaSecondary}
             </a>
           </div>
-          </div>
         </div>
       </div>
+    </div>
   );
 };
 

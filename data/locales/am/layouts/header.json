@@ -1,9 +1,9 @@
 {
   "logo": "ጋተር ሼር",
   "nav": {
-    "home": "መነሻ",
+    "home": "ዋና ገጽ",
     "company": {
-      "label": "ኩባንያ",
+      "label": "ስለእኛ",
       "items": [
         { "label": "ስለእኛ", "href": "/company/about" },
         { "label": "የእኛ ቡድን", "href": "/company/team" },
@@ -14,10 +14,10 @@
       ]
     },
     "services": "አገልግሎቶች",
-    "products": "ምርቶች",
-    "blog": "መላኪያዎች & ብሎግ",
+    "products": "ኢምፖርት ኤክስፖርት",
+    "blog": "ኩነቶችና መጣጥፎች",
     "contact": "ያግኙን"
   },
-  "cta": "ዋጋ ያግኙ"
+  "cta": "ይዘዙን"
 }
 
